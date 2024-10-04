@@ -7,9 +7,21 @@ export default function Page() {
     const params = new URLSearchParams(searchParams)
 
     const flags = params.get("flags");
-    const bgColor = params.get("bgColor")
-    console.log('params', flags, bgColor)
+    const bgColor = params.get("bgColor");
+    const color:string = bgColor ? bgColor : "black";
+
     return (
-        <h1>Tracker</h1>
+        <div className="flex" style={{ backgroundColor: color }}>
+            <div className="w-96 border-2 border-double h-screen flex flex-col">
+            <div className="flex">
+                <div className="w-1/2">KI</div>
+                <div className="w-1/2">Bosses</div>
+            </div>
+            <div>Objectives</div>
+            <div>Available Locations</div>
+            <div>Timer</div>
+            </div>
+            
+        </div>
     )
 }
