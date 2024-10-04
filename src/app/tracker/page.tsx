@@ -1,6 +1,8 @@
 'use client'
 
 import { useSearchParams } from "next/navigation"
+import KIDisplay from "../ui/ki/ki-display";
+import { defaultKI } from "../lib/default-data";
 
 export default function Page() {
     const searchParams = useSearchParams();
@@ -14,7 +16,7 @@ export default function Page() {
         <div className="flex" style={{ backgroundColor: color }}>
             <div className="w-96 border-2 border-double h-screen flex flex-col">
             <div className="flex">
-                <div className="w-1/2">KI</div>
+                <div className="w-1/2"><KIDisplay ki={defaultKI} /></div>
                 <div className="w-1/2">Bosses</div>
             </div>
             <div>Objectives</div>
