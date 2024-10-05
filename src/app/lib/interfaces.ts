@@ -20,4 +20,12 @@ interface KeyItems {
 
 }
 
-export type { KeyItems };
+interface Boss {
+    name: string;
+    id: number;
+    imageGray: string;
+    imageColor: string;
+    toggle: false;
+}
+
+export type { KeyItems, Boss };
