@@ -628,7 +628,7 @@ const locations: Location[] = [
         title: 'Baron Castle Basement',
         type: 'summon',
         zone: 0,
-        dependencies: [],
+        dependencies: ['baron'],
         available: false,
         cleared: false,
     },

@@ -3,8 +3,7 @@ import { KeyItems, Location } from "@/app/lib/interfaces";
 
 export default function LocationDisplay({ locations, ki }: { locations: Location[], ki: KeyItems }) {
 
-    const hasUnderground = (ki.magma || ki.hook);
-    const hasMoon = ki.darkness;
+
     
     function isAvailable(location: Location) {
         if (location.available && !location.cleared) {
