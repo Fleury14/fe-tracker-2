@@ -26,7 +26,7 @@ const bosses: Boss[] = [{
     title: 'D. Mist',
     id: 1,
     iconFile: 'FFIVFE-Bosses-1MistD-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-1MistD-Gray.png',
     toggle: false
 },
 {
@@ -34,7 +34,7 @@ const bosses: Boss[] = [{
     title: 'Kaipo Guards',
     id: 2,
     iconFile: 'FFIVFE-Bosses-2Soldier-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-2Soldier-Gray.png',
     toggle: false
 
 },
@@ -43,7 +43,7 @@ const bosses: Boss[] = [{
     title: 'Octomamm',
     id: 3,
     iconFile: 'FFIVFE-Bosses-3Octo-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-3Octo-Gray.png',
     toggle: false
 },
 {
@@ -51,7 +51,7 @@ const bosses: Boss[] = [{
     title: 'Antlion',
     id: 4,
     iconFile: 'FFIVFE-Bosses-4Antlion-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-4Antlion-Gray.png',
     toggle: false
 },
 {
@@ -59,7 +59,7 @@ const bosses: Boss[] = [{
     title: 'WaterHag',
     id: 5,
     iconFile: 'FFIVFE-Bosses-5WHag-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-5WHag-Gray.png',
     toggle: false
 },
 {
@@ -67,7 +67,7 @@ const bosses: Boss[] = [{
     title: 'Mom Bomb',
     id: 6,
     iconFile: 'FFIVFE-Bosses-6Mombomb-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-6Mombomb-Gray.png',
     toggle: false
 },
 {
@@ -75,7 +75,7 @@ const bosses: Boss[] = [{
     title: 'Fabul Gauntlet',
     id: 7,
     iconFile: 'FFIVFE-Bosses-7Gauntlet-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-7Gauntlet-Gray.png',
     toggle: false
 },
 {
@@ -83,7 +83,7 @@ const bosses: Boss[] = [{
     title: 'Milon',
     id: 8,
     iconFile: 'FFIVFE-Bosses-8Milon-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-8Milon-Gray.png',
     toggle: false
 },
 {
@@ -91,7 +91,7 @@ const bosses: Boss[] = [{
     title: 'Milon-Z',
     id: 9,
     iconFile: 'FFIVFE-Bosses-9MilonZ-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-9MilonZ-Gray.png',
     toggle: false
 },
 {
@@ -99,7 +99,7 @@ const bosses: Boss[] = [{
     title: 'Dark Knight',
     id: 10,
     iconFile: 'FFIVFE-Bosses-10DKCecil-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-10DKCecil-Gray.png',
     toggle: false
 },
 {
@@ -107,7 +107,7 @@ const bosses: Boss[] = [{
     title: 'Baron Guards',
     id: 11,
     iconFile: 'FFIVFE-Bosses-11Guards-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-11Guards-Gray.png',
     toggle: false
 },
 {
@@ -115,7 +115,7 @@ const bosses: Boss[] = [{
     title: 'Karate',
     id: 12,
     iconFile: 'FFIVFE-Bosses-12Yang-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-12Yang-Gray.png',
     toggle: false
 },
 {
@@ -123,7 +123,7 @@ const bosses: Boss[] = [{
     title: 'Baigan',
     id: 13,
     iconFile: 'FFIVFE-Bosses-13Baigan-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-13Baigan-Gray.png',
     toggle: false
 },
 {
@@ -131,7 +131,7 @@ const bosses: Boss[] = [{
     title: 'Kainazzo',
     id: 14,
     iconFile: 'FFIVFE-Bosses-14Kainazzo-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-14Kainazzo-Gray.png',
     toggle: false
 },
 {
@@ -139,7 +139,7 @@ const bosses: Boss[] = [{
     title: 'Dark Elf',
     id: 15,
     iconFile: 'FFIVFE-Bosses-15DElf-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-15DElf-Gray.png',
     toggle: false
 },
 {
@@ -147,7 +147,7 @@ const bosses: Boss[] = [{
     title: 'Magus Sisters',
     id: 16,
     iconFile: 'FFIVFE-Bosses-16MagusSis-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-16MagusSis-Gray.png',
     toggle: false
 },
 {
@@ -155,7 +155,7 @@ const bosses: Boss[] = [{
     title: 'Valvalis',
     id: 17,
     iconFile: 'FFIVFE-Bosses-17Valvalis-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-17Valvalis-Gray.png',
     toggle: false
 },
 {
@@ -163,7 +163,7 @@ const bosses: Boss[] = [{
     title: 'Calbrena',
     id: 18,
     iconFile: 'FFIVFE-Bosses-18Calcabrina-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-18Calcabrina-Gray.png',
     toggle: false
 },
 {
@@ -171,7 +171,7 @@ const bosses: Boss[] = [{
     title: 'Golbez',
     id: 19,
     iconFile: 'FFIVFE-Bosses-19Golbez-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-19Golbez-Gray.png',
     toggle: false
 },
 {
@@ -179,7 +179,7 @@ const bosses: Boss[] = [{
     title: 'Dr. Lugae',
     id: 20,
     iconFile: 'FFIVFE-Bosses-20Lugae-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-20Lugae-Gray.png',
     toggle: false
 },
 {
@@ -187,7 +187,7 @@ const bosses: Boss[] = [{
     title: 'Dark Imps',
     id: 35,
     iconFile: 'FFIVFE-Bosses-35DarkImps-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-35DarkImps-Gray.png',
     toggle: false
 },
 {
@@ -195,7 +195,7 @@ const bosses: Boss[] = [{
     title: 'K/Q Eblan',
     id: 21,
     iconFile: 'FFIVFE-Bosses-21Eblan-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-21Eblan-Gray.png',
     toggle: false
 },
 {
@@ -203,7 +203,7 @@ const bosses: Boss[] = [{
     title: 'Rubicant',
     id: 22,
     iconFile: 'FFIVFE-Bosses-22Rubicante-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-22Rubicante-Gray.png',
     toggle: false
 },
 {
@@ -211,7 +211,7 @@ const bosses: Boss[] = [{
     title: 'Evil Wall',
     id: 23,
     iconFile: 'FFIVFE-Bosses-23EvilWall-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-23EvilWall-Gray.png',
     toggle: false
 },
 {
@@ -219,7 +219,7 @@ const bosses: Boss[] = [{
     title: 'Asura',
     id: 27,
     iconFile: 'FFIVFE-Bosses-27Asura-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-27Asura-Gray.png',
     toggle: false
 },
 {
@@ -227,7 +227,7 @@ const bosses: Boss[] = [{
     title: 'Leviatan',
     id: 28,
     iconFile: 'FFIVFE-Bosses-28Leviath-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-28Leviath-Gray.png',
     toggle: false
 },
 {
@@ -235,7 +235,7 @@ const bosses: Boss[] = [{
     title: 'Odin',
     id: 26,
     iconFile: 'FFIVFE-Bosses-26Odin-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-26Odin-Gray.png',
     toggle: false
 },
 {
@@ -243,7 +243,7 @@ const bosses: Boss[] = [{
     title: 'Bahamut',
     id: 29,
     iconFile: 'FFIVFE-Bosses-29Bahamut-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-29Bahamut-Gray.png',
     toggle: false
 },
 {
@@ -251,7 +251,7 @@ const bosses: Boss[] = [{
     title: 'Elements',
     id: 24, 
     iconFile: 'FFIVFE-Bosses-24Fiends-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-24Fiends-Gray.png',
     toggle: false
 },
 {
@@ -259,7 +259,7 @@ const bosses: Boss[] = [{
     title: 'CPU',
     id: 25,
     iconFile: 'FFIVFE-Bosses-25CPU-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-25CPU-Gray.png',
     toggle: false
 },
 {
@@ -267,7 +267,7 @@ const bosses: Boss[] = [{
     title: 'Pale Dim',
     id: 30,
     iconFile: 'FFIVFE-Bosses-30PaleDim-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-30PaleDim-Gray.png',
     toggle: false
 },
 {
@@ -275,7 +275,7 @@ const bosses: Boss[] = [{
     title: 'Wyvern',
     id: 34,
     iconFile: 'FFIVFE-Bosses-34Wyvern-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-34Wyvern-Gray.png',
     toggle: false
 },
 {
@@ -283,7 +283,7 @@ const bosses: Boss[] = [{
     title: 'Plague',
     id: 32,
     iconFile: 'FFIVFE-Bosses-32Plague-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-32Plague-Gray.png',
     toggle: false
 },
 {
@@ -291,7 +291,7 @@ const bosses: Boss[] = [{
     title: 'D. Lunars',
     id: 31,
     iconFile: 'FFIVFE-Bosses-31LunarD-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-31LunarD-Gray.png',
     toggle: false
 },
 {
@@ -299,7 +299,7 @@ const bosses: Boss[] = [{
     title: 'Ogopogo',
     id: 33,
     iconFile: 'FFIVFE-Bosses-33Ogopogo-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-33Ogopogo-Gray.png',
     toggle: false
 },
 {
@@ -307,7 +307,7 @@ const bosses: Boss[] = [{
     title: 'Zeromus',
     id: 36,
     iconFile: 'FFIVFE-Bosses-36Zeromus-Color.png',
-    iconGray: '',
+    iconGray: 'FFIVFE-Bosses-36Zeromus-Gray.png',
     toggle: false
 },
 {
