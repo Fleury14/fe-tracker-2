@@ -105,9 +105,7 @@ const parseFlags = (flagString: string) => {
     // grunthack: mode KI
     const modeKIindex = flagString.indexOf(`ki`);
     if (modeKIindex >= 0) {
-        console.log('grunthack detected', modeKIindex)
         const digit1 = parseInt(flagString.charAt(modeKIindex + 2));
-        console.log('next diggy', digit1);
         // if (isNaN(digit1)) return;
         if (digit1 === 1) {
             const digit2 = parseInt(flagString.charAt(modeKIindex + 3));
