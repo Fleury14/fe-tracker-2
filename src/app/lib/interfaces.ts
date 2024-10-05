@@ -19,6 +19,16 @@ interface KeyItems {
     pink: boolean;
 
 }
+// zones: 0 = overworld, 1 = underground, 2 = moon
+interface Location {
+    id: number;
+    title: string;
+    type: string;
+    zone: number;
+    dependencies: string[];
+    cleared: boolean;
+    available: boolean;
+}
 
 interface Boss {
     title: string;
@@ -47,4 +57,4 @@ interface Quest {
     buttonText: string;
 }
 
-export type { KeyItems, Boss, TObjective, FlagObject, Quest };
+export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location };

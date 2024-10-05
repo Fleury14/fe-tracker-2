@@ -5,7 +5,8 @@ import { useState  } from "react";
 import KIDisplay from "../ui/ki/ki-display";
 import BossDisplay from "@/app/ui/bosses/boss-display";
 import ObjectiveDisplay from "@/app/ui/objectives/obj-display";
-import { defaultKI, bosses } from "../lib/default-data";
+import LocationDisplay from "@/app/ui/locations/location-display";
+import { defaultKI, bosses, locations } from "../lib/default-data";
 import parseFlags from "../lib/parse-flags";
 import { FlagObject } from "../lib/interfaces";
 
@@ -18,22 +19,24 @@ export default function Page() {
     const bgColor = params.get("bgColor");
     const color:string = bgColor ? bgColor : "black";
     const assuredFlags:string = flags ? flags : "";
+    const objectives:FlagObject = parseFlags(assuredFlags);
 
     const [ki, setKI] = useState(defaultKI);
     const [bossList, setBossList] = useState(bosses);
-    const objectives:FlagObject = parseFlags(assuredFlags);
-    console.log('obj', objectives);
+    const [locationList, setLocationList] = useState(locations);
+    
+    
 
     return (
         <div className="flex" style={{ backgroundColor: color }}>
             <div className="w-96 border-2 border-double h-screen flex flex-col">
-            <div className="flex">
-                <div className="w-1/2"><KIDisplay ki={ki} /></div>
-                <div className="w-1/2"><BossDisplay bosses={bossList} /></div>
-            </div>
-            <div><ObjectiveDisplay flagObj={objectives} /></div>
-            <div>Available Locations</div>
-            <div>Timer</div>
+                <div className="flex h-1/4">
+                    <div className="w-1/2"><KIDisplay ki={ki} /></div>
+                    <div className="w-1/2"><BossDisplay bosses={bossList} /></div>
+                </div>
+                <div className="h-1/4"><ObjectiveDisplay flagObj={objectives} /></div>
+                <div className="h-1/4"><LocationDisplay locations={locationList} ki={ki} /></div>
+                <div className="h-1/4">Timer</div>
             </div>
             
         </div>
