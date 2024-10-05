@@ -7,7 +7,7 @@ export default function LocationDisplay({ locations, ki }: { locations: Location
     const hasMoon = ki.darkness;
     
     function isAvailable(location: Location) {
-        if (location.available) {
+        if (location.available && !location.cleared) {
             return <p key={location.id}>{location.title}</p>
         }
     }
