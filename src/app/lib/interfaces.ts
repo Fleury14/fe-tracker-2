@@ -36,7 +36,7 @@ interface Boss {
     id: number;
     iconGray?: string;
     iconFile: string;
-    toggle: false;
+    toggle: boolean;
 }
 
 interface TObjective {
