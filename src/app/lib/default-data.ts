@@ -1,4 +1,4 @@
-import { KeyItems } from "./interfaces";
+import { KeyItems, Boss } from "./interfaces";
 
 const defaultKI: KeyItems = {
     crystal: false,
@@ -21,4 +21,14 @@ const defaultKI: KeyItems = {
     pink: false,
 }
 
-export { defaultKI };
+const defaultBossList: Boss[] = [
+    {
+        name: "D. Mist",
+        id: 1,
+        toggle: false,
+        imageGray: '',
+        imageColor: '/images/boss-icons/FFIVFE-Bosses-1MistD-Color.png'
+    }
+];
+
+export { defaultKI, defaultBossList };
