@@ -146,6 +146,8 @@ const parseFlags = (flagString: string) => {
     // required objective number
     if (flagString.indexOf('req:') >= 0 && flagString.indexOf('req:all') < 0) {
         flagObj.required = parseInt(flagString.charAt(flagString.indexOf('req:') + 4));
+    } else if (flagString.indexOf('req:') >= 0 && flagString.indexOf('req:all') >= 0) {
+        flagObj.required = flagString.indexOf('win:game') < 0 ? flagObj.objectives.length - 1 : flagObj.objectives.length;
     }
 
     return flagObj;
