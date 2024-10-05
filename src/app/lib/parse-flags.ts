@@ -5,7 +5,10 @@ import { FlagObject } from '@/app/lib/interfaces';
 
 const parseFlags = (flagString: string) => {
     if (!flagString || typeof flagString !== 'string') {
-        return null;
+        return {
+            objectives: [],
+            required: 0
+        };
     }
 
     const flagObj:FlagObject = {

@@ -21,16 +21,6 @@ const defaultKI: KeyItems = {
     pink: false,
 }
 
-// const defaultBossList: Boss[] = [
-//     {
-//         name: "D. Mist",
-//         id: 1,
-//         toggle: false,
-//         imageGray: '',
-//         imageColor: '/images/boss-icons/FFIVFE-Bosses-1MistD-Color.png'
-//     }
-// ];
-
 const bosses: Boss[] = [{
     slug: 'dmist',
     title: 'D. Mist',
