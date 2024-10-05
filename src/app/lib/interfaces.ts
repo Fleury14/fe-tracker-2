@@ -21,11 +21,30 @@ interface KeyItems {
 }
 
 interface Boss {
-    name: string;
+    title: string;
+    slug: string;
     id: number;
-    imageGray: string;
-    imageColor: string;
+    iconGray?: string;
+    iconFile: string;
     toggle: false;
 }
 
-export type { KeyItems, Boss };
+interface TObjective {
+    id: number;
+    label: string;
+    time?: number;
+    random?: boolean;
+}
+
+interface FlagObject {
+    objectives: TObjective[];
+    required: number;
+}
+
+interface Quest {
+    slug: string;
+    title: string;
+    buttonText: string;
+}
+
+export type { KeyItems, Boss, TObjective, FlagObject, Quest };
