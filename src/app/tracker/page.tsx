@@ -8,7 +8,7 @@ import ObjectiveDisplay from "@/app/ui/objectives/obj-display";
 import LocationDisplay from "@/app/ui/locations/location-display";
 import { defaultKI, bosses, locations } from "../lib/default-data";
 import parseFlags from "../lib/parse-flags";
-import { FlagObject } from "../lib/interfaces";
+import { FlagObject, KeyItems } from "../lib/interfaces";
 
 export default function Page() {
 
@@ -24,6 +24,13 @@ export default function Page() {
     const [ki, setKI] = useState(defaultKI);
     const [bossList, setBossList] = useState(bosses);
     const [locationList, setLocationList] = useState(locations);
+
+    function toggleKI(target:string) {
+        setKI((prevState) => ({
+            ...prevState,
+            [target]: !prevState[target as keyof KeyItems]
+        }));
+    }
     
     
 
@@ -31,7 +38,7 @@ export default function Page() {
         <div className="flex" style={{ backgroundColor: color }}>
             <div className="w-96 border-2 border-double h-screen flex flex-col">
                 <div className="flex h-1/4">
-                    <div className="w-1/2"><KIDisplay ki={ki} /></div>
+                    <div className="w-1/2"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target)}/></div>
                     <div className="w-1/2"><BossDisplay bosses={bossList} /></div>
                 </div>
                 <div className="h-1/4"><ObjectiveDisplay flagObj={objectives} /></div>
