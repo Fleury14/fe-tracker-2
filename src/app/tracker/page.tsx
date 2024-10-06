@@ -8,6 +8,7 @@ import ObjectiveDisplay from "@/app/ui/objectives/obj-display";
 import LocationDisplay from "@/app/ui/locations/location-display";
 import { defaultKI, bosses, locations } from "../lib/default-data";
 import parseFlags from "../lib/parse-flags";
+import { getPropertySection } from "../lib/parse-flag-section";
 import { FlagObject, KeyItems, Boss, Location } from "../lib/interfaces";
 
 export default function Page() {
@@ -36,6 +37,15 @@ export default function Page() {
         }
         // check dependencies
         if (loc.dependencies.length === 0) {
+            // bedward/dmist exception
+            const K = getPropertySection(assuredFlags, 'K');
+            const noFree = K.indexOf('nofree') >= 0
+            if (loc.id === 13) { // dmist
+                return noFree;
+            } else if (loc.id === 14) { // bedward
+                return !noFree;
+            }
+
             return true;
         } else {
             let depCheck = true;
