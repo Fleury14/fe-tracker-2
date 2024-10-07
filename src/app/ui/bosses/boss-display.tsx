@@ -9,7 +9,7 @@ export default function BossDisplay({ bosses, toggleBoss }: { bosses: Boss[], to
                 if (boss.id === 99) return null;
                 
                 return (
-                    <a key={boss.title} onClick={() => toggleBoss(boss.id, boss.toggle)}>
+                    <a key={boss.title} onClick={() => toggleBoss(boss.id, boss.toggle)} className='m-0.5'>
                         <Image 
                         height={30}
                         width={30}

@@ -65,10 +65,10 @@ export default function Page() {
     
     return (
         <div className="flex" style={{ backgroundColor: color }}>
-            <div className="w-96 border-2 border-double h-screen flex flex-col font-[family-name:var(--font-geist-sans)]">
+            <div className="w-96 border-2 border-double h-screen flex flex-col font-[family-name:var(--font-geist-sans)] p-1">
                 <div className="flex h-1/4">
-                    <div className="w-1/2"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)}/></div>
-                    <div className="w-1/2"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
+                    <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)}/></div>
+                    <div className="layout-bosses"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
                 </div>
                 <div className="h-1/4"><ObjectiveDisplay objectives={objectives} req={parsedObjectives.required} onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)} /></div>
                 <div className="h-1/4"><LocationDisplay locations={locationList} ki={ki} /></div>
