@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams } from "next/navigation"
-import { useState, useEffect  } from "react";
+import { useState, useEffect, useRef  } from "react";
 import KIDisplay from "../ui/ki/ki-display";
 import BossDisplay from "@/app/ui/bosses/boss-display";
 import ObjectiveDisplay from "@/app/ui/objectives/obj-display";
@@ -26,9 +26,66 @@ export default function Page() {
     const [ki, setKI] = useState(defaultKI);
     const [bossList, setBossList] = useState(bosses);
     const [locationList, setLocationList] = useState(locations);
-    const [timerActive, setActive] = useState(false);
-    const [startTime, setStart] = useState(0);
-    const [currentTime, setCurrent] = useState(0);
+    const [timer, setTimer] = useState({
+        startTime: 0,
+        currentTime: 0,
+        pauseTime: 0,
+        isActive: false,
+    })
+    
+    // const [startTime, setStart] = useState(0);
+    // const [currentTime, setCurrent] = useState(0);
+    const [pauseTime, setPause] = useState(0);
+
+    // timer controls TODO: refactor out
+
+    const currentTimer:any = useRef();
+    useEffect(() => {
+        return () => clearInterval(currentTimer.current);
+    }, []);
+
+    function beginTimer() {
+        const { pauseTime } = timer;
+        const startDate = pauseTime === 0 ? Date.now() : Date.now() - pauseTime;
+        currentTimer.current = setInterval(() => {
+            setTimer({
+                ...timer,
+                isActive: true,
+                startTime: startDate,
+                currentTime: Date.now() - startDate,
+            });
+        }, 100);
+        // OLD: set objectives up, but only if hasnt been done already (editing randoms may do this already)
+        // if (!this.state.flagObj) {
+        //     this.setState({ flagObj: this.props.flagObj });
+        // }
+    }
+
+    function endTimer() {
+        const { isActive, startTime } = timer;
+        if (isActive) {
+            
+            console.log('CLEARING INTERVAL')
+            clearInterval(currentTimer.current);
+            
+            setTimer({ 
+                ...timer,
+                pauseTime: Date.now() - startTime, 
+                isActive: false 
+            });
+        }
+    }
+
+    function resetTimer() {
+        setTimer({ 
+            isActive: false,
+            startTime: 0,
+            currentTime: 0,
+            pauseTime: 0,
+        })
+    }
+
+    // location functions TODO refactor out
 
     function isAvailable(loc: Location) {
         const hasUnderground = (ki.magma || ki.hook);
@@ -75,6 +132,8 @@ export default function Page() {
         setLocationList(newLocList)
     }, [ki])
 
+    // toggle controls
+
     function toggleKI(target:string) {
         // adjust ki
         setKI((prevState) => ({
@@ -94,6 +153,8 @@ export default function Page() {
             return prevState;
         })
     }
+
+    console.log('timer state', timer)
     
     return (
         <div className="flex" style={{ backgroundColor: color }}>
@@ -104,7 +165,16 @@ export default function Page() {
                 </div>
                 <div className="h-1/4"><ObjectiveDisplay flagObj={objectives} /></div>
                 <div className="h-1/4"><LocationDisplay locations={locationList} ki={ki} /></div>
-                <div className="h-1/4"><TimerDisplay currentTime={currentTime} startTime={startTime} /></div>
+                <div className="h-1/4">
+                    <TimerDisplay 
+                        currentTime={timer.currentTime}
+                        startTime={timer.startTime}
+                        isActive={timer.isActive}
+                        startTimer={() => beginTimer()}
+                        stopTimer={() => endTimer()}
+                        resetTimer={() => resetTimer()}
+                    />
+                </div>
             </div>
             
         </div>
