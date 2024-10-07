@@ -34,4 +34,17 @@ function editObjective(id: number, title: string, objectives: TObjective[], setO
     }
 }
 
-export { beginObjectiveEdit, editObjective }
+function completeObjective(id: number, objectives: TObjective[], setObjectives: Function, timer: any) {
+    const target = objectives.find(obj => obj.id === id);
+    if (!!target) {
+        const newObj:TObjective = {
+            ...target,
+            time: !!target.time && target.time > 0 ? 0 : timer.currentTime
+        }
+        const newList = objectives.filter(obj => obj.id !== id);
+        newList.push(newObj);
+        setObjectives(newList);
+    }
+}
+
+export { beginObjectiveEdit, editObjective, completeObjective }

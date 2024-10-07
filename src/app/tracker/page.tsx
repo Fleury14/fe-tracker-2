@@ -14,7 +14,7 @@ import parseFlags from "../lib/parse-flags";
 import { FlagObject, KeyItems, Boss, Location, TObjective } from "../lib/interfaces";
 import { toggleKI, toggleBoss, isAvailable } from "../lib/controls/toggler";
 import { beginTimer, endTimer, resetTimer } from "../lib/controls/time-controls";
-import { beginObjectiveEdit, editObjective } from "../lib/controls/objective-controle";
+import { beginObjectiveEdit, editObjective, completeObjective } from "../lib/controls/objective-controle";
 
 export default function Page() {
 
@@ -62,19 +62,6 @@ export default function Page() {
         })
         setLocationList(newLocList)
     }, [ki])
-
-    function completeObjective(id: number) {
-        const target = objectives.find(obj => obj.id === id);
-        if (!!target) {
-            const newObj:TObjective = {
-                ...target,
-                time: !!target.time && target.time > 0 ? 0 : timer.currentTime
-            }
-            const newList = objectives.filter(obj => obj.id !== id);
-            newList.push(newObj);
-            setObjectives(newList);
-        }
-    }
     
     return (
         <div className="flex" style={{ backgroundColor: color }}>
@@ -88,7 +75,7 @@ export default function Page() {
                         objectives={objectives}
                         req={parsedObjectives.required}
                         onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)}
-                        onComplete = {(id:number) => completeObjective(id)}
+                        onComplete = {(id:number) => completeObjective(id, objectives, setObjectives, timer)}
                     />
                 </div>
                 <div className="h-1/4"><LocationDisplay locations={locationList} ki={ki} /></div>
