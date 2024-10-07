@@ -19,7 +19,8 @@ export default function Page() {
 
     const flags = params.get("flags");
     const bgColor = params.get("bgColor");
-    const color:string = bgColor ? bgColor : "black";
+    const color:string = bgColor !== null ? bgColor : "black";
+    console.log('color', color)
     const assuredFlags:string = flags ? flags : "";
     const objectives:FlagObject = parseFlags(assuredFlags);
 
@@ -32,10 +33,6 @@ export default function Page() {
         pauseTime: 0,
         isActive: false,
     })
-    
-    // const [startTime, setStart] = useState(0);
-    // const [currentTime, setCurrent] = useState(0);
-    const [pauseTime, setPause] = useState(0);
 
     // timer controls TODO: refactor out
 
@@ -64,10 +61,7 @@ export default function Page() {
     function endTimer() {
         const { isActive, startTime } = timer;
         if (isActive) {
-            
-            console.log('CLEARING INTERVAL')
             clearInterval(currentTimer.current);
-            
             setTimer({ 
                 ...timer,
                 pauseTime: Date.now() - startTime, 
@@ -153,8 +147,6 @@ export default function Page() {
             return prevState;
         })
     }
-
-    console.log('timer state', timer)
     
     return (
         <div className="flex" style={{ backgroundColor: color }}>
