@@ -26,6 +26,11 @@ body {
   }
 }
 
+.text-xxs {
+  font-size: 0.5rem;
+  line-height: 0.75rem;
+}
+
 .layout-ki {
   width: 30%;
   padding-right: 5px;
@@ -38,4 +43,9 @@ body {
 .layout-bosses {
   width: 70%; 
   padding-left: 5px;
+}
+
+.obj-border {
+  border-bottom: dotted 1px white;
+  border-top: dotted 1px white;
 }

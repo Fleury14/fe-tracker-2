@@ -62,6 +62,19 @@ export default function Page() {
         })
         setLocationList(newLocList)
     }, [ki])
+
+    function completeObjective(id: number) {
+        const target = objectives.find(obj => obj.id === id);
+        if (!!target) {
+            const newObj:TObjective = {
+                ...target,
+                time: !!target.time && target.time > 0 ? 0 : timer.currentTime
+            }
+            const newList = objectives.filter(obj => obj.id !== id);
+            newList.push(newObj);
+            setObjectives(newList);
+        }
+    }
     
     return (
         <div className="flex" style={{ backgroundColor: color }}>
@@ -70,7 +83,14 @@ export default function Page() {
                     <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)}/></div>
                     <div className="layout-bosses"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
                 </div>
-                <div className="h-1/4"><ObjectiveDisplay objectives={objectives} req={parsedObjectives.required} onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)} /></div>
+                <div className="h-1/4">
+                    <ObjectiveDisplay
+                        objectives={objectives}
+                        req={parsedObjectives.required}
+                        onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)}
+                        onComplete = {(id:number) => completeObjective(id)}
+                    />
+                </div>
                 <div className="h-1/4"><LocationDisplay locations={locationList} ki={ki} /></div>
                 <div className="h-1/4">
                     <TimerDisplay 
