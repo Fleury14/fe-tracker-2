@@ -1,4 +1,4 @@
-import { FlagObject, TObjective } from "@/app/lib/interfaces";
+import { TObjective } from "@/app/lib/interfaces";
 
 export default function ObjectiveDisplay({ objectives, req, onEdit }: { objectives: TObjective[], req: number, onEdit: Function }) {
     return (

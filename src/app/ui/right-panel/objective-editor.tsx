@@ -17,7 +17,12 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
                             {set.objectives.map((obj, index) => {
                                 const targetObj = quests.find(quest => quest.slug === obj);
                                 if (!!targetObj) {
-                                    return <button key={`button${index}`}>{targetObj.buttonText}</button>
+                                    return <button 
+                                        key={`button${index}`}
+                                        onClick={() => onSelect(id, targetObj.title)}
+                                    >
+                                        {targetObj.buttonText}
+                                    </button>
                                 }
                                 return null;
                             })}
@@ -46,7 +51,12 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
                             {set.objectives.map((obj, index) => {
                                 const targetObj = quests.find(quest => quest.slug === obj);
                                 if (!!targetObj) {
-                                    return <button key={`button${index}`}>{targetObj.buttonText}</button>
+                                    return <button 
+                                            key={`button${index}`}
+                                            onClick={() => onSelect(id, targetObj.title)}
+                                        >
+                                            {targetObj.buttonText}
+                                        </button>
                                 }
                                 return null;
                             })}
@@ -69,7 +79,12 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
                             {set.objectives.map((obj, index) => {
                                 const targetObj = quests.find(quest => quest.slug === obj);
                                 if (!!targetObj) {
-                                    return <button key={`button${index}`}>{targetObj.buttonText}</button>
+                                    return <button
+                                        key={`button${index}`}
+                                        onClick={() => onSelect(id, targetObj.title)}
+                                    >
+                                        {targetObj.buttonText}
+                                    </button>
                                 }
                                 return null;
                             })}
@@ -85,26 +100,27 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
             <div className="flex">
                 {characters.map(char => (
                     <a key={char.slug} onClick={() => onSelect(id, `Get ${char.title}`)}>
-                    <Image 
-                        
-                        src={`/images/character-icons/${char.iconActive}`}
-                        alt={char.title}
-                        height={48}
-                        width={32}
-                    />
+                        <Image 
+                            src={`/images/character-icons/${char.iconActive}`}
+                            alt={char.title}
+                            height={48}
+                            width={32}
+                        />
                     </a>
                 ))}
             </div>
             <p>Bosses</p>
             <div className="flex flex-wrap">
-                {bosses.map(boss => boss.id < 36 ? (<Image // z id is 36, unknown is 99, neither are selectable objectives
-                    key={boss.id}
-                    height={30}
-                    width={30}
-                    alt={boss.title}
-                    src={`/images/boss-icons/${boss.iconFile}`}
-
-                />) : null)}
+                {bosses.map(boss => boss.id < 36 ? (
+                    <a key={boss.id} onClick={() => onSelect(id, `Defeat ${boss.title}`)}>
+                        <Image // z id is 36, unknown is 99, neither are selectable objectives
+                            height={30}
+                            width={30}
+                            alt={boss.title}
+                            src={`/images/boss-icons/${boss.iconFile}`}
+                        />
+                    </a>
+                ) : null)}
             </div>
             <p>Quests</p>
             <div className="flex flex-col">
