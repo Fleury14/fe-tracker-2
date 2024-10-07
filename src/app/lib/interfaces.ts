@@ -57,4 +57,10 @@ interface Quest {
     buttonText: string;
 }
 
-export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location };
+interface Character {
+    slug: string,
+    title: string,
+    iconActive: string,
+}
+
+export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location, Character };

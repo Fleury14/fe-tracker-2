@@ -1,4 +1,4 @@
-import { KeyItems, Boss, Quest, Location } from "./interfaces";
+import { KeyItems, Boss, Quest, Location, Character } from "./interfaces";
 
 const defaultKI: KeyItems = {
     crystal: false,
@@ -715,5 +715,68 @@ const locations: Location[] = [
     },
 ];
 
+const characters: Character[] = [
+    {
+        slug: 'cecil',
+        title: 'Cecil',
+        iconActive: 'FFIVFE-Characters-1Cecil-Active.png'
+    },
+    {
+        slug: 'kain',
+        title: 'Kain',
+        iconActive: 'FFIVFE-Characters-2Kain-Active.png'
+    },
+    {
+        slug: 'rydia',
+        title: 'Rydia',
+        iconActive: 'FFIVFE-Characters-3Rydia-Active.png'
+    },
+    {
+        slug: 'tellah',
+        title: 'Tellah',
+        iconActive: 'FFIVFE-Characters-4Tellah-Active.png'
+    },
+    {
+        slug: 'edward',
+        title: 'Edward',
+        iconActive: 'FFIVFE-Characters-5Edward-Active.png'
+    },
+    {
+        slug: 'rosa',
+        title: 'Rosa',
+        iconActive: 'FFIVFE-Characters-6Rosa-Active.png'
+    },
+    {
+        slug: 'yang',
+        title: 'Yang',
+        iconActive: 'FFIVFE-Characters-7Yang-Active.png'
+    },
+    {
+        slug: 'porom',
+        title: 'Porom',
+        iconActive: 'FFIVFE-Characters-8Porom-Active.png'
+    },
+    {
+        slug: 'palom',
+        title: 'Palom',
+        iconActive: 'FFIVFE-Characters-9Palom-Active.png'
+    },
+    {
+        slug: 'cid',
+        title: 'Cid',
+        iconActive: 'FFIVFE-Characters-10Cid-Active.png'
+    },
+    {
+        slug: 'edge',
+        title: 'Edge',
+        iconActive: 'FFIVFE-Characters-11Edge-Active.png'
+    },
+    {
+        slug: 'fusoya',
+        title: 'FuSoYa',
+        iconActive: 'FFIVFE-Characters-12FuSoYa-Active.png'
+    },
+]
 
-export { defaultKI, bosses, quests, locations };
+
+export { defaultKI, bosses, quests, locations, characters };

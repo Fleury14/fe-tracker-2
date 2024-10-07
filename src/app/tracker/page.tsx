@@ -31,7 +31,7 @@ export default function Page() {
         ObjectiveEdit
     }
 
-    const [mode, setMode] = useState<Mode>(Mode.Info);
+    const [mode, setMode] = useState<Mode>(Mode.ObjectiveEdit);
     const [ki, setKI] = useState<KeyItems>(defaultKI);
     const [bossList, setBossList] = useState<Boss[]>(bosses);
     const [locationList, setLocationList] = useState(locations);
@@ -82,7 +82,7 @@ export default function Page() {
             </div>
             <div>
                 {mode === Mode.Info && <Info />}
-                {mode === Mode.ObjectiveEdit && <ObjectiveEditor />}
+                {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={1} />}
             </div>
         </div>
     )
