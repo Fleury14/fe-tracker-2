@@ -31,7 +31,8 @@ export default function Page() {
         ObjectiveEdit
     }
 
-    const [mode, setMode] = useState<Mode>(Mode.ObjectiveEdit);
+    const [objectiveEdit, setObjEdit] = useState(-1)
+    const [mode, setMode] = useState<Mode>(Mode.Info);
     const [ki, setKI] = useState<KeyItems>(defaultKI);
     const [bossList, setBossList] = useState<Boss[]>(bosses);
     const [locationList, setLocationList] = useState(locations);
@@ -59,6 +60,11 @@ export default function Page() {
         })
         setLocationList(newLocList)
     }, [ki])
+
+    function beginObjectiveEdit(id: number) {
+        setObjEdit(id);
+        setMode(Mode.ObjectiveEdit);
+    }
     
     return (
         <div className="flex" style={{ backgroundColor: color }}>
@@ -67,7 +73,7 @@ export default function Page() {
                     <div className="w-1/2"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)}/></div>
                     <div className="w-1/2"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
                 </div>
-                <div className="h-1/4"><ObjectiveDisplay flagObj={objectives} /></div>
+                <div className="h-1/4"><ObjectiveDisplay flagObj={objectives} onEdit={(id:number) => beginObjectiveEdit(id)} /></div>
                 <div className="h-1/4"><LocationDisplay locations={locationList} ki={ki} /></div>
                 <div className="h-1/4">
                     <TimerDisplay 
@@ -82,7 +88,7 @@ export default function Page() {
             </div>
             <div className="w-1/2">
                 {mode === Mode.Info && <Info />}
-                {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={1} />}
+                {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={objectiveEdit} />}
             </div>
         </div>
     )
