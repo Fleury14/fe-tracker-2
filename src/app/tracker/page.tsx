@@ -13,6 +13,7 @@ import { defaultKI, bosses, locations } from "../lib/default-data";
 import parseFlags from "../lib/parse-flags";
 import { FlagObject, KeyItems, Boss, Location } from "../lib/interfaces";
 import { toggleKI, toggleBoss, isAvailable } from "../lib/controls/toggler";
+import { beginTimer, endTimer, resetTimer } from "../lib/controls/time-controls";
 
 export default function Page() {
 
@@ -41,50 +42,10 @@ export default function Page() {
         isActive: false,
     })
 
-    // timer controls TODO: refactor out
-
     const currentTimer:any = useRef();
     useEffect(() => {
         return () => clearInterval(currentTimer.current);
     }, []);
-
-    function beginTimer() {
-        const { pauseTime } = timer;
-        const startDate = pauseTime === 0 ? Date.now() : Date.now() - pauseTime;
-        currentTimer.current = setInterval(() => {
-            setTimer({
-                ...timer,
-                isActive: true,
-                startTime: startDate,
-                currentTime: Date.now() - startDate,
-            });
-        }, 100);
-        // OLD: set objectives up, but only if hasnt been done already (editing randoms may do this already)
-        // if (!this.state.flagObj) {
-        //     this.setState({ flagObj: this.props.flagObj });
-        // }
-    }
-
-    function endTimer() {
-        const { isActive, startTime } = timer;
-        if (isActive) {
-            clearInterval(currentTimer.current);
-            setTimer({ 
-                ...timer,
-                pauseTime: Date.now() - startTime, 
-                isActive: false 
-            });
-        }
-    }
-
-    function resetTimer() {
-        setTimer({ 
-            isActive: false,
-            startTime: 0,
-            currentTime: 0,
-            pauseTime: 0,
-        })
-    }
 
     // adjust locations for every KI change
     useEffect(() => {
@@ -113,9 +74,9 @@ export default function Page() {
                         currentTime={timer.currentTime}
                         startTime={timer.startTime}
                         isActive={timer.isActive}
-                        startTimer={() => beginTimer()}
-                        stopTimer={() => endTimer()}
-                        resetTimer={() => resetTimer()}
+                        startTimer={() => beginTimer(timer, setTimer, currentTimer)}
+                        stopTimer={() => endTimer(timer, setTimer, currentTimer)}
+                        resetTimer={() => resetTimer(setTimer)}
                     />
                 </div>
             </div>
