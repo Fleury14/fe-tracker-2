@@ -7,6 +7,8 @@ import BossDisplay from "@/app/ui/bosses/boss-display";
 import ObjectiveDisplay from "@/app/ui/objectives/obj-display";
 import LocationDisplay from "@/app/ui/locations/location-display";
 import TimerDisplay from "@/app/ui/timer/timer-display";
+import ObjectiveEditor from "@/app/ui/right-panel/objective-editor";
+import Info from "@/app/ui/right-panel/info";
 import { defaultKI, bosses, locations } from "../lib/default-data";
 import parseFlags from "../lib/parse-flags";
 import { getPropertySection } from "../lib/parse-flag-section";
@@ -20,10 +22,15 @@ export default function Page() {
     const flags = params.get("flags");
     const bgColor = params.get("bgColor");
     const color:string = bgColor !== null ? bgColor : "black";
-    console.log('color', color)
     const assuredFlags:string = flags ? flags : "";
     const objectives:FlagObject = parseFlags(assuredFlags);
 
+    enum Mode {
+        Info,
+        ObjectiveEdit
+    }
+
+    const [mode, setMode] = useState<Mode>(Mode.Info);
     const [ki, setKI] = useState(defaultKI);
     const [bossList, setBossList] = useState(bosses);
     const [locationList, setLocationList] = useState(locations);
@@ -168,7 +175,10 @@ export default function Page() {
                     />
                 </div>
             </div>
-            
+            <div>
+                {mode === Mode.Info && <Info />}
+                {mode === Mode.ObjectiveEdit && <ObjectiveEditor />}
+            </div>
         </div>
     )
 }
