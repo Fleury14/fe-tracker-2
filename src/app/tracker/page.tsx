@@ -13,6 +13,7 @@ import { defaultKI, bosses, locations } from "../lib/default-data";
 import parseFlags from "../lib/parse-flags";
 import { getPropertySection } from "../lib/parse-flag-section";
 import { FlagObject, KeyItems, Boss, Location } from "../lib/interfaces";
+import { toggleKI, toggleBoss } from "../lib/controls/toggler";
 
 export default function Page() {
 
@@ -132,35 +133,13 @@ export default function Page() {
         })
         setLocationList(newLocList)
     }, [ki])
-
-    // toggle controls
-
-    function toggleKI(target:string) {
-        // adjust ki
-        setKI((prevState) => ({
-            ...prevState,
-            [target]: !prevState[target as keyof KeyItems]
-        }));
-    }
-
-    function toggleBoss(id:number, val: boolean) {
-        setBossList((prevState) => {
-            const target = prevState.find(boss => boss.id === id);
-            const newBoss = bossList.filter(boss => boss.id !== id);
-            if (target) {
-                target.toggle = !val;
-                return [...newBoss, target];
-            }
-            return prevState;
-        })
-    }
     
     return (
         <div className="flex" style={{ backgroundColor: color }}>
             <div className="w-96 border-2 border-double h-screen flex flex-col font-[family-name:var(--font-geist-sans)]">
                 <div className="flex h-1/4">
-                    <div className="w-1/2"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target)}/></div>
-                    <div className="w-1/2"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val)} /></div>
+                    <div className="w-1/2"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)}/></div>
+                    <div className="w-1/2"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
                 </div>
                 <div className="h-1/4"><ObjectiveDisplay flagObj={objectives} /></div>
                 <div className="h-1/4"><LocationDisplay locations={locationList} ki={ki} /></div>
