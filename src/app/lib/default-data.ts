@@ -1,4 +1,4 @@
-import { KeyItems, Boss, Quest, Location, Character } from "./interfaces";
+import { KeyItems, Boss, Quest, Location, Character, KIObjectives } from "./interfaces";
 
 const defaultKI: KeyItems = {
     crystal: false,
@@ -778,5 +778,100 @@ const characters: Character[] = [
     },
 ]
 
+const kiImages = []
 
-export { defaultKI, bosses, quests, locations, characters };
+const questsByKI: KIObjectives[] = [
+    {
+        ki: 'pan',
+        objectives: ['wakeyang', 'tradepan'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-15Pan-Color.png']
+    },
+    {
+        ki: 'hook',
+        objectives: ['falcon'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-3Hook-Color.png']
+    },
+    {
+        ki: 'luca',
+        objectives: ['unlocksealedcave', 'sealedcave'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-12LucaKey-Color.png']
+    },
+    {
+        ki: 'baron',
+        objectives: ['baroncastle', 'baronbasement', 'unlocksewer'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-9BaronKey-Color.png']
+    },
+    {
+        ki: 'sandruby',
+        objectives: ['curefever'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-8SandRuby-Color.png']
+    },
+    {
+        ki: 'tower',
+        objectives: ['supercannon'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-11TowerKey-Color.png']
+    },
+    {
+        ki: 'magma',
+        objectives: ['magma'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-10MagmaKey-Color.png']
+    },
+    {
+        ki: 'package',
+        objectives: ['burnmist'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-7Package-Color.png']
+    },
+    {
+        ki: 'harp',
+        objectives: ['magnes', 'music'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-6TwinHarp-Color.png']
+    },
+    {
+        ki: 'earth',
+        objectives: ['zot', 'toroiatreasury'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-5EarthCrystal-Color.png']
+    },
+    {
+        ki: 'harp',
+        objectives: ['magnes', 'music'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-6TwinHarp-Color.png']
+    },
+    {
+        ki: 'darkness',
+        objectives: ['bigwhale', 'giant', 'masamunealtar', 'ribbonaltar', 'whitealtar', 'crystalaltar', 'murasamealtar', 'cavebahamut'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-4DarkCrystal-Color.png']
+    },
+    {
+        ki: 'pass',
+        objectives: ['pass'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-2Pass-Color.png']
+    },
+    {
+        ki: 'forge',
+        objectives: ['forge'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-13Adamant-Color.png', '/images/key-item-icons/FFIVFE-Icons-14LegendSword-Color.png']
+    },
+    {
+        ki: 'rat',
+        objectives: ['traderat'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-3Hook-Color.png', '/images/key-item-icons/FFIVFE-Icons-17RatTail-Color.png']
+    },
+    {
+        ki: 'pink',
+        objectives: ['tradepink'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-3Hook-Color.png', '/images/key-item-icons/FFIVFE-Icons-18PinkTail-Color.png']
+    },
+    {
+        ki: 'underground',
+        objectives: ['dwarfcastle', 'lowerbabil', 'monsterking', 'monsterqueen'],
+        images: ['/images/key-item-icons/FFIVFE-Icons-3Hook-Color.png', '/images/key-item-icons/FFIVFE-Icons-10MagmaKey-Color.png']
+    },
+    {
+        ki: 'none',
+        objectives: ['mistcave', 'waterfall', 'antlionnest', 'hobs', 'fabul', 'ordeals', 'baroninn'],
+        images: []
+    },
+]
+
+
+export { defaultKI, bosses, quests, locations, characters, questsByKI };

@@ -58,9 +58,16 @@ interface Quest {
 }
 
 interface Character {
-    slug: string,
-    title: string,
-    iconActive: string,
+    slug: string;
+    title: string;
+    iconActive: string;
 }
 
-export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location, Character };
+interface KIObjectives {
+    ki: string;
+    objectives: string[];
+    images: string[];
+}
+
+
+export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location, Character, KIObjectives };

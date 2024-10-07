@@ -80,7 +80,7 @@ export default function Page() {
                     />
                 </div>
             </div>
-            <div>
+            <div className="w-1/2">
                 {mode === Mode.Info && <Info />}
                 {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={1} />}
             </div>
