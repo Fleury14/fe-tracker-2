@@ -6,6 +6,7 @@ import KIDisplay from "../ui/ki/ki-display";
 import BossDisplay from "@/app/ui/bosses/boss-display";
 import ObjectiveDisplay from "@/app/ui/objectives/obj-display";
 import LocationDisplay from "@/app/ui/locations/location-display";
+import TimerDisplay from "@/app/ui/timer/timer-display";
 import { defaultKI, bosses, locations } from "../lib/default-data";
 import parseFlags from "../lib/parse-flags";
 import { getPropertySection } from "../lib/parse-flag-section";
@@ -25,6 +26,9 @@ export default function Page() {
     const [ki, setKI] = useState(defaultKI);
     const [bossList, setBossList] = useState(bosses);
     const [locationList, setLocationList] = useState(locations);
+    const [timerActive, setActive] = useState(false);
+    const [startTime, setStart] = useState(0);
+    const [currentTime, setCurrent] = useState(0);
 
     function isAvailable(loc: Location) {
         const hasUnderground = (ki.magma || ki.hook);
@@ -93,14 +97,14 @@ export default function Page() {
     
     return (
         <div className="flex" style={{ backgroundColor: color }}>
-            <div className="w-96 border-2 border-double h-screen flex flex-col">
+            <div className="w-96 border-2 border-double h-screen flex flex-col font-[family-name:var(--font-geist-sans)]">
                 <div className="flex h-1/4">
                     <div className="w-1/2"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target)}/></div>
                     <div className="w-1/2"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val)} /></div>
                 </div>
                 <div className="h-1/4"><ObjectiveDisplay flagObj={objectives} /></div>
                 <div className="h-1/4"><LocationDisplay locations={locationList} ki={ki} /></div>
-                <div className="h-1/4">Timer</div>
+                <div className="h-1/4"><TimerDisplay currentTime={currentTime} startTime={startTime} /></div>
             </div>
             
         </div>
