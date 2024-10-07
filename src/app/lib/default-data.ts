@@ -832,11 +832,6 @@ const questsByKI: KIObjectives[] = [
         images: ['/images/key-item-icons/FFIVFE-Icons-5EarthCrystal-Color.png']
     },
     {
-        ki: 'harp',
-        objectives: ['magnes', 'music'],
-        images: ['/images/key-item-icons/FFIVFE-Icons-6TwinHarp-Color.png']
-    },
-    {
         ki: 'darkness',
         objectives: ['bigwhale', 'giant', 'masamunealtar', 'ribbonaltar', 'whitealtar', 'crystalaltar', 'murasamealtar', 'cavebahamut'],
         images: ['/images/key-item-icons/FFIVFE-Icons-4DarkCrystal-Color.png']

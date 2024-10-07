@@ -3,13 +3,13 @@ import { characters, bosses, questsByKI, quests } from "@/app/lib/default-data";
 import { KIObjectives } from '@/app/lib/interfaces';
 import { GlobeAltIcon } from '@heroicons/react/16/solid';
 
-export default function ObjectiveEditor( { id }: { id: number }) {
+export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelect: Function }) {
 
     function renderQuestSet(set: KIObjectives) {
         switch(set.ki) {
             case 'none':
                 return (
-                    <div className="flex items-center">
+                    <div key={set.ki} className="flex items-center">
                         <div className='mr-3 mb-px'>
                             <GlobeAltIcon className='size-8' />
                         </div>
@@ -17,7 +17,7 @@ export default function ObjectiveEditor( { id }: { id: number }) {
                             {set.objectives.map((obj, index) => {
                                 const targetObj = quests.find(quest => quest.slug === obj);
                                 if (!!targetObj) {
-                                    return <button>{targetObj.buttonText}</button>
+                                    return <button key={`button${index}`}>{targetObj.buttonText}</button>
                                 }
                                 return null;
                             })}
@@ -26,7 +26,7 @@ export default function ObjectiveEditor( { id }: { id: number }) {
                 );
             case 'underground':
                 return (
-                    <div className="flex items-center">
+                    <div key={set.ki} className="flex items-center">
                         <div className='mr-3 mb-px flex'>
                             <Image 
                                 src={set.images[0]}
@@ -46,7 +46,7 @@ export default function ObjectiveEditor( { id }: { id: number }) {
                             {set.objectives.map((obj, index) => {
                                 const targetObj = quests.find(quest => quest.slug === obj);
                                 if (!!targetObj) {
-                                    return <button>{targetObj.buttonText}</button>
+                                    return <button key={`button${index}`}>{targetObj.buttonText}</button>
                                 }
                                 return null;
                             })}
@@ -55,7 +55,7 @@ export default function ObjectiveEditor( { id }: { id: number }) {
                 )
             default:
                 return (
-                    <div className="flex items-center">
+                    <div key={set.ki} className="flex items-center">
                         <div className='mr-3 mb-px'>
                             {set.images.map((img, index) => (<Image 
                                 src={img}
@@ -69,7 +69,7 @@ export default function ObjectiveEditor( { id }: { id: number }) {
                             {set.objectives.map((obj, index) => {
                                 const targetObj = quests.find(quest => quest.slug === obj);
                                 if (!!targetObj) {
-                                    return <button>{targetObj.buttonText}</button>
+                                    return <button key={`button${index}`}>{targetObj.buttonText}</button>
                                 }
                                 return null;
                             })}
@@ -83,13 +83,17 @@ export default function ObjectiveEditor( { id }: { id: number }) {
         <div className="flex flex-col p-10">
             <p>Character</p>
             <div className="flex">
-                {characters.map(char => (<Image 
-                    key={char.slug}
-                    src={`/images/character-icons/${char.iconActive}`}
-                    alt={char.title}
-                    height={48}
-                    width={32}
-                />))}
+                {characters.map(char => (
+                    <a key={char.slug} onClick={() => onSelect(id, `Get ${char.title}`)}>
+                    <Image 
+                        
+                        src={`/images/character-icons/${char.iconActive}`}
+                        alt={char.title}
+                        height={48}
+                        width={32}
+                    />
+                    </a>
+                ))}
             </div>
             <p>Bosses</p>
             <div className="flex flex-wrap">

@@ -1,13 +1,13 @@
-import { FlagObject } from "@/app/lib/interfaces";
+import { FlagObject, TObjective } from "@/app/lib/interfaces";
 
-export default function ObjectiveDisplay({ flagObj, onEdit }: { flagObj: FlagObject, onEdit: Function }) {
+export default function ObjectiveDisplay({ objectives, req, onEdit }: { objectives: TObjective[], req: number, onEdit: Function }) {
     return (
         <div className="flex flex-col">
-            <p>Objectives - Required: {flagObj.required}</p>
-            {flagObj.objectives.map(obj => {
+            <p>Objectives - Required: {req}</p>
+            {objectives.map(obj => {
                 return (
-                    <div className="flex">
-                        <p key={obj.label}>{obj.label}</p>
+                    <div key={obj.label} className="flex">
+                        <p>{obj.label}</p>
                         {obj.random && <button onClick={() => onEdit(obj.id)}>Edit</button>}
                     </div>
                 );
