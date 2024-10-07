@@ -11,9 +11,8 @@ import ObjectiveEditor from "@/app/ui/right-panel/objective-editor";
 import Info from "@/app/ui/right-panel/info";
 import { defaultKI, bosses, locations } from "../lib/default-data";
 import parseFlags from "../lib/parse-flags";
-import { getPropertySection } from "../lib/parse-flag-section";
 import { FlagObject, KeyItems, Boss, Location } from "../lib/interfaces";
-import { toggleKI, toggleBoss } from "../lib/controls/toggler";
+import { toggleKI, toggleBoss, isAvailable } from "../lib/controls/toggler";
 
 export default function Page() {
 
@@ -32,8 +31,8 @@ export default function Page() {
     }
 
     const [mode, setMode] = useState<Mode>(Mode.Info);
-    const [ki, setKI] = useState(defaultKI);
-    const [bossList, setBossList] = useState(bosses);
+    const [ki, setKI] = useState<KeyItems>(defaultKI);
+    const [bossList, setBossList] = useState<Boss[]>(bosses);
     const [locationList, setLocationList] = useState(locations);
     const [timer, setTimer] = useState({
         startTime: 0,
@@ -87,47 +86,13 @@ export default function Page() {
         })
     }
 
-    // location functions TODO refactor out
-
-    function isAvailable(loc: Location) {
-        const hasUnderground = (ki.magma || ki.hook);
-        const hasMoon = ki.darkness;
-        // check zone permission first
-        if (loc.zone === 2) {
-            if (!hasMoon) return false;
-        } else if (loc.zone === 1) {
-            if (!hasUnderground) return false;
-        }
-        // check dependencies
-        if (loc.dependencies.length === 0) {
-            // bedward/dmist exception
-            const K = getPropertySection(assuredFlags, 'K');
-            const noFree = K.indexOf('nofree') >= 0
-            if (loc.id === 13) { // dmist
-                return noFree;
-            } else if (loc.id === 14) { // bedward
-                return !noFree;
-            }
-
-            return true;
-        } else {
-            let depCheck = true;
-            loc.dependencies.forEach(dep => {
-                if (ki[dep as keyof KeyItems] === false) {
-                    depCheck = false
-                }
-            })
-            return depCheck;
-        }
-    }
-
     // adjust locations for every KI change
     useEffect(() => {
         const newLocList:Location[] = [];
         locationList.forEach(loc => {
             const newLoc:Location = {
                 ...loc,
-                available: isAvailable(loc)
+                available: isAvailable(loc, ki, assuredFlags)
             };
             newLocList.push(newLoc)
         })
