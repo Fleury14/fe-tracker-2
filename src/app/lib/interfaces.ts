@@ -81,5 +81,12 @@ interface FlagBadge {
     key: string;
 }
 
+interface TimerState {
+    startTime: number;
+    currentTime: number;
+    pauseTime: number;
+    isActive: boolean;
+}
 
-export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location, Character, KIObjectives, Kit, FlagBadge };
+
+export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location, Character, KIObjectives, Kit, FlagBadge, TimerState };

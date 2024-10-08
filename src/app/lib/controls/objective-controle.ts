@@ -1,16 +1,17 @@
-import { TObjective } from "../interfaces";
+import { Dispatch, SetStateAction } from "react";
+import { TimerState, TObjective } from "../interfaces";
 
 enum Mode {
     Info,
     ObjectiveEdit
 }
 
-function beginObjectiveEdit(id: number, setObjEdit: Function, setMode: Function) {
+function beginObjectiveEdit(id: number, setObjEdit: (id: number) => void, setMode: (mode: Mode) => void) {
     setObjEdit(id);
     setMode(Mode.ObjectiveEdit);
 }
 
-function editObjective(id: number, title: string, objectives: TObjective[], setObjectives: Function, setObjEdit: Function, setMode: Function) {
+function editObjective(id: number, title: string, objectives: TObjective[], setObjectives: (list: TObjective[]) => void, setObjEdit: Dispatch<SetStateAction<number>>, setMode: (mode: Mode) => void) {
     const target = objectives.find(obj => obj.id === id);
     const targetIndex = objectives.findIndex(obj => obj.id === id);
     if (!!target) {
@@ -34,7 +35,7 @@ function editObjective(id: number, title: string, objectives: TObjective[], setO
     }
 }
 
-function completeObjective(id: number, objectives: TObjective[], setObjectives: Function, timer: any) {
+function completeObjective(id: number, objectives: TObjective[], setObjectives: (list: TObjective[]) => void, timer: TimerState) {
     const target = objectives.find(obj => obj.id === id);
     if (!!target) {
         const newObj:TObjective = {

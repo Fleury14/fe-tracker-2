@@ -42,7 +42,7 @@ const parseFlags = (flagString: string) => {
 
     if (flagString.indexOf('fiends') >= 0 ) {
         const fiendList = ['Milon', 'Milon Z', 'Kainazzo', 'Valvalis', 'Rubicant', 'Elements'];
-        for (let fiend of fiendList) {
+        for (const fiend of fiendList) {
             flagObj.objectives.push({
                 id: flagObj.objectives.length,
                 label: `Defeat ${fiend}`,
@@ -55,7 +55,7 @@ const parseFlags = (flagString: string) => {
 
     const characters = ['Cecil', 'Kain', 'Rydia', 'Tellah', 'Edward', 'Rosa', 'Yang', 'Palom', 'Porom', 'Cid', 'Edge', 'FuSoYa']
 
-    for (let char of characters) {
+    for (const char of characters) {
         if (flagString.indexOf(`char_${char.toLowerCase()}`) >= 0 ) {
             flagObj.objectives.push({
                 id: flagObj.objectives.length,
@@ -67,7 +67,7 @@ const parseFlags = (flagString: string) => {
 
     // custom - boss hunt
     
-    for (let boss of bosses) {
+    for (const boss of bosses) {
         if (flagString.indexOf(`boss_${boss.slug}`) >= 0 ) {
             flagObj.objectives.push({
                 id: flagObj.objectives.length,
@@ -79,7 +79,7 @@ const parseFlags = (flagString: string) => {
 
     // custom quests
 
-    for (let quest of quests) {
+    for (const quest of quests) {
         if (flagString.indexOf(`quest_${quest.slug}`) >= 0 ) {
             flagObj.objectives.push({
                 id: flagObj.objectives.length,

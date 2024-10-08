@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams } from "next/navigation"
-import { useState, useEffect, useRef  } from "react";
+import { useState, useEffect, useRef } from "react";
 import KIDisplay from "../ui/ki/ki-display";
 import BossDisplay from "@/app/ui/bosses/boss-display";
 import ObjectiveDisplay from "@/app/ui/objectives/obj-display";
@@ -11,7 +11,7 @@ import ObjectiveEditor from "@/app/ui/right-panel/objective-editor";
 import Info from "@/app/ui/right-panel/info";
 import { defaultKI, bosses, locations } from "../lib/default-data";
 import parseFlags from "../lib/parse-flags";
-import { FlagObject, KeyItems, Boss, Location, TObjective } from "../lib/interfaces";
+import { FlagObject, KeyItems, Boss, Location } from "../lib/interfaces";
 import { toggleKI, toggleBoss, isAvailable, clearLocation } from "../lib/controls/toggler";
 import { beginTimer, endTimer, resetTimer } from "../lib/controls/time-controls";
 import { beginObjectiveEdit, editObjective, completeObjective } from "../lib/controls/objective-controle";
@@ -45,9 +45,10 @@ export default function Page() {
         isActive: false,
     })
 
-    const currentTimer:any = useRef();
+    const currentTimer = useRef<ReturnType<typeof setInterval>>();
     useEffect(() => {
-        return () => clearInterval(currentTimer.current);
+        const current = currentTimer.current;
+        return () => clearInterval(current);
     }, []);
 
     // adjust locations for every KI change
@@ -61,7 +62,8 @@ export default function Page() {
             newLocList.push(newLoc)
         })
         setLocationList(newLocList)
-    }, [ki])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ki, assuredFlags])
     
     return (
         <div className="flex" style={{ backgroundColor: color }}>
@@ -81,14 +83,12 @@ export default function Page() {
                 <div className="h-1/4">
                     <LocationDisplay 
                         locations={locationList}
-                        ki={ki}
                         onSelect={(id: number) => clearLocation(id, locationList, setLocationList)}
                     />
                 </div>
                 <div className="h-1/4">
                     <TimerDisplay 
                         currentTime={timer.currentTime}
-                        startTime={timer.startTime}
                         isActive={timer.isActive}
                         startTimer={() => beginTimer(timer, setTimer, currentTimer)}
                         stopTimer={() => endTimer(timer, setTimer, currentTimer)}

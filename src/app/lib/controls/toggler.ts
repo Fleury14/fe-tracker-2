@@ -1,7 +1,8 @@
 import { Boss, KeyItems, Location } from "@/app/lib/interfaces";
 import { getPropertySection } from "@/app/lib/parse-flag-section";
+import { Dispatch, SetStateAction } from "react";
 
-function toggleKI(target:string, setKI:Function) {
+function toggleKI(target:string, setKI:Dispatch<SetStateAction<KeyItems>>) {
     // adjust ki
     setKI((prevState: KeyItems) => ({
         ...prevState,
@@ -9,7 +10,7 @@ function toggleKI(target:string, setKI:Function) {
     }));
 }
 
-function toggleBoss(id:number, val: boolean, setBossList:Function, bossList:Boss[]) {
+function toggleBoss(id:number, val: boolean, setBossList:Dispatch<SetStateAction<Boss[]>>, bossList:Boss[]) {
     setBossList((prevState: Boss[]) => {
         const target = prevState.find(boss => boss.id === id);
         const newBoss = bossList.filter(boss => boss.id !== id);
@@ -74,7 +75,7 @@ function isAvailable(loc: Location, ki: KeyItems, assuredFlags:string) {
     }
 }
 
-function clearLocation(id: number, locationList:Location[], setLocationList: Function) {
+function clearLocation(id: number, locationList:Location[], setLocationList: Dispatch<SetStateAction<Location[]>>) {
     const target = locationList.find(loc => loc.id === id);
     if (!!target) {
         const newList = locationList.filter(loc => loc.id !== id);

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { KeyItems } from "@/app/lib/interfaces";
 
-export default function KIDisplay({ ki, toggleKI }: { ki: KeyItems, toggleKI: Function }) {
+export default function KIDisplay({ ki, toggleKI }: { ki: KeyItems, toggleKI: (key: string) => void }) {
     function KIColor(val:boolean) {
         return val ? "Color" : "Gray";
     }

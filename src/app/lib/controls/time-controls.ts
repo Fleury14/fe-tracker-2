@@ -1,4 +1,7 @@
-function beginTimer(timer: any, setTimer: Function, currentTimer:any) {
+import { Dispatch, SetStateAction, MutableRefObject } from "react";
+import { TimerState } from "@/app/lib/interfaces";
+
+function beginTimer(timer: TimerState, setTimer: Dispatch<SetStateAction<TimerState>>, currentTimer:MutableRefObject<NodeJS.Timeout | undefined>) {
     const { pauseTime } = timer;
     const startDate = pauseTime === 0 ? Date.now() : Date.now() - pauseTime;
     currentTimer.current = setInterval(() => {
@@ -9,13 +12,9 @@ function beginTimer(timer: any, setTimer: Function, currentTimer:any) {
             currentTime: Date.now() - startDate,
         });
     }, 100);
-    // OLD: set objectives up, but only if hasnt been done already (editing randoms may do this already)
-    // if (!this.state.flagObj) {
-    //     this.setState({ flagObj: this.props.flagObj });
-    // }
 }
 
-function endTimer(timer:any, setTimer:Function, currentTimer:any) {
+function endTimer(timer: TimerState, setTimer: Dispatch<SetStateAction<TimerState>>, currentTimer:MutableRefObject<NodeJS.Timeout | undefined>) {
     const { isActive, startTime } = timer;
     if (isActive) {
         clearInterval(currentTimer.current);
@@ -27,7 +26,7 @@ function endTimer(timer:any, setTimer:Function, currentTimer:any) {
     }
 }
 
-function resetTimer(setTimer: Function) {
+function resetTimer(setTimer: Dispatch<SetStateAction<TimerState>>) {
     setTimer({ 
         isActive: false,
         startTime: 0,
