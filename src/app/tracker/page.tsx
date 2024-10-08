@@ -88,7 +88,6 @@ export default function Page() {
                 <div className="h-1/4">
                     <TimerDisplay 
                         currentTime={timer.currentTime}
-                        startTime={timer.startTime}
                         isActive={timer.isActive}
                         startTimer={() => beginTimer(timer, setTimer, currentTimer)}
                         stopTimer={() => endTimer(timer, setTimer, currentTimer)}

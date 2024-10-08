@@ -4,18 +4,16 @@ import {
   } from '@heroicons/react/24/solid';
 export default function TimerDisplay ({
     currentTime,
-    startTime,
     isActive,
     startTimer,
     stopTimer,
     resetTimer,
 } : {
     currentTime: number,
-    startTime: number,
     isActive: boolean,
-    startTimer: Function,
-    stopTimer: Function,
-    resetTimer: Function,
+    startTimer: () => void,
+    stopTimer: () => void,
+    resetTimer: () => void,
 }) {
     return (
         <div className="flex flex-col h-full justify-end">
