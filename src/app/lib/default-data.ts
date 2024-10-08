@@ -878,8 +878,6 @@ const characters: Character[] = [
     },
 ]
 
-const kiImages = []
-
 const questsByKI: KIObjectives[] = [
     {
         ki: 'pan',

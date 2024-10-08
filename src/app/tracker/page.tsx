@@ -11,7 +11,7 @@ import ObjectiveEditor from "@/app/ui/right-panel/objective-editor";
 import Info from "@/app/ui/right-panel/info";
 import { defaultKI, bosses, locations } from "../lib/default-data";
 import parseFlags from "../lib/parse-flags";
-import { FlagObject, KeyItems, Boss, Location, TObjective } from "../lib/interfaces";
+import { FlagObject, KeyItems, Boss, Location } from "../lib/interfaces";
 import { toggleKI, toggleBoss, isAvailable, clearLocation } from "../lib/controls/toggler";
 import { beginTimer, endTimer, resetTimer } from "../lib/controls/time-controls";
 import { beginObjectiveEdit, editObjective, completeObjective } from "../lib/controls/objective-controle";
@@ -45,7 +45,7 @@ export default function Page() {
         isActive: false,
     })
 
-    const currentTimer:any = useRef();
+    const currentTimer = useRef();
     useEffect(() => {
         return () => clearInterval(currentTimer.current);
     }, []);

@@ -1,6 +1,4 @@
 import { kitList } from '@/app/lib/kit-list';
-import { FlagBadge } from '@/app/lib/interfaces';
-
 
 const renderCharacters = (flags: string) => {
     const characterText = [];
