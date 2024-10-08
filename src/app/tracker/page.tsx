@@ -62,7 +62,8 @@ export default function Page() {
             newLocList.push(newLoc)
         })
         setLocationList(newLocList)
-    }, [ki, assuredFlags, locationList])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ki, assuredFlags])
     
     return (
         <div className="flex" style={{ backgroundColor: color }}>
