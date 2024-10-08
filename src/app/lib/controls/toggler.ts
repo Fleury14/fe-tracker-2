@@ -78,11 +78,15 @@ function clearLocation(id: number, locationList:Location[], setLocationList: Fun
     const target = locationList.find(loc => loc.id === id);
     if (!!target) {
         const newList = locationList.filter(loc => loc.id !== id);
-        const newLoc: Location = {
+        const newLoc: Location = target.type === 'miab' && !!target.miab && target.miab > 1 ? {
+            ...target,
+            miab: target.miab - 1
+        } : {
             ...target,
             cleared: !target.cleared
         }
         newList.push(newLoc);
+        newList.sort((a, b) => a.id - b.id)
         setLocationList(newList);
     }
     
