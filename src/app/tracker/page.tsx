@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams } from "next/navigation"
-import { useState, useEffect, useRef  } from "react";
+import { useState, useEffect, useRef, Suspense  } from "react";
 import KIDisplay from "../ui/ki/ki-display";
 import BossDisplay from "@/app/ui/bosses/boss-display";
 import ObjectiveDisplay from "@/app/ui/objectives/obj-display";
@@ -65,40 +65,42 @@ export default function Page() {
     }, [ki, assuredFlags, locationList])
     
     return (
-        <div className="flex" style={{ backgroundColor: color }}>
-            <div className="w-96 border-2 border-double h-screen flex flex-col font-[family-name:var(--font-geist-sans)] p-1">
-                <div className="flex h-1/4">
-                    <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)}/></div>
-                    <div className="layout-bosses"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
+        <Suspense>
+            <div className="flex" style={{ backgroundColor: color }}>
+                <div className="w-96 border-2 border-double h-screen flex flex-col font-[family-name:var(--font-geist-sans)] p-1">
+                    <div className="flex h-1/4">
+                        <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)}/></div>
+                        <div className="layout-bosses"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
+                    </div>
+                    <div className="h-1/4">
+                        <ObjectiveDisplay
+                            objectives={objectives}
+                            req={parsedObjectives.required}
+                            onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)}
+                            onComplete = {(id:number) => completeObjective(id, objectives, setObjectives, timer)}
+                        />
+                    </div>
+                    <div className="h-1/4">
+                        <LocationDisplay 
+                            locations={locationList}
+                            onSelect={(id: number) => clearLocation(id, locationList, setLocationList)}
+                        />
+                    </div>
+                    <div className="h-1/4">
+                        <TimerDisplay 
+                            currentTime={timer.currentTime}
+                            isActive={timer.isActive}
+                            startTimer={() => beginTimer(timer, setTimer, currentTimer)}
+                            stopTimer={() => endTimer(timer, setTimer, currentTimer)}
+                            resetTimer={() => resetTimer(setTimer)}
+                        />
+                    </div>
                 </div>
-                <div className="h-1/4">
-                    <ObjectiveDisplay
-                        objectives={objectives}
-                        req={parsedObjectives.required}
-                        onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)}
-                        onComplete = {(id:number) => completeObjective(id, objectives, setObjectives, timer)}
-                    />
-                </div>
-                <div className="h-1/4">
-                    <LocationDisplay 
-                        locations={locationList}
-                        onSelect={(id: number) => clearLocation(id, locationList, setLocationList)}
-                    />
-                </div>
-                <div className="h-1/4">
-                    <TimerDisplay 
-                        currentTime={timer.currentTime}
-                        isActive={timer.isActive}
-                        startTimer={() => beginTimer(timer, setTimer, currentTimer)}
-                        stopTimer={() => endTimer(timer, setTimer, currentTimer)}
-                        resetTimer={() => resetTimer(setTimer)}
-                    />
+                <div className="w-1/2 font-[family-name:var(--font-geist-sans)]">
+                    {mode === Mode.Info && <Info flags={assuredFlags} />}
+                    {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={objectiveEdit} onSelect={(id: number, title:string) => editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)} />}
                 </div>
             </div>
-            <div className="w-1/2 font-[family-name:var(--font-geist-sans)]">
-                {mode === Mode.Info && <Info flags={assuredFlags} />}
-                {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={objectiveEdit} onSelect={(id: number, title:string) => editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)} />}
-            </div>
-        </div>
+        </Suspense>
     )
 }
