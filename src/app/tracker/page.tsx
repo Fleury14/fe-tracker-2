@@ -47,7 +47,8 @@ export default function Page() {
 
     const currentTimer = useRef<ReturnType<typeof setInterval>>();
     useEffect(() => {
-        return () => clearInterval(currentTimer.current);
+        const current = currentTimer.current;
+        return () => clearInterval(current);
     }, []);
 
     // adjust locations for every KI change
@@ -61,7 +62,7 @@ export default function Page() {
             newLocList.push(newLoc)
         })
         setLocationList(newLocList)
-    }, [ki])
+    }, [ki, assuredFlags, locationList])
     
     return (
         <div className="flex" style={{ backgroundColor: color }}>
