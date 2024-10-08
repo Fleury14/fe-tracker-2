@@ -45,7 +45,7 @@ export default function Page() {
         isActive: false,
     })
 
-    const currentTimer = useRef();
+    const currentTimer = useRef<ReturnType<typeof setInterval>>();
     useEffect(() => {
         return () => clearInterval(currentTimer.current);
     }, []);
