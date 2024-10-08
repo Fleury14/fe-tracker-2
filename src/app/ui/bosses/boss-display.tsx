@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Boss } from "@/app/lib/interfaces";
 
-export default function BossDisplay({ bosses, toggleBoss }: { bosses: Boss[], toggleBoss: Function }) {
+export default function BossDisplay({ bosses, toggleBoss }: { bosses: Boss[], toggleBoss: (id: number, toggle: boolean) => void }) {
     bosses.sort((a, b) => a.id - b.id);
     return (
         <div className="flex flex-wrap">

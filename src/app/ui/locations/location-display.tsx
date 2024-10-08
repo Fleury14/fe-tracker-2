@@ -1,4 +1,4 @@
-import { KeyItems, Location } from "@/app/lib/interfaces";
+import { Location } from "@/app/lib/interfaces";
 
 
 export default function LocationDisplay({ locations, onSelect }: { locations: Location[], onSelect: (id: number) => void }) {
