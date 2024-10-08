@@ -49,3 +49,16 @@ body {
   border-bottom: dotted 1px white;
   border-top: dotted 1px white;
 }
+
+.flag-badge {
+  margin: 0.23rem 1rem;
+  font-weight: 700;
+}
+
+.flag-badge-yay {
+  color: #88FF88;
+}
+
+.flag-badge-danger {
+  color: #FF6666;
+}

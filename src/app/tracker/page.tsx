@@ -96,8 +96,8 @@ export default function Page() {
                     />
                 </div>
             </div>
-            <div className="w-1/2">
-                {mode === Mode.Info && <Info />}
+            <div className="w-1/2 font-[family-name:var(--font-geist-sans)]">
+                {mode === Mode.Info && <Info flags={assuredFlags} />}
                 {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={objectiveEdit} onSelect={(id: number, title:string) => editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)} />}
             </div>
         </div>

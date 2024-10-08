@@ -70,5 +70,16 @@ interface KIObjectives {
     images: string[];
 }
 
+interface Kit {
+    flag: string;
+    title: string;
+}
 
-export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location, Character, KIObjectives };
+interface FlagBadge {
+    title: string;
+    type: string;
+    key: string;
+}
+
+
+export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location, Character, KIObjectives, Kit, FlagBadge };
