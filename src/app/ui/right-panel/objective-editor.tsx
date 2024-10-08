@@ -3,7 +3,7 @@ import { characters, bosses, questsByKI, quests } from "@/app/lib/default-data";
 import { KIObjectives } from '@/app/lib/interfaces';
 import { GlobeAltIcon } from '@heroicons/react/16/solid';
 
-export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelect: Function }) {
+export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelect: (id: number, title: string) => void }) {
 
     function renderQuestSet(set: KIObjectives) {
         switch(set.ki) {

@@ -24,7 +24,7 @@ function editObjective(id: number, title: string, objectives: TObjective[], setO
         setObjectives(newList);
         
         if (target.id < objectives.length - 1) {
-            if (objectives[targetIndex + 1].random) {
+            if (!!objectives[targetIndex + 1] && objectives[targetIndex + 1].random) {
                 setObjEdit((prevState: number) => prevState + 1);
             } else {
                 setObjEdit(-1);
