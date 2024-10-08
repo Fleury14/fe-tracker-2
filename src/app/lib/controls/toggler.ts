@@ -53,4 +53,19 @@ function isAvailable(loc: Location, ki: KeyItems, assuredFlags:string) {
     }
 }
 
-export { toggleKI, toggleBoss, isAvailable }
+function clearLocation(id: number, locationList:Location[], setLocationList: Function) {
+    const target = locationList.find(loc => loc.id === id);
+    if (!!target) {
+        const newList = locationList.filter(loc => loc.id !== id);
+        const newLoc: Location = {
+            ...target,
+            cleared: !target.cleared
+        }
+        newList.push(newLoc);
+        setLocationList(newList);
+    }
+    
+    
+}
+
+export { toggleKI, toggleBoss, isAvailable, clearLocation }

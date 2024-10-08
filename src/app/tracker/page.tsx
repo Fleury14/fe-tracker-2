@@ -12,7 +12,7 @@ import Info from "@/app/ui/right-panel/info";
 import { defaultKI, bosses, locations } from "../lib/default-data";
 import parseFlags from "../lib/parse-flags";
 import { FlagObject, KeyItems, Boss, Location, TObjective } from "../lib/interfaces";
-import { toggleKI, toggleBoss, isAvailable } from "../lib/controls/toggler";
+import { toggleKI, toggleBoss, isAvailable, clearLocation } from "../lib/controls/toggler";
 import { beginTimer, endTimer, resetTimer } from "../lib/controls/time-controls";
 import { beginObjectiveEdit, editObjective, completeObjective } from "../lib/controls/objective-controle";
 
@@ -78,7 +78,13 @@ export default function Page() {
                         onComplete = {(id:number) => completeObjective(id, objectives, setObjectives, timer)}
                     />
                 </div>
-                <div className="h-1/4"><LocationDisplay locations={locationList} ki={ki} /></div>
+                <div className="h-1/4">
+                    <LocationDisplay 
+                        locations={locationList}
+                        ki={ki}
+                        onSelect={(id: number) => clearLocation(id, locationList, setLocationList)}
+                    />
+                </div>
                 <div className="h-1/4">
                     <TimerDisplay 
                         currentTime={timer.currentTime}
