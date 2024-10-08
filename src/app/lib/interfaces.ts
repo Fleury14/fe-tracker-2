@@ -28,6 +28,7 @@ interface Location {
     dependencies: string[];
     cleared: boolean;
     available: boolean;
+    miab?: number;
 }
 
 interface Boss {

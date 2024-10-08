@@ -713,6 +713,106 @@ const locations: Location[] = [
         available: false,
         cleared: false,
     },
+    {
+        id: 27,
+        title: 'Zot (miab)',
+        type: 'miab',
+        zone: 0,
+        dependencies: [],
+        available: false,
+        cleared: false,
+        miab: 1,
+    },
+    {
+        id: 28,
+        title: 'Castle Eblan',
+        type: 'miab',
+        zone: 0,
+        dependencies: [],
+        available: false,
+        cleared: false,
+        miab: 3
+    },
+    {
+        id: 29,
+        title: 'Cave Eblana',
+        type: 'miab',
+        zone: 0,
+        dependencies: ['hook'],
+        available: false,
+        cleared: false,
+        miab: 1
+    },
+    {
+        id: 30,
+        title: 'Upper Babil',
+        type: 'miab',
+        zone: 0,
+        dependencies: ['hook'],
+        available: false,
+        cleared: false,
+        miab: 1
+    },
+    {
+        id: 31,
+        title: 'Lower Babil',
+        type: 'miab',
+        zone: 1,
+        dependencies: [],
+        available: false,
+        cleared: false,
+        miab: 4
+    },
+    {
+        id: 32,
+        title: 'Feymarch Path',
+        type: 'miab',
+        zone: 1,
+        dependencies: [],
+        available: false,
+        cleared: false,
+        miab: 1
+    },
+    {
+        id: 33,
+        title: 'Sylph Cave',
+        type: 'miab',
+        zone: 1,
+        dependencies: [],
+        available: false,
+        cleared: false,
+        miab: 7
+    },
+    {
+        id: 34,
+        title: 'Lunar Path',
+        type: 'miab',
+        zone: 2,
+        dependencies: ['darkness'],
+        available: false,
+        cleared: false,
+        miab: 1
+    },
+    {
+        id: 35,
+        title: 'Lunar Sub.',
+        type: 'miab',
+        zone: 2,
+        dependencies: ['darkness'],
+        available: false,
+        cleared: false,
+        miab: 9
+    },
+    {
+        id: 36,
+        title: 'Giant of Babil',
+        type: 'miab',
+        zone: 0,
+        dependencies: ['darkness'],
+        available: false,
+        cleared: false,
+        miab: 1
+    },
 ];
 
 const characters: Character[] = [

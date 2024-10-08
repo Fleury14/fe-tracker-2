@@ -24,12 +24,33 @@ function toggleBoss(id:number, val: boolean, setBossList:Function, bossList:Boss
 function isAvailable(loc: Location, ki: KeyItems, assuredFlags:string) {
     const hasUnderground = (ki.magma || ki.hook);
     const hasMoon = ki.darkness;
+    const hasMiab = assuredFlags.indexOf('miab') >= 0;
+    const miabZones = hasMiab ? {
+        above: assuredFlags.indexOf('above') >= 0,
+        below: assuredFlags.indexOf('below') >= 0,
+        lst: assuredFlags.indexOf('lst') >= 0,
+    } : {}
+    const isPlainMiab = hasMiab && (!miabZones.above && !miabZones.below && !miabZones.lst);
+
     // check zone permission first
     if (loc.zone === 2) {
         if (!hasMoon) return false;
     } else if (loc.zone === 1) {
         if (!hasUnderground) return false;
     }
+
+    // check miab permissions
+    if (loc.type === 'miab') {
+        if (!hasMiab) return false;
+        if (!isPlainMiab) {
+            if (loc.id === 35 && !miabZones.lst) { // lst
+                return false;
+            }
+            if (loc.zone === 1 && !miabZones.below) return false;
+            if (loc.zone === 0 && !miabZones.above) return false;
+        }
+    }
+
     // check dependencies
     if (loc.dependencies.length === 0) {
         // bedward/dmist exception

@@ -22,7 +22,7 @@ export default function ObjectiveDisplay({ objectives, req, onEdit, onComplete }
                     </a>
                 );
             })}
-            <div className="border"></div>
+            {complete.length > 0 && <div className="border"></div>}
             {complete.map(obj => {
                 if (!!obj.time) return (
                     <a key={obj.label}  onClick={() => onComplete(obj.id)}>

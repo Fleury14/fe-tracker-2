@@ -3,7 +3,11 @@ import { KeyItems, Location } from "@/app/lib/interfaces";
 
 export default function LocationDisplay({ locations, ki, onSelect }: { locations: Location[], ki: KeyItems, onSelect: Function }) {
 
-
+    function drawMiab(location: Location) {
+        if (location.type === 'miab') {
+            return <span> [{location.miab}]</span>
+        }
+    }
     
     function isAvailable(location: Location) {
         if (location.available && !location.cleared) {
@@ -20,7 +24,7 @@ export default function LocationDisplay({ locations, ki, onSelect }: { locations
             }
             return (
                 <a className="hover:bg-slate-800" key={location.title} onClick={() => onSelect(location.id)}>
-                    <p key={location.id} className={color}>{location.title}</p>
+                    <p key={location.id} className={color}>{location.title}{drawMiab(location)}</p>
                 </a>
             )
         }
