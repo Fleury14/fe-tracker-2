@@ -81,7 +81,6 @@ export default function Page() {
                 <div className="h-1/4">
                     <LocationDisplay 
                         locations={locationList}
-                        ki={ki}
                         onSelect={(id: number) => clearLocation(id, locationList, setLocationList)}
                     />
                 </div>

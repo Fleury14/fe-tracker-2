@@ -1,7 +1,7 @@
 import { KeyItems, Location } from "@/app/lib/interfaces";
 
 
-export default function LocationDisplay({ locations, ki, onSelect }: { locations: Location[], ki: KeyItems, onSelect: Function }) {
+export default function LocationDisplay({ locations, onSelect }: { locations: Location[], onSelect: (id: number) => void }) {
 
     function drawMiab(location: Location) {
         if (location.type === 'miab') {
