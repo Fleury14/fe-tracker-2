@@ -541,54 +541,8 @@ const locations: Location[] = [
         dependencies: ['earth'],
         available: false,
         cleared: false,
-    },
-    {
+    }, {
         id: 8,
-        title: 'Dwarf Castle',
-        type: 'main',
-        zone: 1,
-        dependencies: [],
-        available: false,
-        cleared: false,
-    },
-    {
-        id: 9,
-        title: 'Lower Babil (Boss)',
-        type: 'main',
-        zone: 1,
-        dependencies: [],
-        available: false,
-        cleared: false,
-    },
-    {
-        id: 10,
-        title: 'Lower Babil (Cannon)',
-        type: 'main',
-        zone: 1,
-        dependencies: ['tower'],
-        available: false,
-        cleared: false,
-    },
-    {
-        id: 11,
-        title: 'Sealed Cave',
-        type: 'main',
-        zone: 1,
-        dependencies: ['luca'],
-        available: false,
-        cleared: false,
-    },
-    {
-        id: 12,
-        title: 'Adamant Grotto',
-        type: 'main',
-        zone: 1,
-        dependencies: ['hook', 'rat'],
-        available: false,
-        cleared: false,
-    },
-    {
-        id: 13,
         title: 'D. Mist Hunt',
         type: 'main',
         zone: 0,
@@ -597,7 +551,7 @@ const locations: Location[] = [
         cleared: false,
     },
     {
-        id: 14,
+        id: 9,
         title: 'Toroia Castle',
         type: 'main',
         zone: 0,
@@ -606,8 +560,53 @@ const locations: Location[] = [
         cleared: false,
     },
     {
+        id: 10,
+        title: 'Adamant Grotto',
+        type: 'main',
+        zone: 0,
+        dependencies: ['hook', 'rat'],
+        available: false,
+        cleared: false,
+    },
+    {
+        id: 11,
+        title: 'Dwarf Castle',
+        type: 'main',
+        zone: 1,
+        dependencies: [],
+        available: false,
+        cleared: false,
+    },
+    {
+        id: 12,
+        title: 'Lower Babil (Boss)',
+        type: 'main',
+        zone: 1,
+        dependencies: [],
+        available: false,
+        cleared: false,
+    },
+    {
+        id: 13,
+        title: 'Lower Babil (Cannon)',
+        type: 'main',
+        zone: 1,
+        dependencies: ['tower'],
+        available: false,
+        cleared: false,
+    },
+    {
+        id: 14,
+        title: 'Sealed Cave',
+        type: 'main',
+        zone: 1,
+        dependencies: ['luca'],
+        available: false,
+        cleared: false,
+    },
+    {
         id: 15,
-        title: 'Sheila One (1)',
+        title: 'Feymarch Freebie',
         type: 'main',
         zone: 1,
         dependencies: [],
@@ -616,6 +615,15 @@ const locations: Location[] = [
     },
     {
         id: 16,
+        title: 'Sheila One (1)',
+        type: 'main',
+        zone: 1,
+        dependencies: [],
+        available: false,
+        cleared: false,
+    },
+    {
+        id: 17,
         title: 'Shiela Two (2)',
         type: 'main',
         zone: 1,
@@ -624,7 +632,7 @@ const locations: Location[] = [
         cleared: false,
     },
     {
-        id: 17,
+        id: 18,
         title: 'Baron Castle Basement',
         type: 'summon',
         zone: 0,
@@ -633,7 +641,7 @@ const locations: Location[] = [
         cleared: false,
     },
     {
-        id: 18,
+        id: 19,
         title: 'Feymarch Queen',
         type: 'summon',
         zone: 1,
@@ -642,7 +650,7 @@ const locations: Location[] = [
         cleared: false,
     },
     {
-        id: 19,
+        id: 20,
         title: 'Feymarch King',
         type: 'summon',
         zone: 1,
@@ -651,7 +659,7 @@ const locations: Location[] = [
         cleared: false,
     },
     {
-        id: 20,
+        id: 21,
         title: 'Sylph Cave Bonk',
         type: 'summon',
         zone: 1,
@@ -660,7 +668,7 @@ const locations: Location[] = [
         cleared: false,
     },
     {
-        id: 21,
+        id: 22,
         title: 'Cave Bahamut',
         type: 'summon',
         zone: 2,
@@ -669,7 +677,7 @@ const locations: Location[] = [
         cleared: false,
     },
     {
-        id: 22,
+        id: 23,
         title: 'Murasame Altar',
         type: 'moon',
         zone: 2,
@@ -678,7 +686,7 @@ const locations: Location[] = [
         cleared: false,
     },
     {
-        id: 23,
+        id: 24,
         title: 'White Spear Altar',
         type: 'moon',
         zone: 2,
@@ -687,7 +695,7 @@ const locations: Location[] = [
         cleared: false,
     },
     {
-        id: 24,
+        id: 25,
         title: 'Ribbon Room',
         type: 'moon',
         zone: 2,
@@ -696,7 +704,7 @@ const locations: Location[] = [
         cleared: false,
     },
     {
-        id: 25,
+        id: 26,
         title: 'Masamune Altar',
         type: 'moon',
         zone: 2,
@@ -705,7 +713,7 @@ const locations: Location[] = [
         cleared: false,
     },
     {
-        id: 26,
+        id: 27,
         title: 'Crystal Sword Altar',
         type: 'moon',
         zone: 2,
@@ -714,7 +722,7 @@ const locations: Location[] = [
         cleared: false,
     },
     {
-        id: 27,
+        id: 28,
         title: 'Zot (miab)',
         type: 'miab',
         zone: 0,
@@ -724,7 +732,7 @@ const locations: Location[] = [
         miab: 1,
     },
     {
-        id: 28,
+        id: 29,
         title: 'Castle Eblan',
         type: 'miab',
         zone: 0,
@@ -734,7 +742,7 @@ const locations: Location[] = [
         miab: 3
     },
     {
-        id: 29,
+        id: 30,
         title: 'Cave Eblana',
         type: 'miab',
         zone: 0,
@@ -744,7 +752,7 @@ const locations: Location[] = [
         miab: 1
     },
     {
-        id: 30,
+        id: 31,
         title: 'Upper Babil',
         type: 'miab',
         zone: 0,
@@ -754,7 +762,7 @@ const locations: Location[] = [
         miab: 1
     },
     {
-        id: 31,
+        id: 32,
         title: 'Lower Babil',
         type: 'miab',
         zone: 1,
@@ -764,7 +772,7 @@ const locations: Location[] = [
         miab: 4
     },
     {
-        id: 32,
+        id: 33,
         title: 'Feymarch Path',
         type: 'miab',
         zone: 1,
@@ -774,7 +782,7 @@ const locations: Location[] = [
         miab: 1
     },
     {
-        id: 33,
+        id: 34,
         title: 'Sylph Cave',
         type: 'miab',
         zone: 1,
@@ -784,7 +792,7 @@ const locations: Location[] = [
         miab: 7
     },
     {
-        id: 34,
+        id: 35,
         title: 'Lunar Path',
         type: 'miab',
         zone: 2,
@@ -794,7 +802,7 @@ const locations: Location[] = [
         miab: 1
     },
     {
-        id: 35,
+        id: 36,
         title: 'Lunar Sub.',
         type: 'miab',
         zone: 2,
@@ -804,7 +812,7 @@ const locations: Location[] = [
         miab: 9
     },
     {
-        id: 36,
+        id: 37,
         title: 'Giant of Babil',
         type: 'miab',
         zone: 0,
