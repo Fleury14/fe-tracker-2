@@ -67,7 +67,7 @@ export default function Page() {
     
     return (
         <div className="flex" style={{ backgroundColor: color }}>
-            <div className="w-96 border-2 border-double h-screen flex flex-col font-[family-name:var(--font-geist-sans)] p-1">
+            <div className="w-120 border-2 border-double h-screen flex flex-col font-[family-name:var(--font-geist-sans)] p-1">
                 <div className="flex h-1/4">
                     <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)}/></div>
                     <div className="layout-bosses"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>

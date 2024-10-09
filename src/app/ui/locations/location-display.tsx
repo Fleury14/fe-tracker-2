@@ -14,16 +14,16 @@ export default function LocationDisplay({ locations, onSelect }: { locations: Lo
             let color = '';
             switch(location.zone) {
                 case 2:
-                    color = 'text-indigo-400'
+                    color = 'text-indigo-300 font-semibold'
                     break;
                 case 1:
-                    color = 'text-red-400'
+                    color = 'text-red-300 font-semibold'
                     break;
                 default:
-                    color = 'text-green-400'
+                    color = 'text-green-300 font-semibold'
             }
             return (
-                <a className="hover:bg-slate-800" key={location.title} onClick={() => onSelect(location.id)}>
+                <a className="hover:bg-slate-800 z-10" key={location.title} onClick={() => onSelect(location.id)}>
                     <p key={location.id} className={color}>{location.title}{drawMiab(location)}</p>
                 </a>
             )
@@ -31,7 +31,7 @@ export default function LocationDisplay({ locations, onSelect }: { locations: Lo
     }
     return (
         <div className="flex flex-col max-h-full">
-            <p className="font-bold">Available Checks</p>
+            <p className="font-bold text-lg">Available Checks</p>
             <div className="max-h-64 flex flex-col flex-wrap">
                 {locations.map(loc => {
                     return isAvailable(loc);

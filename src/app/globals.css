@@ -26,13 +26,17 @@ body {
   }
 }
 
+.w-120 {
+  width: 30rem
+}
+
 .text-xxs {
   font-size: 0.5rem;
   line-height: 0.75rem;
 }
 
 .layout-ki {
-  width: 30%;
+  width: 35%;
   padding-right: 5px;
 }
 
@@ -41,7 +45,7 @@ body {
 }
 
 .layout-bosses {
-  width: 70%; 
+  width: 65%; 
   padding-left: 5px;
 }
 

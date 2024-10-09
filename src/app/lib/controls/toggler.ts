@@ -44,7 +44,7 @@ function isAvailable(loc: Location, ki: KeyItems, assuredFlags:string) {
     if (loc.type === 'miab') {
         if (!hasMiab) return false;
         if (!isPlainMiab) {
-            if (loc.id === 35 && !miabZones.lst) { // lst
+            if (loc.id === 36 && !miabZones.lst) { // lst
                 return false;
             }
             if (loc.zone === 1 && !miabZones.below) return false;
@@ -57,9 +57,9 @@ function isAvailable(loc: Location, ki: KeyItems, assuredFlags:string) {
         // bedward/dmist exception
         const K = getPropertySection(assuredFlags, 'K');
         const noFree = K.indexOf('nofree') >= 0
-        if (loc.id === 13) { // dmist
+        if (loc.id === 8) { // dmist
             return noFree;
-        } else if (loc.id === 14) { // bedward
+        } else if (loc.id === 9) { // bedward
             return !noFree;
         }
 
