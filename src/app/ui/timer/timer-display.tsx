@@ -22,7 +22,7 @@ export default function TimerDisplay ({
                 <button onClick={() => stopTimer()} className="m-5 w-12 h-10 border flex justify-center items-center bg-slate-800 hover:bg-slate-600 border-slate-600"><p className="invisible w-0 h-0">Stop Timer</p><StopIcon className="size-6"/></button>
                 <button onClick={() => resetTimer()} className="m-5 w-12 h-10 border flex justify-center items-center bg-slate-800 hover:bg-slate-600 border-slate-600"><p className="invisible w-0 h-0">Reset Timer</p><BackspaceIcon className="size-6"/></button>
             </div>
-            <div className="ml-32">
+            <div className="ml-40">
                 <p className="text-5xl font-bold">{ParseTime(currentTime)}</p>
             </div>
             
