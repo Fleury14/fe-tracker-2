@@ -94,7 +94,7 @@ export default function Page() {
                 </div>
             </div>
             <div className="flex flex-col justify-between">
-                <div className="w-1/2 font-[family-name:var(--font-geist-sans)]">
+                <div className="font-[family-name:var(--font-geist-sans)]">
                     {mode === Mode.Info && <Info flags={assuredFlags} />}
                     {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={objectiveEdit} onSelect={(id: number, title:string) => editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)} />}
                 </div>
