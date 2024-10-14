@@ -404,6 +404,12 @@ const renderKeyItems = (flags: string) => {
     if (keyItemString.indexOf('miab') >= 0) {
         keyItems.push(<span key="vanilla" className="flag-badge">Miab</span>);
     }
+    if (keyItemString.indexOf('pink') >= 0) {
+        keyItems.push(<span key="pink" className="flag-badge">Pink tail is a KI check</span>);
+    }
+    if (keyItemString.indexOf('forge') >= 0) {
+        keyItems.push(<span key="forge" className="flag-badge">Forging is a KI check</span>);
+    }
     if (keyItemString.indexOf('unsafe') >= 0 && keyItemString.indexOf('unsafer') < 0) {
         keyItems.push(<span key="unsafe" className="flag-badge flag-badge-danger">Safety checks OFF</span>);
     }
@@ -417,11 +423,23 @@ const renderKeyItems = (flags: string) => {
         keyItems.push(<span key="force-magma" className="flag-badge flag-badge-yay">Magma route forced</span>);
     }
     if (keyItemString.indexOf('nofree') >= 0) {
-        keyItems.push(<span key="nofree" className="flag-badge">No free Key Item</span>);
+        const noFree = getPropertySubSection(keyItemString, 'nofree:');
+        if (noFree.indexOf('dwarf') >= 0) {
+            keyItems.push(<span key="nofree-dwarf" className="flag-badge">Bed Key Item in Dwarf Castle</span>);    
+        } else if (noFree.indexOf('package') >= 0) {
+            keyItems.push(<span key="nofree-package" className="flag-badge">Must burn Mist village for Rydia's mom to appear</span>);    
+        } else {
+            keyItems.push(<span key="nofree" className="flag-badge">No free Key Item</span>);
+        }
+        
     } else {
         keyItems.push(<span key="nofree" className="flag-badge flag-badge-yay">Bedward ON</span>);
     }
-    if (keyItemString.indexOf('main') >= 0 && keyItemString.indexOf('summon') < 0 && keyItemString.indexOf('trap') < 0 && keyItemString.indexOf('moon') < 0) {
+    if (keyItemString.indexOf('start:') >= 0) {
+        const startingItem = getPropertySubSection(keyItemString, 'start:').slice(6);
+        keyItems.push(<span key="fixed-start" className="flag-badge">Starting {startingItem}</span>);
+    }
+    if (keyItemString.indexOf('main') >= 0 && keyItemString.indexOf('summon') < 0 && keyItemString.indexOf('miab') < 0 && keyItemString.indexOf('moon') < 0) {
         keyItems.push(<span key="main-only" className="flag-badge flag-badge-yay">Main Checks Only</span>);
     }
     return (<div>{keyItems}</div>)
