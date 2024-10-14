@@ -8,7 +8,7 @@ export default function Home() {
         <EntryForm />
         
       </div>
-      <div className="self-end flex justify-end mb-2 mr-2">
+      <div className="self-end flex justify-end pb-3 pr-3">
           <p className='text-sm'>Special Thanks to Antidale for the icon.</p>
         </div>
     </div>
