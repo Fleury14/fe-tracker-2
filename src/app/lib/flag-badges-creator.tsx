@@ -42,6 +42,15 @@ const renderCharacters = (flags: string) => {
     if (charString.indexOf('maybe') >= 0) {
         characterText.push(<span key="maybe" className="flag-badge"> Not guaranteed</span>)
     }
+    if (charString.indexOf('hi') >= 0) {
+        characterText.push(<span key="hi" className="flag-badge"> Forced join</span>)
+    }
+    if (charString.indexOf('fifo') >= 0) {
+        characterText.push(<span key="fifo" className="flag-badge flag-badge-danger"> Forced join/First out</span>)
+    }
+    if (charString.indexOf('paladin') >= 0) {
+        characterText.push(<span key="paladin" className="flag-badge flag-badge-yay"> Cecil starts as a paladin</span>)
+    }
     if (charString.indexOf('bye') >= 0) {
         characterText.push(<span key="bye" className="flag-badge"> No rejoin</span>)
     }
@@ -65,6 +74,27 @@ const renderCharacters = (flags: string) => {
     }
     if (charString.indexOf('noearned') >= 0) {
         characterText.push(<span key="no-earned" className="flag-badge flag-badge-danger"> No Earned Chars</span>)
+    }
+    if (charString.indexOf('nopartner') >= 0) {
+        characterText.push(<span key="no-earned" className="flag-badge flag-badge-danger"> No Starting Partner</span>)
+    }
+    if (charString.indexOf('treasure') >= 0) {
+        if (charString.indexOf('free') >= 0) {
+            characterText.push(<span key="treasure-free" className="flag-badge flag-badge-danger"> Free characters moved to chests</span>)
+        }
+        if (charString.indexOf('earned') >= 0) {
+            characterText.push(<span key="tresure-earned" className="flag-badge flag-badge-danger"> Earned characters moved to chests</span>)
+        }
+        if (charString.indexOf('relaxed') >= 0) {
+            characterText.push(<span key="tresure-relaxed" className="flag-badge flag-badge-danger"> Restricted characters in non-miab chests</span>)
+        }
+        if (charString.indexOf('unsafe') >= 0) {
+            characterText.push(<span key="tresure-unsafe" className="flag-badge flag-badge-danger"> Characters in chests (Moon/underground included)</span>)
+        }
+    }
+    if (charString.indexOf('thrift') >= 0) {
+        const tier = charString.charAt(charString.indexOf('thrift'));
+        characterText.push(<span key="thrift" className="flag-badge flag-badge-danger"> Random gear start (max tier {tier})</span>)
     }
     if (charString.indexOf('nofree') >= 0) {
         characterText.push(<span key="nofree" className="flag-badge">No free Chars</span>);
@@ -92,6 +122,18 @@ const renderBosses = (flags: string) => {
     }
     if (bString.indexOf('whyburn') >= 0) {
         BossesText.push(<span key="whyburn" className="flag-badge flag-badge-yay"> Why-burn</span>);
+    }
+    if (bString.indexOf('itburns') >= 0) {
+        BossesText.push(<span key="itburns" className="flag-badge flag-badge-danger"> Dangerous Whyburn</span>);
+    }
+    if (bString.indexOf('whoadin') >= 0) {
+        BossesText.push(<span key="whoadin" className="flag-badge"> 1st/2nd Zantestsuken randomized</span>);
+    }
+    if (bString.indexOf('whybez') >= 0) {
+        BossesText.push(<span key="whybez" className="flag-badge"> No Shadow @ Golbez</span>);
+    }
+    if (bString.indexOf('whichbez') >= 0) {
+        BossesText.push(<span key="whichbez" className="flag-badge"> Shadow/Golbez spells randomized</span>);
     }
     if (bString.indexOf('whichburn') < 0 && bString.indexOf('whyburn') < 0) {
         BossesText.push(<span key="wyvern" className="flag-badge"> Standard Wyvern</span>);
@@ -151,8 +193,29 @@ const renderTreasure = (flags: string) => {
     if (trString.indexOf('maxtier:7') >= 0) {
         TreasureText.push(<span key="max-tier" className="flag-badge"> No tier 8 untrapped</span>);
     }
+    if (trString.indexOf('mintier') >= 0) {
+        const tier = trString.charAt(trString.indexOf('mintier') + 8)
+        TreasureText.push(<span key="money" className="flag-badge"> Minimum tier {tier} treasure</span>);
+    }
     if (trString.indexOf('money') >= 0) {
         TreasureText.push(<span key="money" className="flag-badge flag-badge-danger"> All untrapped are $MONEY$</span>);
+    }
+    if (trString.indexOf('playable') >= 0) {
+        TreasureText.push(<span key="money" className="flag-badge flag-badge-yay"> Playable character treasure only</span>);
+    }
+    if (trString.indexOf('unrestrict') >= 0) {
+        if (trString.indexOf('treasury') >= 0) {
+            TreasureText.push(<span key="unrestrict-treasury" className="flag-badge"> Treasury unaffected by maxtier</span>);
+         }
+         if (trString.indexOf('moon') >= 0) {
+            TreasureText.push(<span key="unrestrict-moon" className="flag-badge"> Moon unaffected by maxtier</span>);
+         }
+         if (trString.indexOf('underworld') >= 0) {
+            TreasureText.push(<span key="unrestrict-under" className="flag-badge"> Underground unaffected by maxtier</span>);
+         }
+         if (trString.indexOf('overworld') >= 0) {
+            TreasureText.push(<span key="unrestrict-under" className="flag-badge"> Overworld unaffected by maxtier</span>);
+         }
     }
 
     return (<div>{TreasureText}</div>)
