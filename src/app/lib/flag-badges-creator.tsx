@@ -93,8 +93,8 @@ const renderCharacters = (flags: string) => {
         }
     }
     if (charString.indexOf('thrift') >= 0) {
-        const tier = charString.charAt(charString.indexOf('thrift'));
-        characterText.push(<span key="thrift" className="flag-badge flag-badge-danger"> Random gear start (max tier {tier})</span>)
+        const tier = charString.charAt(charString.indexOf('thrift') + 7);
+        characterText.push(<span key="thrift" className="flag-badge"> Random gear start (max tier {tier})</span>)
     }
     if (charString.indexOf('nofree') >= 0) {
         characterText.push(<span key="nofree" className="flag-badge">No free Chars</span>);
@@ -137,9 +137,6 @@ const renderBosses = (flags: string) => {
     }
     if (bString.indexOf('whichburn') < 0 && bString.indexOf('whyburn') < 0) {
         BossesText.push(<span key="wyvern" className="flag-badge"> Standard Wyvern</span>);
-    }
-    if (bString.indexOf('whichbez') >= 0) {
-        BossesText.push(<span key="whichbez" className="flag-badge"> Which-bez</span>);
     }
 
     return <div>{BossesText}</div>
@@ -404,6 +401,9 @@ const renderKeyItems = (flags: string) => {
     if (keyItemString.indexOf('miab') >= 0) {
         keyItems.push(<span key="vanilla" className="flag-badge">Miab</span>);
     }
+    if (keyItemString.indexOf('unweighted') >= 0) {
+        keyItems.push(<span key="unweighted" className="flag-badge">Unweighted KI distribution</span>);
+    }
     if (keyItemString.indexOf('pink') >= 0) {
         keyItems.push(<span key="pink" className="flag-badge">Pink tail is a KI check</span>);
     }
@@ -458,6 +458,9 @@ const renderMisc = (flags: string) => {
     if (flags.indexOf('smith:alt') >= 0) {
         misc.push(<span key="spoon" className="flag-badge flag-badge-yay">Alt Forge</span>)
     }
+    if (flags.indexOf('smith:playable') >= 0) {
+        misc.push(<span key="spoon" className="flag-badge flag-badge-yay">Guaranteed usable item</span>)
+    }
     if (flags.indexOf('nocursed') >= 0) {
         misc.push(<span key="spoon" className="flag-badge flag-badge-yay">No Cursed Rings</span>)
     }
@@ -473,12 +476,113 @@ const renderMisc = (flags: string) => {
     if (flags.indexOf('nokeybonus') >= 0) {
         misc.push(<span key="nokeybonus" className="flag-badge">No 10KI Boost</span>)
     }
+    if (flags.indexOf('monsterevade') >= 0) {
+        misc.push(<span key="ohnoeosevasion" className="flag-badge flag-badge-danger">Monsters get proper physical/magical evade</span>)
+        if (flags.indexOf('monsterflee') >= 0) {
+            misc.push(<span key="monster-flee" className="flag-badge">Monsters can flee</span>)
+        }
+    }
+    if (flags.indexOf('fusoya:') >= 0) {
+        const fuFlags = getPropertySubSection(flags, '-fusoya:');
+        if (fuFlags.indexOf('sequential_p') >= 0) {
+            misc.push(<span key="fu-twins" className="flag-badge">Fu spells: Palom/porom levels</span>)    
+        }
+        if (fuFlags.indexOf('sequential_r') >= 0) {
+            misc.push(<span key="fu-rosdia" className="flag-badge">Fu spells: Rydia/Rosa levels</span>)    
+        }
+        if (fuFlags.indexOf('location') >= 0) {
+            misc.push(<span key="fu-location" className="flag-badge">Fu spells: Location dependent</span>)
+        }
+        if (fuFlags.indexOf('nerfed') >= 0) {
+            misc.push(<span key="fu-nerfed" className="flag-badge flag-badge-danger">Fu spells: Starting spells only</span>)    
+        }
+    }
+    
+    if (flags.indexOf('crystalbonus') >= 0) {
+        misc.push(<span key="exp-crystal-bonus" className="flag-badge flag-badge-yay">Double XP after getting Crystal</span>)
+    }
+
+    if (flags.indexOf('objectivebonus25') >= 0) {
+        misc.push(<span key="exp-obj-bonus-25" className="flag-badge">+25% XP per objective completed</span>)
+    }
+    if (flags.indexOf('objectivebonus10') >= 0) {
+        misc.push(<span key="exp-obj-bonus-10" className="flag-badge">+10% XP per objective completed</span>)
+    }
+    if (flags.indexOf('objectivebonus_num') >= 0) {
+        misc.push(<span key="fu-location" className="flag-badge">+100% / Total objectives XP per objective completed</span>)
+    }
+
     if (flags.indexOf('kicheckbonus') >= 0) {
         const KCBIndex = flags.indexOf('kicheckbonus');
         const mult = flags.charAt(KCBIndex + 12);
+        if (mult === "1") misc.push(<span key="10pctkeybonus" className="flag-badge">+10%XP per KI Check</span>)
         if (mult === "5") misc.push(<span key="5pctkeybonus" className="flag-badge">+5%XP per KI Check</span>)
         if (mult === "2") misc.push(<span key="2pctkeybonus" className="flag-badge">+2%XP per KI Check</span>)
+        if (mult === "_") misc.push(<span key="numpctkeybonus" className="flag-badge">+100% / total KI checks XP per KI Check</span>)
         
+    }
+
+    if (flags.indexOf('zonkbonus') >= 0) {
+        const KCBIndex = flags.indexOf('zonkbonus');
+        const mult = flags.charAt(KCBIndex + 9);
+        if (mult === "1") misc.push(<span key="10pctkeybonuszonk" className="flag-badge">+10%XP per zonk</span>)
+        if (mult === "5") misc.push(<span key="5pctkeybonuszonk" className="flag-badge">+5%XP per zonk</span>)
+        if (mult === "2") misc.push(<span key="2pctkeybonuszonk" className="flag-badge">+2%XP per zonk</span>)
+    }
+
+    if (flags.indexOf('miabbonus100') >= 0) {
+        misc.push(<span key="exp-miab-100" className="flag-badge">Miab encounters give double XP</span>)
+    }
+    if (flags.indexOf('miabbonus50') >= 0) {
+        misc.push(<span key="exp-miab-50" className="flag-badge">Miab encounters give +50% XP</span>)
+    }
+    if (flags.indexOf('moonbonus200') >= 0) {
+        misc.push(<span key="exp-moon-200" className="flag-badge">Moon encounters give triple XP</span>)
+    }
+    if (flags.indexOf('moonbonus100') >= 0) {
+        misc.push(<span key="exp-moon-100" className="flag-badge">Moon encounters give double XP</span>)
+    }
+
+    if (flags.indexOf('maxlevelbonus') >= 0) {
+        misc.push(<span key="exp-level-bonus" className="flag-badge">High maxparty/enemy level difference grants bonus XP</span>)
+    }
+
+    if (flags.indexOf('doorsrando:') >= 0) {
+        const doorFlags = getPropertySubSection(flags, "doorsrando:");
+        if (doorFlags.indexOf('normal') >= 0) {
+            misc.push(<span key="doors-normal" className="flag-badge flag-badge-danger">Door Rando: No Cross World Shuffle</span>)
+        }
+        if (doorFlags.indexOf('gated') >= 0) {
+            misc.push(<span key="doors-gated" className="flag-badge flag-badge-danger">Door Rando: Underworld/Moon shuffled</span>)
+        }
+        if (doorFlags.indexOf('blueplanet') >= 0) {
+            misc.push(<span key="doors-blue" className="flag-badge flag-badge-danger">Door Rando: Underworld/Overworld shuffled</span>)
+        }
+        if (doorFlags.indexOf('why') >= 0) {
+            misc.push(<span key="doors-why" className="flag-badge flag-badge-danger">Door Rando: Moon/Overworld shuffled</span>)
+        }
+        if (doorFlags.indexOf('all') >= 0) {
+            misc.push(<span key="doors-all" className="flag-badge flag-badge-danger">Door Rando: All worlds shuffled</span>)
+        }
+    }
+
+    if (flags.indexOf('entrancesrando:') >= 0) {
+        const doorFlags = getPropertySubSection(flags, "entrancesrando:");
+        if (doorFlags.indexOf('normal') >= 0) {
+            misc.push(<span key="entrances-normal" className="flag-badge flag-badge-danger">Entrance Rando: No Cross World Shuffle</span>)
+        }
+        if (doorFlags.indexOf('gated') >= 0) {
+            misc.push(<span key="entrances-gated" className="flag-badge flag-badge-danger">Entrance Rando: Underworld/Moon shuffled</span>)
+        }
+        if (doorFlags.indexOf('blueplanet') >= 0) {
+            misc.push(<span key="entrances-blue" className="flag-badge flag-badge-danger">Entrance Rando: Underworld/Overworld shuffled</span>)
+        }
+        if (doorFlags.indexOf('why') >= 0) {
+            misc.push(<span key="entrances-why" className="flag-badge flag-badge-danger">Entrance Rando: Moon/Overworld shuffled</span>)
+        }
+        if (doorFlags.indexOf('all') >= 0) {
+            misc.push(<span key="entrances-all" className="flag-badge flag-badge-danger">Entrance Rando: All worlds shuffled</span>)
+        }
     }
 
     return (<div>{misc}</div>)
