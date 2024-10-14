@@ -632,6 +632,15 @@ const renderEncounters = (flags: string) => {
     if (encounterFlagString.indexOf('noencounters') >= 0) {
         encounters.push(<span key="no-encounters" className="flag-badge flag-badge-danger">No encounters</span>);
     }
+    if (encounterFlagString.indexOf('noexp') >= 0) {
+        encounters.push(<span key="no-exp" className="flag-badge flag-badge-danger">No XP from encounters</span>);
+    }
+    if (encounterFlagString.indexOf('nogp') >= 0) {
+        encounters.push(<span key="no-exp" className="flag-badge">No GP from encounters</span>);
+    }
+    if (encounterFlagString.indexOf('nodmachin') >= 0) {
+        encounters.push(<span key="no-dmoney" className="flag-badge">D.Machin disabled</span>);
+    }
 
     return <div>{encounters}</div>
 }
