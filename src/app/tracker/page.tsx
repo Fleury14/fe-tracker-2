@@ -15,6 +15,7 @@ import { FlagObject, KeyItems, Boss, Location } from "../lib/interfaces";
 import { toggleKI, toggleBoss, isAvailable, clearLocation } from "../lib/controls/toggler";
 import { beginTimer, endTimer, resetTimer } from "../lib/controls/time-controls";
 import { beginObjectiveEdit, editObjective, completeObjective } from "../lib/controls/objective-controle";
+import TimeControlsDisplay from "@/app/ui/timer/timer-controls-display";
 
 export default function Page() {
 
@@ -89,17 +90,22 @@ export default function Page() {
                 <div className="h-1/4">
                     <TimerDisplay 
                         currentTime={timer.currentTime}
-                        isActive={timer.isActive}
-                        startTimer={() => beginTimer(timer, setTimer, currentTimer)}
-                        stopTimer={() => endTimer(timer, setTimer, currentTimer)}
-                        resetTimer={() => resetTimer(setTimer)}
                     />
                 </div>
             </div>
-            <div className="w-1/2 font-[family-name:var(--font-geist-sans)]">
-                {mode === Mode.Info && <Info flags={assuredFlags} />}
-                {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={objectiveEdit} onSelect={(id: number, title:string) => editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)} />}
+            <div className="flex flex-col justify-between w-1/2">
+                <div className="font-[family-name:var(--font-geist-sans)]">
+                    {mode === Mode.Info && <Info flags={assuredFlags} />}
+                    {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={objectiveEdit} onSelect={(id: number, title:string) => editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)} />}
+                </div>
+                < TimeControlsDisplay 
+                    isActive={timer.isActive}
+                    startTimer={() => beginTimer(timer, setTimer, currentTimer)}
+                    stopTimer={() => endTimer(timer, setTimer, currentTimer)}
+                    resetTimer={() => resetTimer(setTimer)}
+                />
             </div>
+            
         </div>
     )
 }
