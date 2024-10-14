@@ -427,7 +427,7 @@ const renderKeyItems = (flags: string) => {
         if (noFree.indexOf('dwarf') >= 0) {
             keyItems.push(<span key="nofree-dwarf" className="flag-badge">Bed Key Item in Dwarf Castle</span>);    
         } else if (noFree.indexOf('package') >= 0) {
-            keyItems.push(<span key="nofree-package" className="flag-badge">Must burn Mist village for Rydia's mom to appear</span>);    
+            keyItems.push(<span key="nofree-package" className="flag-badge">Must burn Mist village for Rydia&apos;s mom to appear</span>);    
         } else {
             keyItems.push(<span key="nofree" className="flag-badge">No free Key Item</span>);
         }
