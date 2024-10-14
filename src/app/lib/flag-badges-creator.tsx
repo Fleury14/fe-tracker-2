@@ -273,19 +273,31 @@ const renderShops = (flags: string) => {
         shopText.push(<span key="standard" className="flag-badge">Standard</span>);
     }
     if (shopString.indexOf('pro') >= 0) {
-        shopText.push(<span key="standard" className="flag-badge">Pro</span>);
+        shopText.push(<span key="pro" className="flag-badge">Pro</span>);
     }
-    if (shopString.indexOf('wild') >= 0) {
-        shopText.push(<span key="standard" className="flag-badge flag-badge-yay">Wild</span>);
+    if (shopString.indexOf('wildish') >= 0) {
+        shopText.push(<span key="wildish" className="flag-badge flag-badge-yay">Wild-ish</span>);
+    }
+    if (shopString.indexOf('wild') >= 0 && shopString.indexOf('wildish') < 0) {
+        shopText.push(<span key="wild" className="flag-badge flag-badge-yay">Wild</span>);
     }
     if (shopString.indexOf('free') >= 0) {
-        shopText.push(<span key="standard" className="flag-badge flag-badge-yay">Everything is FREE</span>);
+        shopText.push(<span key="free-shops" className="flag-badge flag-badge-yay">Everything is FREE</span>);
     }
-    if (shopString.indexOf('apples') >= 0) {
-        shopText.push(<span key="no-apples" className="flag-badge">No Apples</span>);
+    if (shopString.indexOf('mixed') >= 0) {
+        shopText.push(<span key="mixed-prices" className="flag-badge">Prices Randomized</span>);
     }
-    if (shopString.indexOf('sirens') >= 0) {
-        shopText.push(<span key="no-sirens" className="flag-badge flag-badge-danger">No Sirens</span>);
+    if (shopString.indexOf('cabins') >= 0) {
+        shopText.push(<span key="only-cabins" className="flag-badge flag-badge-danger">Only Cabins</span>);
+    }
+    if (shopString.indexOf('empty') >= 0) {
+        shopText.push(<span key="only-cabins" className="flag-badge flag-badge-danger">Shops empty</span>);
+    }
+    if (shopString.indexOf('same') >= 0) {
+        shopText.push(<span key="only-same" className="flag-badge flag-badge-danger">All shops sell the same one item</span>);
+    }
+    if (shopString.indexOf('sell:quarter') >= 0) {
+        shopText.push(<span key="sell-quarter" className="flag-badge flag-badge-danger">Items sell at 1/4 price</span>);
     }
     if (shopString.indexOf('sell:0') >= 0) {
         shopText.push(<span key="sell-0" className="flag-badge flag-badge-danger">Everything Sells for 0GP</span>);
@@ -293,8 +305,83 @@ const renderShops = (flags: string) => {
     if (shopString.indexOf('life') >= 0) {
         shopText.push(<span key="no-life" className="flag-badge flag-badge-danger">No Life Potions</span>);
     }
-    if (shopString.indexOf('no:j') >= 0) {
-        shopText.push(<span key="no-j" className="flag-badge flag-badge-danger">No J-Items</span>);
+    if (shopString.indexOf('price:') >= 0) {
+        const priceSub = getPropertySubSection(shopString, 'price:');
+        const percent = priceSub.slice(priceSub.indexOf(':') + 1);
+        shopText.push(<span key="price-adjustment" className="flag-badge flag-badge">Prices are {percent}% of normal</span>);
+        if (shopString.indexOf('pricey:') >= 0) {
+            const pricey = getPropertySubSection(shopString, 'pricey:').slice(7);
+            shopText.push(<span key="price-adjustment-effect" className="flag-badge flag-badge">Prices affect {pricey}</span>);
+        }
+    }
+    if (shopString.indexOf('no:') >= 0) {
+        const bannedString = getPropertySection(shopString, 'no:');
+        if (bannedString.indexOf("j") >= 0 ) {
+            shopText.push(<span key="no-j" className="flag-badge flag-badge-danger">No J-Items</span>);
+        }
+        if (bannedString.indexOf('apples') >= 0) {
+            shopText.push(<span key="never-apples" className="flag-badge">Apples banned</span>);    
+        }
+        if (bannedString.indexOf('sirens') >= 0) {
+            shopText.push(<span key="never-sirens" className="flag-badge">Sirens banned</span>);    
+        }
+        if (bannedString.indexOf('vampires') >= 0) {
+            shopText.push(<span key="never-vampires" className="flag-badge">Vampires banned</span>);    
+        }
+        if (bannedString.indexOf('hrglass') >= 0) {
+            shopText.push(<span key="never-hrglass" className="flag-badge">HrGlass2 banned</span>);    
+        }
+        if (bannedString.indexOf('bacchus') >= 0) {
+            shopText.push(<span key="never-bacchus" className="flag-badge">Bacchus banned</span>);    
+        }
+        if (bannedString.indexOf('starveil') >= 0) {
+            shopText.push(<span key="never-starveil" className="flag-badge">Starveil banned</span>);    
+        }
+        if (bannedString.indexOf('cure3') >= 0) {
+            shopText.push(<span key="never-cure3" className="flag-badge">Cure3 banned</span>);    
+        }
+        if (bannedString.indexOf('illusion') >= 0) {
+            shopText.push(<span key="never-illusion" className="flag-badge">Illusions banned</span>);
+        }
+        if (bannedString.indexOf('coffin') >= 0) {
+            shopText.push(<span key="never-coffin" className="flag-badge">Coffins banned</span>);    
+        }
+        if (bannedString.indexOf('damage_items') >= 0) {
+            shopText.push(<span key="never-damage-items" className="flag-badge">Elemental damage items banned</span>);    
+        }
+    }
+    if (shopString.indexOf('always') >= 0) {
+        const guaranteedString = getPropertySubSection(shopString, 'always:');
+        if (guaranteedString.indexOf('apples') >= 0) {
+            shopText.push(<span key="always-apples" className="flag-badge">Apples guaranteed</span>);    
+        }
+        if (guaranteedString.indexOf('sirens') >= 0) {
+            shopText.push(<span key="always-sirens" className="flag-badge">Sirens guaranteed</span>);    
+        }
+        if (guaranteedString.indexOf('vampires') >= 0) {
+            shopText.push(<span key="always-vampires" className="flag-badge">Vampires guaranteed</span>);    
+        }
+        if (guaranteedString.indexOf('hrglass') >= 0) {
+            shopText.push(<span key="always-hrglass" className="flag-badge">HrGlass2 guaranteed</span>);    
+        }
+        if (guaranteedString.indexOf('bacchus') >= 0) {
+            shopText.push(<span key="always-bacchus" className="flag-badge">Bacchus guaranteed</span>);    
+        }
+        if (guaranteedString.indexOf('starveil') >= 0) {
+            shopText.push(<span key="always-starveil" className="flag-badge">Starveil guaranteed</span>);    
+        }
+        if (guaranteedString.indexOf('cure3') >= 0) {
+            shopText.push(<span key="always-cure3" className="flag-badge">Cure3 guaranteed</span>);    
+        }
+        if (guaranteedString.indexOf('illusion') >= 0) {
+            shopText.push(<span key="always-illusion" className="flag-badge">Illusions guaranteed</span>);
+        }
+        if (guaranteedString.indexOf('coffin') >= 0) {
+            shopText.push(<span key="always-coffin" className="flag-badge">Coffins guaranteed</span>);    
+        }
+        if (guaranteedString.indexOf('damage_items') >= 0) {
+            shopText.push(<span key="always-damage-items" className="flag-badge">Elemental damage items guaranteed</span>);    
+        }
     }
 
     return (<div>{shopText}</div>);
@@ -443,6 +530,22 @@ const renderKits = (flags: string) => {
         }
     }
     return <div>{kits}</div>
+}
+
+const getPropertySubSection = (flags: string, criteria: string) => {
+    // get shop section of flag string
+    const begin = flags.indexOf(criteria);
+    let end = flags.length;
+    for (let i = begin; i < flags.length; i++) {
+        const charTest = flags.charAt(i);
+        if(charTest === ' ' || charTest === '/') {
+            end = i;
+            break;
+        }
+    }
+
+    const results = flags.slice(begin, end);
+    return results;
 }
 
 const getPropertySection = (flags: string, criteria: string) => {
