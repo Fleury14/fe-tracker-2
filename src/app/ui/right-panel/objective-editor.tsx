@@ -9,17 +9,18 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
         switch(set.ki) {
             case 'none':
                 return (
-                    <div key={set.ki} className="flex items-center">
-                        <div className='mr-3 mb-px'>
+                    <div key={set.ki} className="flex items-center border m-0.5 p-px">
+                        <div className='mr-2 mb-px'>
                             <GlobeAltIcon className='size-8' />
                         </div>
-                        <div className='flex flex-wrap'>
+                        <div className='flex flex-wrap bg-slate-800'>
                             {set.objectives.map((obj, index) => {
                                 const targetObj = quests.find(quest => quest.slug === obj);
                                 if (!!targetObj) {
                                     return <button 
                                         key={`button${index}`}
                                         onClick={() => onSelect(id, targetObj.title)}
+                                        className='text-sm font-bold m-1 p-1 hover:bg-slate-600'
                                     >
                                         {targetObj.buttonText}
                                     </button>
@@ -31,15 +32,15 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
                 );
             case 'underground':
                 return (
-                    <div key={set.ki} className="flex items-center">
-                        <div className='mr-3 mb-px flex'>
+                    <div key={set.ki} className="flex items-center border m-0.5 p-px">
+                        <div className='mr-2 mb-px flex'>
                             <Image 
                                 src={set.images[0]}
                                 height={30}
                                 width={30}
                                 alt={`${set.ki}`}
                             />
-                            <p className='mr-3 ml-3'>/</p>
+                            <p className='ml-2'>/</p>
                             <Image 
                                 src={set.images[1]}
                                 height={30}
@@ -47,13 +48,14 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
                                 alt={`${set.ki}`}
                             />
                         </div>
-                        <div className='flex flex-wrap'>
+                        <div className='flex flex-wrap bg-slate-800'>
                             {set.objectives.map((obj, index) => {
                                 const targetObj = quests.find(quest => quest.slug === obj);
                                 if (!!targetObj) {
                                     return <button 
                                             key={`button${index}`}
                                             onClick={() => onSelect(id, targetObj.title)}
+                                            className='text-sm font-bold m-1 p-1 hover:bg-slate-600'
                                         >
                                             {targetObj.buttonText}
                                         </button>
@@ -65,8 +67,8 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
                 )
             default:
                 return (
-                    <div key={set.ki} className="flex items-center">
-                        <div className='mr-3 mb-px'>
+                    <div key={set.ki} className="flex items-center border m-0.5 p-px">
+                        <div className='min-w-8 flex justify-center items-center'>
                             {set.images.map((img, index) => (<Image 
                                 src={img}
                                 height={30}
@@ -75,13 +77,14 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
                                 key={`${set.ki}${index}`}
                             />))}
                         </div>
-                        <div className='flex flex-wrap'>
+                        <div className='flex flex-wrap bg-slate-800'>
                             {set.objectives.map((obj, index) => {
                                 const targetObj = quests.find(quest => quest.slug === obj);
                                 if (!!targetObj) {
                                     return <button
                                         key={`button${index}`}
                                         onClick={() => onSelect(id, targetObj.title)}
+                                        className="text-sm font-bold m-1 p-1 hover:bg-slate-600"
                                     >
                                         {targetObj.buttonText}
                                     </button>

@@ -16,7 +16,7 @@ const renderCharacters = (flags: string) => {
         characterText.push(<span key="relaxed" className="flag-badge">Relaxed</span>)
     }
     if (charString.indexOf('hero') >= 0) {
-        characterText.push(<span key="relaxed" className="flag-badge flag-badge-danger">Starting character is the HERO</span>)
+        characterText.push(<span key="hero" className="flag-badge flag-badge-danger">Starting character is the HERO</span>)
     }
 
     // extra settings
@@ -139,7 +139,7 @@ const renderBosses = (flags: string) => {
         BossesText.push(<span key="wyvern" className="flag-badge"> Standard Wyvern</span>);
     }
 
-    return <div>{BossesText}</div>
+    return <div className="flex flex-wrap items-center">{BossesText}</div>
 }
 
 const renderTreasure = (flags: string) => {
@@ -215,7 +215,7 @@ const renderTreasure = (flags: string) => {
          }
     }
 
-    return (<div>{TreasureText}</div>)
+    return (<div className="flex flex-wrap items-center">{TreasureText}</div>)
 }
 
 const renderGlitches = (flags: string) => {
@@ -254,7 +254,7 @@ const renderGlitches = (flags: string) => {
         glitchText.push(<span key="sylph" className="flag-badge"> Sylph</span>)
     }
 
-    return (<div>{glitchText}</div>);
+    return (<div className="flex flex-wrap items-center">{glitchText}</div>);
 }
 
 const renderShops = (flags: string) => {
@@ -381,7 +381,7 @@ const renderShops = (flags: string) => {
         }
     }
 
-    return (<div>{shopText}</div>);
+    return (<div className="flex flex-wrap items-center">{shopText}</div>);
 }
 
 const renderKeyItems = (flags: string) => {
@@ -442,7 +442,7 @@ const renderKeyItems = (flags: string) => {
     if (keyItemString.indexOf('main') >= 0 && keyItemString.indexOf('summon') < 0 && keyItemString.indexOf('miab') < 0 && keyItemString.indexOf('moon') < 0) {
         keyItems.push(<span key="main-only" className="flag-badge flag-badge-yay">Main Checks Only</span>);
     }
-    return (<div>{keyItems}</div>)
+    return (<div className="flex flex-wrap items-center">{keyItems}</div>)
 
 }
 
@@ -585,7 +585,7 @@ const renderMisc = (flags: string) => {
         }
     }
 
-    return (<div>{misc}</div>)
+    return (<div className="flex flex-wrap items-center">{misc}</div>)
 }
 
 const renderVanilla = (flags: string) => {
@@ -612,7 +612,7 @@ const renderVanilla = (flags: string) => {
         vanilla.push(<span key="giant" className="flag-badge flag-badge-danger">No Exiting Giant</span>);
     }
 
-    return vanilla.length > 0 ? (<div>{vanilla}</div>) : null;
+    return vanilla.length > 0 ? (<div className="flex flex-wrap items-center">{vanilla}</div>) : null;
 }
 
 const renderEncounters = (flags: string) => {
@@ -642,7 +642,7 @@ const renderEncounters = (flags: string) => {
         encounters.push(<span key="no-dmoney" className="flag-badge">D.Machin disabled</span>);
     }
 
-    return <div>{encounters}</div>
+    return <div className="flex flex-wrap items-center">{encounters}</div>
 }
 
 const renderKits = (flags: string) => {
@@ -660,7 +660,7 @@ const renderKits = (flags: string) => {
             }
         }
     }
-    return <div>{kits}</div>
+    return <div className="flex flex-wrap items-center">{kits}</div>
 }
 
 const getPropertySubSection = (flags: string, criteria: string) => {
