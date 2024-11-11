@@ -1,7 +1,7 @@
 import { Location } from "@/app/lib/interfaces";
 
 
-export default function LocationDisplay({ locations, onSelect }: { locations: Location[], onSelect: (id: number) => void }) {
+export default function LocationDisplay({ locations, onSelect, isMiab }: { locations: Location[], onSelect: (id: number) => void, isMiab: boolean }) {
 
     function drawMiab(location: Location) {
         if (location.type === 'miab') {
@@ -10,6 +10,7 @@ export default function LocationDisplay({ locations, onSelect }: { locations: Lo
     }
     
     function isAvailable(location: Location) {
+        if (location.type === 'miab' && !isMiab) return;
         if (location.available && !location.cleared) {
             let color = '';
             switch(location.zone) {

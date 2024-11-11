@@ -16,6 +16,7 @@ import { toggleKI, toggleBoss, isAvailable, clearLocation } from "../lib/control
 import { beginTimer, endTimer, resetTimer } from "../lib/controls/time-controls";
 import { beginObjectiveEdit, editObjective, completeObjective } from "../lib/controls/objective-controle";
 import TimeControlsDisplay from "@/app/ui/timer/timer-controls-display";
+import { getPropertySection } from "../lib/parse-flag-section";
 
 export default function Page() {
 
@@ -32,6 +33,9 @@ export default function Page() {
         Info,
         ObjectiveEdit
     }
+
+    const Kflags = getPropertySection(assuredFlags, 'K');
+    const isMiab = Kflags.indexOf('miab') >= 0;
 
     const [objectives, setObjectives] = useState(parsedObjectives.objectives)
     const [objectiveEdit, setObjEdit] = useState(-1)
@@ -85,6 +89,7 @@ export default function Page() {
                     <LocationDisplay 
                         locations={locationList}
                         onSelect={(id: number) => clearLocation(id, locationList, setLocationList)}
+                        isMiab={isMiab}
                     />
                 </div>
                 <div className="h-1/4">
