@@ -11,6 +11,7 @@ import ObjectiveEditor from "@/app/ui/right-panel/objective-editor";
 import Info from "@/app/ui/right-panel/info";
 import { defaultKI, bosses, locations } from "../lib/default-data";
 import parseFlags from "../lib/parse-flags";
+import initLocations from "../lib/init-locations";
 import { FlagObject, KeyItems, Boss, Location } from "../lib/interfaces";
 import { toggleKI, toggleBoss, isAvailable, clearLocation } from "../lib/controls/toggler";
 import { beginTimer, endTimer, resetTimer } from "../lib/controls/time-controls";
@@ -42,7 +43,7 @@ export default function Page() {
     const [mode, setMode] = useState<Mode>(Mode.Info);
     const [ki, setKI] = useState<KeyItems>(defaultKI);
     const [bossList, setBossList] = useState<Boss[]>(bosses);
-    const [locationList, setLocationList] = useState(locations);
+    const [locationList, setLocationList] = useState(initLocations(Kflags, locations));
     const [timer, setTimer] = useState({
         startTime: 0,
         currentTime: 0,
