@@ -89,18 +89,7 @@ const parseFlags = (flagString: string) => {
         }
     }
 
-    // random objectives
-    const randomIndex = flagString.indexOf(`random:`);
-    if (randomIndex >= 0) {
-        for (let i = 0; i < parseInt(flagString.charAt(randomIndex + 7)); i++) {
-            flagObj.objectives.push({
-                id: flagObj.objectives.length,
-                label: `Random objective ${i + 1}`,
-                time: 0,
-                random: true,
-            });
-        }
-    }
+    
 
     // grunthack: mode KI
     const modeKIindex = flagString.indexOf(`ki`);
@@ -139,6 +128,19 @@ const parseFlags = (flagString: string) => {
             label: 'Defeat Zeromus',
             time: 0,
         })
+    }
+
+    // random objectives
+    const randomIndex = flagString.indexOf(`random:`);
+    if (randomIndex >= 0) {
+        for (let i = 0; i < parseInt(flagString.charAt(randomIndex + 7)); i++) {
+            flagObj.objectives.push({
+                id: flagObj.objectives.length,
+                label: `Random objective ${i + 1}`,
+                time: 0,
+                random: true,
+            });
+        }
     }
 
     // required objective number
