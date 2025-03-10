@@ -3,7 +3,7 @@ import { characters, bosses, questsByKI, quests } from "@/app/lib/default-data";
 import { KIObjectives } from '@/app/lib/interfaces';
 import { GlobeAltIcon } from '@heroicons/react/16/solid';
 
-export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelect: (id: number, title: string) => void }) {
+export default function ObjectiveEditor( { id, objLen, onSelect, isDone }: { id: number, objLen: number, onSelect: (id: number, title: string) => void, isDone: () => void }) {
 
     function renderQuestSet(set: KIObjectives) {
         switch(set.ki) {
@@ -19,7 +19,12 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
                                 if (!!targetObj) {
                                     return <button 
                                         key={`button${index}`}
-                                        onClick={() => onSelect(id, targetObj.title)}
+                                        onClick={() =>  {
+                                            onSelect(id, targetObj.title);
+                                            if (id === objLen - 1) {
+                                                isDone();
+                                            }
+                                        }}
                                         className='text-sm font-bold m-1 p-1 hover:bg-slate-600'
                                     >
                                         {targetObj.buttonText}
@@ -54,7 +59,12 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
                                 if (!!targetObj) {
                                     return <button 
                                             key={`button${index}`}
-                                            onClick={() => onSelect(id, targetObj.title)}
+                                            onClick={() =>  {
+                                                onSelect(id, targetObj.title);
+                                                if (id === objLen - 1) {
+                                                    isDone();
+                                                }
+                                            }}
                                             className='text-sm font-bold m-1 p-1 hover:bg-slate-600'
                                         >
                                             {targetObj.buttonText}
@@ -83,7 +93,12 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
                                 if (!!targetObj) {
                                     return <button
                                         key={`button${index}`}
-                                        onClick={() => onSelect(id, targetObj.title)}
+                                        onClick={() =>  {
+                                            onSelect(id, targetObj.title);
+                                            if (id === objLen - 1) {
+                                                isDone();
+                                            }
+                                        }}
                                         className="text-sm font-bold m-1 p-1 hover:bg-slate-600"
                                     >
                                         {targetObj.buttonText}
@@ -102,7 +117,12 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
             <p>Character</p>
             <div className="flex">
                 {characters.map(char => (
-                    <a key={char.slug} onClick={() => onSelect(id, `Get ${char.title}`)}>
+                    <a key={char.slug} onClick={() =>  {
+                        onSelect(id, `Get ${char.title}`);
+                        if (id === objLen - 1) {
+                            isDone();
+                        }
+                    }}>
                         <Image 
                             src={`/images/character-icons/${char.iconActive}`}
                             alt={char.title}
@@ -115,7 +135,12 @@ export default function ObjectiveEditor( { id, onSelect }: { id: number, onSelec
             <p>Bosses</p>
             <div className="flex flex-wrap">
                 {bosses.map(boss => boss.id < 36 ? (
-                    <a key={boss.id} onClick={() => onSelect(id, `Defeat ${boss.title}`)}>
+                    <a key={boss.id} onClick={() =>  {
+                        onSelect(id, `Defeat ${boss.title}`);
+                        if (id === objLen - 1) {
+                            isDone();
+                        }
+                    }}>
                         <Image // z id is 36, unknown is 99, neither are selectable objectives
                             height={30}
                             width={30}
