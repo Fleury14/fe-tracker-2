@@ -114,6 +114,7 @@ export default function ObjectiveEditor( { id, objLen, onSelect, isDone }: { id:
 
     return (
         <div className="flex flex-col p-10">
+            <button className="bg-red-700 hover:bg-red-500" onClick={() => isDone()}>Stop Editing</button>
             <p>Character</p>
             <div className="flex">
                 {characters.map(char => (
