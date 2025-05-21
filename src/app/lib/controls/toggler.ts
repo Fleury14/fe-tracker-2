@@ -23,6 +23,7 @@ function toggleBoss(id:number, val: boolean, setBossList:Dispatch<SetStateAction
 }
 
 function isAvailable(loc: Location, ki: KeyItems, assuredFlags:string) {
+    const Kflags = getPropertySection(assuredFlags, 'K');
     const hasUnderground = (ki.magma || ki.hook);
     const hasMoon = ki.darkness;
     const hasMiab = assuredFlags.indexOf('miab') >= 0;
@@ -40,9 +41,17 @@ function isAvailable(loc: Location, ki: KeyItems, assuredFlags:string) {
         if (!hasUnderground) return false;
     }
 
+    // check flagset permissions
+    if (loc.type === 'summon') {
+        if (Kflags.indexOf('summon') < 0) return false;
+    } else if (loc.type === 'moon') {
+        if (Kflags.indexOf('moon') < 0) return false;
+    }
+
     // check miab permissions
     if (loc.type === 'miab') {
         if (!hasMiab) return false;
+        if (Kflags.indexOf('miab') < 0) return false;
         if (!isPlainMiab) {
             if (loc.id === 36 && !miabZones.lst) { // lst
                 return false;
