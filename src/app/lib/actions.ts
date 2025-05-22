@@ -5,7 +5,9 @@ import { redirect } from 'next/navigation';
 
 export async function entrySubmit(formData: FormData) {
 
-  const flags = formData.get("flags");
+
+  const flagsRaw = formData.get("flags");
+  const flags = flagsRaw?.toString().replace(/[\n\r]+/g, '')
   const bgColor = formData.get("bg-color");
   const scrubbed = bgColor?.toString().replace("#", "%23")
 
