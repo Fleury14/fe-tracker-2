@@ -18,6 +18,9 @@ import { beginTimer, endTimer, resetTimer } from "../lib/controls/time-controls"
 import { beginObjectiveEdit, editObjective, completeObjective } from "../lib/controls/objective-controle";
 import TimeControlsDisplay from "@/app/ui/timer/timer-controls-display";
 import { getPropertySection } from "../lib/parse-flag-section";
+import "../sni/sni.client";
+import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
+import { DevicesClient } from "../sni/sni.client";
 
 export default function Page() {
 
@@ -26,9 +29,33 @@ export default function Page() {
 
     const flags = params.get("flags");
     const bgColor = params.get("bgColor");
-    const color:string = bgColor !== null ? bgColor : "black";
-    const assuredFlags:string = flags ? flags : "";
-    const parsedObjectives:FlagObject = parseFlags(assuredFlags);
+    const sniPort = params.get("port") ?? '';
+
+    const getDeviceCount = async () => {
+
+        const portInt = parseInt(sniPort);
+        if (isNaN(portInt)) {
+            console.error(`sni port ${sniPort} turned to NaN`)
+            return 0
+        }
+
+        try {
+            const channel = new GrpcWebFetchTransport(({ baseUrl: `http://localhost:${portInt}` }));
+            const devicesClient = new DevicesClient(channel);
+            const listedDevices = await devicesClient.listDevices({ kinds: [] });
+            return listedDevices.response.devices.length;
+        } catch {
+            console.error("exploded getting devices")
+            return 0;
+        }
+
+    };
+    const connectedDevicesCount = getDeviceCount();
+
+
+    const color: string = bgColor !== null ? bgColor : "black";
+    const assuredFlags: string = flags ? flags : "";
+    const parsedObjectives: FlagObject = parseFlags(assuredFlags);
 
     enum Mode {
         Info,
@@ -59,9 +86,9 @@ export default function Page() {
 
     // adjust locations for every KI change
     useEffect(() => {
-        const newLocList:Location[] = [];
+        const newLocList: Location[] = [];
         locationList.forEach(loc => {
-            const newLoc:Location = {
+            const newLoc: Location = {
                 ...loc,
                 available: isAvailable(loc, ki, assuredFlags)
             };
@@ -70,48 +97,49 @@ export default function Page() {
         setLocationList(newLocList)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ki, assuredFlags])
-    
+
     return (
         <div className="flex" style={{ backgroundColor: color }}>
             <div className="w-120 border-2 border-double h-screen flex flex-col font-[family-name:var(--font-geist-sans)] p-1">
                 <div className="flex h-1/4">
-                    <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)}/></div>
+                    <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)} /></div>
                     <div className="layout-bosses"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
                 </div>
                 <div className="h-1/4">
                     <ObjectiveDisplay
                         objectives={objectives}
                         req={parsedObjectives.required}
-                        onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)}
-                        onComplete = {(id:number) => completeObjective(id, objectives, setObjectives, timer)}
+                        onEdit={(id: number) => beginObjectiveEdit(id, setObjEdit, setMode)}
+                        onComplete={(id: number) => completeObjective(id, objectives, setObjectives, timer)}
                     />
                 </div>
                 <div className="h-1/4">
-                    <LocationDisplay 
+                    <LocationDisplay
                         locations={locationList}
                         onSelect={(id: number) => clearLocation(id, locationList, setLocationList)}
                         isMiab={isMiab}
                     />
                 </div>
                 <div className="h-1/4">
-                    <TimerDisplay 
+                    <TimerDisplay
                         currentTime={timer.currentTime}
                     />
+                    <p>connected Count: {connectedDevicesCount}</p>
                 </div>
             </div>
             <div className="flex flex-col justify-between w-1/2">
                 <div className="font-[family-name:var(--font-geist-sans)]">
                     {mode === Mode.Info && <Info flags={assuredFlags} />}
-                    {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={objectiveEdit} objLen={objectives.length} onSelect={(id: number, title:string)  => editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)} isDone={() => setMode(Mode.Info)} />}
+                    {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={objectiveEdit} objLen={objectives.length} onSelect={(id: number, title: string) => editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)} isDone={() => setMode(Mode.Info)} />}
                 </div>
-                < TimeControlsDisplay 
+                < TimeControlsDisplay
                     isActive={timer.isActive}
                     startTimer={() => beginTimer(timer, setTimer, currentTimer)}
                     stopTimer={() => endTimer(timer, setTimer, currentTimer)}
                     resetTimer={() => resetTimer(setTimer)}
                 />
             </div>
-            
+
         </div>
     )
 }
