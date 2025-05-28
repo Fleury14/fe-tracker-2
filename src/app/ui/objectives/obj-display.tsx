@@ -1,4 +1,4 @@
-import { TObjective } from "@/app/lib/interfaces";
+import { TObjective, V5FlagObject } from "@/app/lib/interfaces";
 import { PencilSquareIcon, CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import ParseTime from "@/app/lib/parse-time";
 

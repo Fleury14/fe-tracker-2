@@ -51,6 +51,13 @@ interface FlagObject {
     objectives: TObjective[];
     required: number;
     isV5: boolean;
+    v5Objectives: Array<TObjective[]> 
+}
+
+interface V5FlagObject {
+    objectives: Array<TObjective[]>,
+    required: number;
+    isV5: boolean;
 }
 
 interface Quest {
@@ -90,4 +97,4 @@ interface TimerState {
 }
 
 
-export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location, Character, KIObjectives, Kit, FlagBadge, TimerState };
+export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location, Character, KIObjectives, Kit, FlagBadge, TimerState, V5FlagObject };
