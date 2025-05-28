@@ -1,4 +1,4 @@
-import { KeyItems, Boss, Quest, Location, Character, KIObjectives } from "./interfaces";
+import { KeyItems, Boss, Quest, Location, Character, KIObjectives, v5QuestReward } from "./interfaces";
 
 const defaultKI: KeyItems = {
     crystal: false,
@@ -974,5 +974,332 @@ const questsByKI: KIObjectives[] = [
     },
 ]
 
+const questRewards: v5QuestReward[] = [
+    {
+        slug: "game",
+        display: "Win the game"
+    },
+    {
+        slug: "crystal",
+        display: "Recieve the Crystal"
+    },
+    {
+        slug: "spoon",
+        display: "Recieve the Spoon"
+    },
+    {
+        slug: "cecil",
+        display: "Recruit Cecil"
+    },
+    {
+        slug: "kain",
+        display: "Recruit Kain"
+    },
+    {
+        slug: "rydia",
+        display: "Recruit Rydia"
+    },
+    {
+        slug: "tellah",
+        display: "Recruit Tellah"
+    },
+    {
+        slug: "edward",
+        display: "Recruit Edward"
+    },
+    {
+        slug: "rosa",
+        display: "Recruit Rosa"
+    },
+    {
+        slug: "yang",
+        display: "Recruit Yang"
+    },
+    {
+        slug: "palom",
+        display: "Recruit Palom"
+    },
+    {
+        slug: "porom",
+        display: "Recruit Porom"
+    },
+    {
+        slug: "cid",
+        display: "Recruit Cid"
+    },
+    {
+        slug: "edge",
+        display: "Recruit Edge"
+    },
+    {
+        slug: "fusoya",
+        display: "Recruit FuSoYa"
+    },
+    {
+        slug: "char",
+        display: "Recruit a random character"
+    },
+    {
+        slug: "superweapon",
+        display: "Recieve an FF4 Advance super weapon"
+    },
+    {
+        slug: "caliburn",
+        display: "Recieve a Caliburn"
+    },
+    {
+        slug: "flan",
+        display: "Recieve a Flandango"
+    },
+    {
+        slug: "lightbringer",
+        display: "Recieve a Lightbringer"
+    },
+    {
+        slug: "piggy",
+        display: "Recieve a Piggy Stick"
+    },
+    {
+        slug: "abel",
+        display: "Recieve an Abel's Lance"
+    },
+    {
+        slug: "gigant",
+        display: "Recieve a Gigant Axe"
+    },
+    {
+        slug: "perseusbow",
+        display: "Recieve a Perseus Bow"
+    },
+    {
+        slug: "perseusarrow",
+        display: "Recieve 99 Perseus Arrows"
+    },
+    {
+        slug: "mist",
+        display: "Recieve a Mist Whip"
+    },
+    {
+        slug: "triton",
+        display: "Recieve a Triton Dagger"
+    },
+    {
+        slug: "sasuke",
+        display: "Recieve a Sasuke Katana"
+    },
+    {
+        slug: "mutsuno",
+        display: "Recieve a Mutsunokami"
+    },
+    {
+        slug: "scrap",
+        display: "Recieve Scrap Metal"
+    },
+    {
+        slug: "tiger",
+        display: "Recieve a Tiger Fang"
+    },
+    {
+        slug: "dragonclaw",
+        display: "Recieve a Dragon Claw"
+    },
+    {
+        slug: "godhand",
+        display: "Recieve a Godhand"
+    },
+{
+        slug: "thor",
+        display: "Recieve a Thor Hammer"
+    },
+    {
+        slug: "fiery",
+        display: "Recieve a Fiery Hammer"
+    },
+    {
+        slug: "asurasrod",
+        display: "Recieve an Asura Rod"
+    },
+    {
+        slug: "seraphim",
+        display: "Recieve a Seraphim Mace"
+    },
+    {
+        slug: "nirvana",
+        display: "Recieve a Nirvana"
+    },
+    {
+        slug: "apollo",
+        display: "Recieve an Apollo Harp"
+    },
+    {
+        slug: "requiem",
+        display: "Recieve a Requiem Harp"
+    },
+    {
+        slug: "loki",
+        display: "Recieve a Loki Lute"
+    },
+    {
+        slug: "cursedring",
+        display: "Recieve a Cursed Ring"
+    },
+    {
+        slug: "heroine",
+        display: "Recieve a Heroine Robe"
+    },
+    {
+        slug: "siren",
+        display: "Recieve a Siren"
+    },
+    {
+        slug: "stardustrod",
+        display: "Recieve a Stardust Rod"
+    },
+    {
+        slug: "lifestaff",
+        display: "Recieve a Life Staff"
+    },
+    {
+        slug: "defense",
+        display: "Recieve a Defense Sword"
+    },
+    {
+        slug: "whitespear",
+        display: "Recieve a White Spear"
+    },
+    {
+        slug: "murasame",
+        display: "Recieve a Murasame"
+    },
+    {
+        slug: "artemisbow",
+        display: "Recieve an Artemis Bow"
+    },
+    {
+        slug: "ribbon",
+        display: "Recieve a Ribbon"
+    },
+    {
+        slug: "glasshelm",
+        display: "Recieve a Glass Helm"
+    },
+    {
+        slug: "powerrobe",
+        display: "Recieve a Power Shirt"
+    },
+    {
+        slug: "zeusgauntlet",
+        display: "Recieve a Zeus Gauntlet"
+    },
+    {
+        slug: "crystalring",
+        display: "Recieve a Crystal Ring"
+    },
+    {
+        slug: "protectring",
+        display: "Recieve a Protect Ring"
+    },
+    {
+        slug: "auapple",
+        display: "Recieve a Gold Apple"
+    },
+    {
+        slug: "agapple",
+        display: "Recieve a Silver Apple"
+    },
+    {
+        slug: "baham",
+        display: "Recieve a Bahamut Summon"
+    },
+    {
+        slug: "dragoonspear",
+        display: "Recieve a Dragoon Spear"
+    },
+    {
+        slug: "masamune",
+        display: "Recieve a Masamune"
+    },
+    {
+        slug: "avenger",
+        display: "Recieve an Avenger"
+    },
+    {
+        slug: "artemisarrow",
+        display: "Recieve 10 Artemis Arrows"
+    },
+    {
+        slug: "whiterobe",
+        display: "Recieve a White Shirt"
+    },
+    {
+        slug: "moonveil",
+        display: "Recieve a Moonveil"
+    },
+    {
+        slug: "excalibur",
+        display: "Recieve an Excalibur"
+    },
+    {
+        slug: "crystalsword",
+        display: "Recieve a Crystal Sword"
+    },
+    {
+        slug: "adamantarmor",
+        display: "Recieve an Adamant Armor"
+    },
+    {
+        slug: "dkmatter1",
+        display: "Recieve 1 Dark Matter"
+    },
+    {
+        slug: "dkmatter2",
+        display: "Recieve 2 Dark Matter"
+    },
+    {
+        slug: "dkmatter3",
+        display: "Recieve 3 Dark Matter"
+    },
+    {
+        slug: "dkmatter4",
+        display: "Recieve 4 Dark Matter"
+    },
+    {
+        slug: "dkmatter5",
+        display: "Recieve 5 Dark Matter"
+    },
+    {
+        slug: "dkmatter6",
+        display: "Recieve 6 Dark Matter"
+    },
+    {
+        slug: "dkmatter7",
+        display: "Recieve 7 Dark Matter"
+    },
+    {
+        slug: "dkmatter8",
+        display: "Recieve 8 Dark Matter"
+    },
+    {
+        slug: "dkmatter9",
+        display: "Recieve 9 Dark Matter"
+    },
+    {
+        slug: "dkmatter10",
+        display: "Recieve 10 Dark Matter"
+    },
+    {
+        slug: "dkmatter12",
+        display: "Recieve 12 Dark Matter"
+    },
+    {
+        slug: "dkmatter15",
+        display: "Recieve 15 Dark Matter"
+    },
 
-export { defaultKI, bosses, quests, locations, characters, questsByKI };
+    
+
+];
+
+
+
+export { defaultKI, bosses, quests, locations, characters, questsByKI, questRewards };

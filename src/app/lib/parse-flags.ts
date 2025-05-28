@@ -1,7 +1,7 @@
 // @flow
 
-import { quests, bosses } from '@/app/lib/default-data';
-import { FlagObject, V5FlagObject } from '@/app/lib/interfaces';
+import { quests, bosses, questRewards } from '@/app/lib/default-data';
+import { FlagObject, V5FlagObject, v5QuestReward, v5Requirement } from '@/app/lib/interfaces';
 
 const parseFlags = (flagString: string):FlagObject => {
     if (!flagString || typeof flagString !== 'string') {
@@ -10,6 +10,7 @@ const parseFlags = (flagString: string):FlagObject => {
             required: 0,
             isV5: false,
             v5Objectives: [],
+            v5Required: [],
         };
     }
 
@@ -18,11 +19,12 @@ const parseFlags = (flagString: string):FlagObject => {
         required: 0,
         isV5: flagString.indexOf('OA') >= 0,
         v5Objectives: [],
+        v5Required: [],
     }
 
     const v5FlagObj:V5FlagObject = {
         objectives: [],
-        required: 0,
+        required: [],
         isV5: true
     }
 
@@ -176,6 +178,81 @@ const parseFlags = (flagString: string):FlagObject => {
             }
 
             flagObj.v5Objectives.push(setObj);
+
+            // requirements
+            let doIndex = 0;
+            const setReq:v5Requirement = {};
+            while (doIndex < setString.length) {
+                const current = setString.indexOf("do_", doIndex + 1);
+                if (current < 0) {
+                    doIndex = setString.length;
+                } else {
+                    // check digit after do_
+                    const nextChar = setString.charAt(current + 3);
+                    if (isNaN(parseInt(nextChar)) && nextChar !== "a") {
+                        console.log("Invalid character following 'do_'");
+                        break;
+                    } else {
+                        // prep reward
+                        // first find the start and ending of current do
+                        const startpoint = setString.indexOf(":", current);
+                        const endpoint = setString.indexOf("/", current);
+                        // get the substring from this reward, and compare it to the reward table
+                        const rewardSubstr = setString.substring(startpoint + 1, endpoint < 0 ? setString.length : endpoint);
+                        const foundReward = questRewards.find(reward => reward.slug === rewardSubstr);
+                        if (!foundReward) {
+                            console.log(`Warning: do_ reward ${rewardSubstr} not found in reward table`, current, startpoint, endpoint);
+                            doIndex = setString.length;
+                            break;
+                        }
+                        const reward = foundReward.display;
+
+                        switch (nextChar) {
+                            case "a":
+                                setReq.all = reward;
+                                break;
+                            case "1":
+                                const nexterChar = setString.charAt(current + 4);
+                                if (nexterChar === "0") {
+                                    setReq[10] = reward;
+                                } else {
+                                    setReq[1] = reward;
+                                }
+                                break;
+                            case "2":
+                                setReq[2] = reward;
+                                break;
+                            case "3":
+                                setReq[3] = reward;
+                                break;
+                            case "4":
+                                setReq[4] = reward;
+                                break;
+                            case "5":
+                                setReq[5] = reward;
+                                break;
+                            case "6":
+                                setReq[6] = reward;
+                                break;
+                            case "7":
+                                setReq[7] = reward;
+                                break;
+                            case "8":
+                                setReq[8] = reward;
+                                break;
+                            case "9":
+                                setReq[9] = reward;
+                                break;
+                            
+                        }
+                    }
+
+                    doIndex = current;
+                }
+
+            }
+
+            flagObj.v5Required.push(setReq);
 
         })
         
