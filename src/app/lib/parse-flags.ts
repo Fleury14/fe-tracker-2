@@ -14,11 +14,10 @@ const parseFlags = (flagString: string) => {
     const flagObj:FlagObject = {
         objectives: [],
         required: 0,
+        isV5: flagString.indexOf('OA') >= 0
     }
 
-    const isV5 = flagString.indexOf('OA') >= 0;
-
-    if (isV5) {
+    if (flagObj.isV5) {
         // objective groups
     } else {
 

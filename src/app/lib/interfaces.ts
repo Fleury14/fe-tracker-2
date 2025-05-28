@@ -50,6 +50,7 @@ interface TObjective {
 interface FlagObject {
     objectives: TObjective[];
     required: number;
+    isV5: boolean;
 }
 
 interface Quest {
