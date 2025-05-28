@@ -143,6 +143,19 @@ const parseFlags = (flagString: string) => {
         }
     }
 
+    // galeswift -- include second objective set
+    const random2Index = flagString.indexOf(`random2:`);
+    if (random2Index >= 0) {
+        for (let i = 0; i < parseInt(flagString.charAt(random2Index + 8)); i++) {
+            flagObj.objectives.push({
+                id: flagObj.objectives.length,
+                label: `2nd set Random objective ${i + 1}`,
+                time: 0,
+                random: true,
+            });
+        }
+    }
+
     // required objective number
     if (flagString.indexOf('req:') >= 0 && flagString.indexOf('req:all') < 0) {
         flagObj.required = parseInt(flagString.charAt(flagString.indexOf('req:') + 4));
