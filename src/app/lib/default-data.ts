@@ -1,4 +1,5 @@
-import { KeyItems, Boss, Quest, Location, Character, KIObjectives } from "./interfaces";
+
+import { KeyItems, Boss, Quest, Location, Character, KIObjectives, MemoryAddress } from "./interfaces";
 
 const defaultKI: KeyItems = {
     crystal: false,
@@ -974,5 +975,13 @@ const questsByKI: KIObjectives[] = [
     },
 ]
 
+const memoryAddresses: Record<string, MemoryAddress> = {
+    //TODO: double check these addresses
+    "metadata": { size: 4, address: 0x1FF000 },
+    "jsonDoc": { size: 0, address: 0x1FF004 },
+    "foundKI": { size: 3, address: 0xF51500 },
+    "usedKI": { size: 3, address: 0xF51503 },
+    "completedObjectives": { size: 3, address: 0xF51503 },
+}
 
-export { defaultKI, bosses, quests, locations, characters, questsByKI };
+export { defaultKI, bosses, quests, locations, characters, questsByKI, memoryAddresses };

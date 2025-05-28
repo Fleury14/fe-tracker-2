@@ -88,5 +88,16 @@ interface TimerState {
     isActive: boolean;
 }
 
+interface SeedMetadata {
+    version: string,
+    flags: string,
+    seed: string,
+    objectives: string[]
+}
 
-export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location, Character, KIObjectives, Kit, FlagBadge, TimerState };
+interface MemoryAddress {
+    size: number,
+    address: number
+}
+
+export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location, Character, KIObjectives, Kit, FlagBadge, TimerState, SeedMetadata, MemoryAddress };
