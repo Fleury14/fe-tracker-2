@@ -84,7 +84,7 @@ export default function Page() {
                     <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)}/></div>
                     <div className="layout-bosses"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
                 </div>
-                <div className="min-h-1/4">
+                <div className="min-h-25-pct">
                     {
                         parsedObjectives.isV5 ? 
                         <V5ObjectiveDisplay
