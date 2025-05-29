@@ -48,4 +48,20 @@ function completeObjective(id: number, objectives: TObjective[], setObjectives: 
     }
 }
 
-export { beginObjectiveEdit, editObjective, completeObjective }
+function completeV5Objective(id: number, group: number, objectives: Array<TObjective[]>, setv5Objectives: (list: Array<TObjective[]>) => void, timer: TimerState) {
+    const target = objectives[group].find(obj => obj.id === id);
+    if (!!target) {
+        const newObj:TObjective = {
+            ...target,
+            time: !!target.time && target.time > 0 ? 0 : timer.currentTime
+        }
+        const newList = objectives.filter(obj => true);
+        const targetGroup = newList[group]
+        const newGroupList = targetGroup.filter(obj => obj.id !== id);
+        newGroupList.push(newObj);
+        newList.splice(group, 1, newGroupList);
+        setv5Objectives(newList);
+    }
+}
+
+export { beginObjectiveEdit, editObjective, completeObjective, completeV5Objective }

@@ -246,14 +246,10 @@ const parseFlags = (flagString: string):FlagObject => {
                             
                         }
                     }
-
                     doIndex = current;
                 }
-
             }
-
             flagObj.v5Required.push(setReq);
-
         })
         
         
@@ -410,7 +406,7 @@ const parseFlags = (flagString: string):FlagObject => {
     }
 
 
-    console.log('flagobj', flagObj)
+    // console.log('flagobj', flagObj)
 
     return flagObj;
 }

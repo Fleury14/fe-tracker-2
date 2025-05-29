@@ -453,16 +453,16 @@ const renderMisc = (flags: string) => {
         misc.push(<span key="spoon" className="flag-badge flag-badge-yay">SPOON!</span>)
     }
     if (flags.indexOf('supersmith') >= 0 || flags.indexOf('smith:super') >= 0) {
-        misc.push(<span key="spoon" className="flag-badge flag-badge-yay">GBA Weapon Forge</span>)
+        misc.push(<span key="weapon-forge" className="flag-badge flag-badge-yay">GBA Weapon Forge</span>)
     }
     if (flags.indexOf('smith:alt') >= 0) {
-        misc.push(<span key="spoon" className="flag-badge flag-badge-yay">Alt Forge</span>)
+        misc.push(<span key="smith-alt" className="flag-badge flag-badge-yay">Alt Forge</span>)
     }
     if (flags.indexOf('smith:playable') >= 0) {
-        misc.push(<span key="spoon" className="flag-badge flag-badge-yay">Guaranteed usable item</span>)
+        misc.push(<span key="smith-playable" className="flag-badge flag-badge-yay">Guaranteed usable item</span>)
     }
     if (flags.indexOf('nocursed') >= 0) {
-        misc.push(<span key="spoon" className="flag-badge flag-badge-yay">No Cursed Rings</span>)
+        misc.push(<span key="nocursed" className="flag-badge flag-badge-yay">No Cursed Rings</span>)
     }
     if (flags.indexOf('noadamants') >= 0) {
         misc.push(<span key="nooadamants" className="flag-badge">No adamant armors</span>)
