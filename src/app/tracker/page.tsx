@@ -130,7 +130,6 @@ export default function Page() {
                         objLen={objectives.length}
                         onSelect={(id: number, title:string, group: number) => 
                         {
-                            console.log('selected', group)
                             if (v5objectives.length && group >= 0) {
                                 editV5Objective(id, group, title, v5objectives, setv5Objectives, setObjEdit, setMode)    
                             }
