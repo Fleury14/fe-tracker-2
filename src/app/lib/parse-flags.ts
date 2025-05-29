@@ -1,7 +1,7 @@
 // @flow
 
 import { quests, bosses, questRewards } from '@/app/lib/default-data';
-import { FlagObject, V5FlagObject, v5QuestReward, v5Requirement } from '@/app/lib/interfaces';
+import { FlagObject, v5Requirement } from '@/app/lib/interfaces';
 
 const parseFlags = (flagString: string):FlagObject => {
     if (!flagString || typeof flagString !== 'string') {
@@ -20,12 +20,6 @@ const parseFlags = (flagString: string):FlagObject => {
         isV5: flagString.indexOf('OA') >= 0,
         v5Objectives: [],
         v5Required: [],
-    }
-
-    const v5FlagObj:V5FlagObject = {
-        objectives: [],
-        required: [],
-        isV5: true
     }
 
     if (flagObj.isV5) {

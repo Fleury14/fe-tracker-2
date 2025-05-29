@@ -16,7 +16,7 @@ import initLocations from "../lib/init-locations";
 import { FlagObject, KeyItems, Boss, Location } from "../lib/interfaces";
 import { toggleKI, toggleBoss, isAvailable, clearLocation } from "../lib/controls/toggler";
 import { beginTimer, endTimer, resetTimer } from "../lib/controls/time-controls";
-import { beginObjectiveEdit, editObjective, completeObjective, completeV5Objective } from "../lib/controls/objective-controle";
+import { beginObjectiveEdit, beginv5ObjectiveEdit ,editObjective, editV5Objective, completeObjective, completeV5Objective } from "../lib/controls/objective-controle";
 import TimeControlsDisplay from "@/app/ui/timer/timer-controls-display";
 import { getPropertySection } from "../lib/parse-flag-section";
 
@@ -42,6 +42,7 @@ export default function Page() {
     const [objectives, setObjectives] = useState(parsedObjectives.objectives);
     const [v5objectives, setv5Objectives] = useState(parsedObjectives.v5Objectives);
     const [objectiveEdit, setObjEdit] = useState(-1);
+    const [groupEdit, setGroupEdit] = useState(-1);
     const [mode, setMode] = useState<Mode>(Mode.Info);
     const [ki, setKI] = useState<KeyItems>(defaultKI);
     const [bossList, setBossList] = useState<Boss[]>(bosses);
@@ -83,13 +84,13 @@ export default function Page() {
                     <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)}/></div>
                     <div className="layout-bosses"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
                 </div>
-                <div className="h-1/4">
+                <div className="min-h-1/4">
                     {
                         parsedObjectives.isV5 ? 
                         <V5ObjectiveDisplay
                             objectives={v5objectives}
                             req={parsedObjectives.v5Required}
-                            onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)}
+                            onEdit={(id:number, group:number) => beginv5ObjectiveEdit(id, group, setObjEdit, setMode, setGroupEdit)}
                             onComplete = {(id:number, group:number) => completeV5Objective(id, group, v5objectives, setv5Objectives, timer)}
                         /> : 
                         <ObjectiveDisplay
@@ -123,7 +124,20 @@ export default function Page() {
             <div className="flex flex-col justify-between w-1/2">
                 <div className="font-[family-name:var(--font-geist-sans)]">
                     {mode === Mode.Info && <Info flags={assuredFlags} />}
-                    {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={objectiveEdit} objLen={objectives.length} onSelect={(id: number, title:string)  => editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)} isDone={() => setMode(Mode.Info)} />}
+                    {mode === Mode.ObjectiveEdit && <ObjectiveEditor 
+                        id={objectiveEdit}
+                        group={groupEdit}
+                        objLen={objectives.length}
+                        onSelect={(id: number, title:string, group: number) => 
+                        {
+                            console.log('selected', group)
+                            if (v5objectives.length && group >= 0) {
+                                editV5Objective(id, group, title, v5objectives, setv5Objectives, setObjEdit, setMode)    
+                            }
+                            editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)
+                        }}
+                        isDone={() => setMode(Mode.Info)} 
+                        />}
                 </div>
                 < TimeControlsDisplay 
                     isActive={timer.isActive}

@@ -3,7 +3,7 @@ import { characters, bosses, questsByKI, quests } from "@/app/lib/default-data";
 import { KIObjectives } from '@/app/lib/interfaces';
 import { GlobeAltIcon } from '@heroicons/react/16/solid';
 
-export default function ObjectiveEditor( { id, objLen, onSelect, isDone }: { id: number, objLen: number, onSelect: (id: number, title: string) => void, isDone: () => void }) {
+export default function ObjectiveEditor( { id, group, objLen, onSelect, isDone }: { id: number, group: number, objLen: number, onSelect: (id: number, title: string, group: number) => void, isDone: () => void }) {
 
     function renderQuestSet(set: KIObjectives) {
         switch(set.ki) {
@@ -20,7 +20,7 @@ export default function ObjectiveEditor( { id, objLen, onSelect, isDone }: { id:
                                     return <button 
                                         key={`button${index}`}
                                         onClick={() =>  {
-                                            onSelect(id, targetObj.title);
+                                            onSelect(id, targetObj.title, group);
                                             if (id === objLen - 1) {
                                                 isDone();
                                             }
@@ -60,7 +60,7 @@ export default function ObjectiveEditor( { id, objLen, onSelect, isDone }: { id:
                                     return <button 
                                             key={`button${index}`}
                                             onClick={() =>  {
-                                                onSelect(id, targetObj.title);
+                                                onSelect(id, targetObj.title, group);
                                                 if (id === objLen - 1) {
                                                     isDone();
                                                 }
@@ -94,7 +94,7 @@ export default function ObjectiveEditor( { id, objLen, onSelect, isDone }: { id:
                                     return <button
                                         key={`button${index}`}
                                         onClick={() =>  {
-                                            onSelect(id, targetObj.title);
+                                            onSelect(id, targetObj.title, group);
                                             if (id === objLen - 1) {
                                                 isDone();
                                             }
@@ -119,7 +119,7 @@ export default function ObjectiveEditor( { id, objLen, onSelect, isDone }: { id:
             <div className="flex">
                 {characters.map(char => (
                     <a key={char.slug} onClick={() =>  {
-                        onSelect(id, `Get ${char.title}`);
+                        onSelect(id, `Get ${char.title}`, group);
                         if (id === objLen - 1) {
                             isDone();
                         }
@@ -137,7 +137,7 @@ export default function ObjectiveEditor( { id, objLen, onSelect, isDone }: { id:
             <div className="flex flex-wrap">
                 {bosses.map(boss => boss.id < 36 ? (
                     <a key={boss.id} onClick={() =>  {
-                        onSelect(id, `Defeat ${boss.title}`);
+                        onSelect(id, `Defeat ${boss.title}`, group);
                         if (id === objLen - 1) {
                             isDone();
                         }
