@@ -41,7 +41,7 @@ function editObjective(id: number, title: string, objectives: TObjective[], setO
     }
 }
 
-function editV5Objective(id: number, group: number, title: string, objectives: Array<TObjective[]>, setv5Objectives: (list: Array<TObjective[]>) => void, setObjEdit: Dispatch<SetStateAction<number>>, setMode: (mode: Mode) => void) {
+function editV5Objective(id: number, group: number, title: string, objectives: Array<TObjective[]>, setv5Objectives: (list: Array<TObjective[]>) => void, setObjEdit: Dispatch<SetStateAction<number>>, setMode: (mode: Mode) => void, setGroupEdit: Dispatch<SetStateAction<number>>) {
     const target = objectives[group].find(obj => obj.id === id);
     const targetIndex = objectives[group].findIndex(obj => obj.id === id);
     if (!!target) {
@@ -56,14 +56,31 @@ function editV5Objective(id: number, group: number, title: string, objectives: A
         newGroupList.sort((a, b) => a.id - b.id);
         newList.splice(group, 1, newGroupList)
         setv5Objectives(newList);
-        
-        if (target.id < objectives.length - 1) {
-            if (objectives[group][targetIndex + 1].random) {
-                setObjEdit((prevState: number) => prevState + 1);
-            } else {
-                setObjEdit(-1);
-                setMode(Mode.Info);
-            }
+
+        // TODO: go across groups to check to see if there's another random objective. if not, end editing
+        let hasReassignedEdit = false;
+        objectives.forEach((objSet, index) => {
+            if (index < group) return;
+            if (hasReassignedEdit) return;
+            objSet.forEach((obj) => {
+                if (index === group && obj.id <= target.id) {
+                    return
+                }
+                if (hasReassignedEdit) return;
+                if (obj.random === true) {
+                    setObjEdit(obj.id);
+                    setGroupEdit(index);
+                    hasReassignedEdit = true;
+                    return;
+                } else {
+                    return;
+                }
+            })
+        })
+        if (!hasReassignedEdit) {
+            setObjEdit(-1);
+            setGroupEdit(-1);
+            setMode(Mode.Info);
         }
     }
 }

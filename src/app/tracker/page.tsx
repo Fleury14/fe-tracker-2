@@ -131,7 +131,7 @@ export default function Page() {
                         onSelect={(id: number, title:string, group: number) => 
                         {
                             if (v5objectives.length && group >= 0) {
-                                editV5Objective(id, group, title, v5objectives, setv5Objectives, setObjEdit, setMode)    
+                                editV5Objective(id, group, title, v5objectives, setv5Objectives, setObjEdit, setMode, setGroupEdit)    
                             }
                             editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)
                         }}
