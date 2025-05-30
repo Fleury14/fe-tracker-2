@@ -43,7 +43,6 @@ function editObjective(id: number, title: string, objectives: TObjective[], setO
 
 function editV5Objective(id: number, group: number, title: string, objectives: Array<TObjective[]>, setv5Objectives: (list: Array<TObjective[]>) => void, setObjEdit: Dispatch<SetStateAction<number>>, setMode: (mode: Mode) => void, setGroupEdit: Dispatch<SetStateAction<number>>) {
     const target = objectives[group].find(obj => obj.id === id);
-    const targetIndex = objectives[group].findIndex(obj => obj.id === id);
     if (!!target) {
         const newList = objectives.filter(obj => obj === obj);
         const targetGroup = newList[group];
