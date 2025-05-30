@@ -2,8 +2,10 @@ import { kitList } from '@/app/lib/kit-list';
 
 const renderCharacters = (flags: string) => {
     const characterText = [];
+    const isV5 = flags.indexOf("OA") >= 0;
     // get character section of flag string
     const charString = getPropertySection(flags, 'C')
+    console.log('ctring', charString);
 
     // main character setting
     if (charString.indexOf('standard') >= 0) {
@@ -681,7 +683,10 @@ const getPropertySubSection = (flags: string, criteria: string) => {
 
 const getPropertySection = (flags: string, criteria: string) => {
     // get shop section of flag string
-    const begin = flags.indexOf(criteria);
+    let begin = flags.indexOf(criteria);
+    if (flags.charAt(begin - 1) === "O") {
+        begin = flags.indexOf(criteria, begin + 1);
+    }
     let end = flags.length;
     for (let i = begin; i < flags.length; i++) {
         const charTest = flags.charAt(i);
