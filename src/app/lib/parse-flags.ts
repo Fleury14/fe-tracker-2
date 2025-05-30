@@ -199,7 +199,7 @@ const parseFlags = (flagString: string):FlagObject => {
                             doIndex = setString.length;
                             break;
                         }
-                        const reward = foundReward.display;
+                        const reward = foundReward.slug;
 
                         switch (nextChar) {
                             case "a":

@@ -5,7 +5,6 @@ const renderCharacters = (flags: string) => {
     const isV5 = flags.indexOf("OA") >= 0;
     // get character section of flag string
     const charString = getPropertySection(flags, 'C')
-    console.log('ctring', charString);
 
     // main character setting
     if (charString.indexOf('standard') >= 0) {

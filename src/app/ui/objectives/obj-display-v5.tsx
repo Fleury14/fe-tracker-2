@@ -10,6 +10,15 @@ export default function v5ObjectiveDisplay({ objectives, req, onEdit, onComplete
     // console.log('v5objectives', objectives)
     // TODO: remove once requirements are in, for now this settles the linter
     if (req) {}
+    console.log('req', req);
+
+    function displayReqs(req:v5Requirement) {
+        const result = [];
+        for (const [key, val] of Object.entries(req)) {
+            result.push(<p className="m-1" key={key + val}>{key}:{val}</p>)
+        }
+        return result;
+    }
 
     return (
         <div className="flex flex-col z-10 relative">
@@ -22,10 +31,16 @@ export default function v5ObjectiveDisplay({ objectives, req, onEdit, onComplete
                 const complete = obj.filter(obj => !!obj.time && obj.time > 0);
                 return (
                     <div key={`obj-group-${groups[index]}`}>
-                        <p>Group {groups[index]}</p>
+                        <div className="flex justify-between">
+                            <p className="font-bold text-yellow-300">Group {groups[index]}</p>
+                            <div className="flex font-bold text-xs font-[family-name:var(--font-geist-mono)]">
+                                {displayReqs(req[index])}
+                            </div>
+                        </div>
+                        
                         {active.map(obj => {
                             return (
-                                <div key={obj.label} className="flex items-center hover:bg-slate-800">
+                                <div key={obj.label} className="flex items-center hover:bg-slate-800 ml-3">
                                     <p className="mr-3 font-semibold">{obj.label}</p>
                                     {obj.random && <button onClick={() => onEdit(obj.id, index)}><p className="invisible w-0 h-0">Edit Objective {obj.id}</p><PencilSquareIcon className="size-6 text-yellow-400" /></button>}
                                     <button onClick={() => onComplete(obj.id, index)}><p className="invisible w-0 h-0">Complete Objective {obj.id}</p><CheckCircleIcon className="size-6 text-green-400" /></button>
