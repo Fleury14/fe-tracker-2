@@ -93,6 +93,7 @@ export default function Page() {
                             req={parsedObjectives.v5Required}
                             onEdit={(id:number, group:number) => beginv5ObjectiveEdit(id, group, setObjEdit, setMode, setGroupEdit)}
                             onComplete = {(id:number, group:number) => completeV5Objective(id, group, v5objectives, setv5Objectives, timer)}
+                            highlighted={[groupEdit, objectiveEdit]}
                         /> : 
                         <ObjectiveDisplay
                             objectives={objectives}

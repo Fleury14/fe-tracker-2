@@ -70,3 +70,7 @@ body {
 .min-h-25-pct {
   min-height: 25%;
 }
+
+.highlighted {
+  background-color: #888;
+}

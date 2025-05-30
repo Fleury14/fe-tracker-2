@@ -2,7 +2,7 @@ import { TObjective, v5Requirement } from "@/app/lib/interfaces";
 import { PencilSquareIcon, CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import ParseTime from "@/app/lib/parse-time";
 
-export default function v5ObjectiveDisplay({ objectives, req, onEdit, onComplete }: { objectives: Array<TObjective[]>, req: v5Requirement[], onEdit: (id: number, group: number) => void, onComplete: (id: number, group: number) => void }) {
+export default function v5ObjectiveDisplay({ objectives, req, onEdit, onComplete, highlighted }: { objectives: Array<TObjective[]>, req: v5Requirement[], onEdit: (id: number, group: number) => void, onComplete: (id: number, group: number) => void, highlighted: number[] }) {
     // const active = objectives.filter(obj => obj.time === 0);
     // const complete = objectives.filter(obj => !!obj.time && obj.time > 0);
     // const goMode = complete.length >= req;
@@ -36,7 +36,7 @@ export default function v5ObjectiveDisplay({ objectives, req, onEdit, onComplete
                         
                         {active.map(obj => {
                             return (
-                                <div key={obj.label} className="flex items-center hover:bg-slate-800 ml-3">
+                                <div key={obj.label} className={`flex items-center hover:bg-slate-800 ml-3 ${highlighted[0] === index && highlighted[1] === obj.id ? "highlighted" : ""}`}>
                                     <p className="mr-3 font-semibold">{obj.label}</p>
                                     {obj.random && <button onClick={() => onEdit(obj.id, index)}><p className="invisible w-0 h-0">Edit Objective {obj.id}</p><PencilSquareIcon className="size-6 text-yellow-400" /></button>}
                                     <button onClick={() => onComplete(obj.id, index)}><p className="invisible w-0 h-0">Complete Objective {obj.id}</p><CheckCircleIcon className="size-6 text-green-400" /></button>
