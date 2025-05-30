@@ -12,7 +12,7 @@ export default function v5ObjectiveDisplay({ objectives, req, onEdit, onComplete
     if (req) {}
 
     return (
-        <div className="flex flex-col z-10">
+        <div className="flex flex-col z-10 relative">
             <div className="flex justify-between">
                 <p className="font-bold text-lg">Objectives</p>
                 {/* <p className="font-bold font-[family-name:var(--font-geist-mono)]">Required: {req}</p> */}
