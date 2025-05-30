@@ -12,7 +12,7 @@ export default function v5ObjectiveDisplay({ objectives, req, onEdit, onComplete
     if (req) {}
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col z-10">
             <div className="flex justify-between">
                 <p className="font-bold text-lg">Objectives</p>
                 {/* <p className="font-bold font-[family-name:var(--font-geist-mono)]">Required: {req}</p> */}
@@ -25,7 +25,7 @@ export default function v5ObjectiveDisplay({ objectives, req, onEdit, onComplete
                         <p>Group {groups[index]}</p>
                         {active.map(obj => {
                             return (
-                                <div key={obj.label} className="flex items-center hover:bg-slate-800 z-10">
+                                <div key={obj.label} className="flex items-center hover:bg-slate-800">
                                     <p className="mr-3 font-semibold">{obj.label}</p>
                                     {obj.random && <button onClick={() => onEdit(obj.id, index)}><p className="invisible w-0 h-0">Edit Objective {obj.id}</p><PencilSquareIcon className="size-6 text-yellow-400" /></button>}
                                     <button onClick={() => onComplete(obj.id, index)}><p className="invisible w-0 h-0">Complete Objective {obj.id}</p><CheckCircleIcon className="size-6 text-green-400" /></button>
@@ -36,7 +36,7 @@ export default function v5ObjectiveDisplay({ objectives, req, onEdit, onComplete
                         {complete.length > 0 && <div className="border"></div>}
                         {complete.map(obj => {
                             if (!!obj.time) return (
-                                <div key={obj.label} className="flex justify-between items-center z-10">
+                                <div key={obj.label} className="flex justify-between items-center">
                                     <div className="flex items-center hover:bg-slate-800">
                                         <p className="mr-3">{obj.label}</p>
                                         {obj.random && <button onClick={() => onEdit(obj.id, index)}><PencilSquareIcon className="size-6 text-yellow-400" /></button>}
