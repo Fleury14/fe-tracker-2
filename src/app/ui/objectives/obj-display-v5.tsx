@@ -7,10 +7,6 @@ export default function v5ObjectiveDisplay({ objectives, req, onEdit, onComplete
     // const complete = objectives.filter(obj => !!obj.time && obj.time > 0);
     // const goMode = complete.length >= req;
     const groups = ["A", "B", "C", "D", "E"];
-    // console.log('v5objectives', objectives)
-    // TODO: remove once requirements are in, for now this settles the linter
-    if (req) {}
-    console.log('req', req);
 
     function displayReqs(req:v5Requirement) {
         const result = [];

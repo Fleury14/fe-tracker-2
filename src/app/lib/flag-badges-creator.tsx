@@ -472,7 +472,7 @@ const renderMisc = (flags: string) => {
         misc.push(<span key="spoon" className="flag-badge flag-badge-yay">SPOON!</span>)
     }
     if (flags.indexOf('fastrom') >= 0) {
-        misc.push(<span key="spoon" className="flag-badge flag-badge-danger">FastROM enabled</span>)
+        misc.push(<span key="fastrom" className="flag-badge flag-badge-danger">FastROM enabled</span>)
     }
     if (flags.indexOf('supersmith') >= 0 || flags.indexOf('smith:super') >= 0) {
         misc.push(<span key="weapon-forge" className="flag-badge flag-badge-yay">GBA Weapon Forge</span>)

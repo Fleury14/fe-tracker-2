@@ -56,6 +56,7 @@ export default function Page() {
 
     let objectiveCount = 0;
     v5objectives.forEach(objSet => objectiveCount += objSet.length);
+    const isV5:boolean = assuredFlags.indexOf("OA") >= 0;
 
     const currentTimer = useRef<ReturnType<typeof setInterval>>();
     useEffect(() => {
@@ -81,7 +82,7 @@ export default function Page() {
         <div className="flex" style={{ backgroundColor: color }}>
             <div className="w-120 border-2 border-double h-screen flex flex-col font-[family-name:var(--font-geist-sans)] p-1">
                 <div className="flex h-1/4">
-                    <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)}/></div>
+                    <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)} isV5={isV5}/></div>
                     <div className="layout-bosses"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
                 </div>
                 <div className="min-h-25-pct">
@@ -100,12 +101,6 @@ export default function Page() {
                             onComplete = {(id:number) => completeObjective(id, objectives, setObjectives, timer)}
                         />
                     }
-                    {/* <ObjectiveDisplay
-                        objectives={objectives}
-                        req={parsedObjectives.required}
-                        onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)}
-                        onComplete = {(id:number) => completeObjective(id, objectives, setObjectives, timer)}
-                    /> */}
                 </div>
                 <div className="h-1/4">
                         
