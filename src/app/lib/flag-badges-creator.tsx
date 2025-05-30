@@ -2,7 +2,7 @@ import { kitList } from '@/app/lib/kit-list';
 
 const renderCharacters = (flags: string) => {
     const characterText = [];
-    const isV5 = flags.indexOf("OA") >= 0;
+    // const isV5 = flags.indexOf("OA") >= 0;
     // get character section of flag string
     const charString = getPropertySection(flags, 'C')
 
