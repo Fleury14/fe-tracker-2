@@ -19,6 +19,12 @@ const renderCharacters = (flags: string) => {
     if (charString.indexOf('hero') >= 0) {
         characterText.push(<span key="hero" className="flag-badge flag-badge-danger">Starting character is the HERO</span>)
     }
+    if (charString.indexOf('risky') >= 0) {
+        characterText.push(<span key="Crisky" className="flag-badge flag-badge-danger">Risky Placement</span>)
+    }
+    if (charString.indexOf('wishes') >= 0) {
+        characterText.push(<span key="Crisky" className="flag-badge flag-badge-yay">All @ Tower of Wishes</span>)
+    }
 
     // extra settings
     if (charString.indexOf('spells') >= 0) {
@@ -115,7 +121,7 @@ const renderBosses = (flags: string) => {
     if (bString.indexOf('nofree') >= 0) {
         BossesText.push(<span key="nofree" className="flag-badge flag-badge-danger"> No Free Bosses</span>);
     }
-    if (bString.indexOf('unsafe') >= 0) {
+    if (bString.indexOf('unsafe') >= 0 || bString.indexOf('risky') >= 0) {
         BossesText.push(<span key="unsafe" className="flag-badge flag-badge-danger"> No Safety Checks</span>);
     }
     if (bString.indexOf('whichburn') >= 0) {
@@ -123,6 +129,12 @@ const renderBosses = (flags: string) => {
     }
     if (bString.indexOf('whyburn') >= 0) {
         BossesText.push(<span key="whyburn" className="flag-badge flag-badge-yay"> Why-burn</span>);
+    }
+    if (bString.indexOf('chaos') >= 0) {
+        BossesText.push(<span key="chaos" className="flag-badge flag-badge-yay"> Chaotic</span>);
+    }
+    if (bString.indexOf('chaosburn') >= 0) {
+        BossesText.push(<span key="chaosburn" className="flag-badge flag-badge-yay"> Unique Wyvern attacks</span>);
     }
     if (bString.indexOf('itburns') >= 0) {
         BossesText.push(<span key="itburns" className="flag-badge flag-badge-danger"> Dangerous Whyburn</span>);
@@ -399,6 +411,9 @@ const renderKeyItems = (flags: string) => {
     if (keyItemString.indexOf('moon') >= 0) {
         keyItems.push(<span key="moon" className="flag-badge">Moon</span>);
     }
+    if (keyItemString.indexOf('char') >= 0) {
+        keyItems.push(<span key="char" className="flag-badge">Character checks</span>);
+    }
     if (keyItemString.indexOf('miab') >= 0) {
         keyItems.push(<span key="vanilla" className="flag-badge">Miab</span>);
     }
@@ -410,6 +425,9 @@ const renderKeyItems = (flags: string) => {
     }
     if (keyItemString.indexOf('forge') >= 0) {
         keyItems.push(<span key="forge" className="flag-badge">Forging is a KI check</span>);
+    }
+    if (keyItemString.indexOf('risky') >= 0) {
+        keyItems.push(<span key="unsafe" className="flag-badge flag-badge-danger">Safety checks OFF</span>);
     }
     if (keyItemString.indexOf('unsafe') >= 0 && keyItemString.indexOf('unsafer') < 0) {
         keyItems.push(<span key="unsafe" className="flag-badge flag-badge-danger">Safety checks OFF</span>);
@@ -452,6 +470,9 @@ const renderMisc = (flags: string) => {
 
     if (flags.indexOf('spoon') >= 0) {
         misc.push(<span key="spoon" className="flag-badge flag-badge-yay">SPOON!</span>)
+    }
+    if (flags.indexOf('fastrom') >= 0) {
+        misc.push(<span key="spoon" className="flag-badge flag-badge-danger">FastROM enabled</span>)
     }
     if (flags.indexOf('supersmith') >= 0 || flags.indexOf('smith:super') >= 0) {
         misc.push(<span key="weapon-forge" className="flag-badge flag-badge-yay">GBA Weapon Forge</span>)
