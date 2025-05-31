@@ -276,20 +276,41 @@ const renderShops = (flags: string) => {
     // get shop section of flag string
     const shopString = getPropertySection(flags, 'S');
 
-    if (shopString.indexOf('vanilla') >= 0) {
+    if (shopString.indexOf('vanilla') >= 0 && shopString.indexOf('miabs:vanilla') < 0) {
         shopText.push(<span key="vanilla" className="flag-badge">Vanilla</span>);
     }
-    if (shopString.indexOf('standard') >= 0) {
+    if (shopString.indexOf('standard') >= 0 && shopString.indexOf('miabs:standard') < 0) {
         shopText.push(<span key="standard" className="flag-badge">Standard</span>);
     }
-    if (shopString.indexOf('pro') >= 0) {
+    if (shopString.indexOf('pro') >= 0 && shopString.indexOf('miabs:pro') < 0) {
         shopText.push(<span key="pro" className="flag-badge">Pro</span>);
     }
-    if (shopString.indexOf('wildish') >= 0) {
+    if (shopString.indexOf('wildish') >= 0 && shopString.indexOf('miabs:wildish') < 0) {
         shopText.push(<span key="wildish" className="flag-badge flag-badge-yay">Wild-ish</span>);
     }
-    if (shopString.indexOf('wild') >= 0 && shopString.indexOf('wildish') < 0) {
+    if (shopString.indexOf('wild') >= 0 && shopString.indexOf('wildish') < 0 && shopString.indexOf('miabs:wild') < 0) {
         shopText.push(<span key="wild" className="flag-badge flag-badge-yay">Wild</span>);
+    }
+    if (shopString.indexOf('miabs:vanilla') >= 0) {
+        shopText.push(<span key="miabs-vanilla" className="flag-badge flag-badge">Miabs: Vanilla</span>);
+    }
+    if (shopString.indexOf('miabs:pro') >= 0) {
+        shopText.push(<span key="miabs-pro" className="flag-badge flag-badge">Miabs: Pro</span>);
+    }
+    if (shopString.indexOf('miabs:standard') >= 0) {
+        shopText.push(<span key="miabs-standard" className="flag-badge flag-badge">Miabs: Standard</span>);
+    }
+    if (shopString.indexOf('miabs:wildish') >= 0) {
+        shopText.push(<span key="miabs-wildish" className="flag-badge flag-badge-yay">Miabs: Wildish</span>);
+    }
+    if (shopString.indexOf('miabs:wild') >= 0 && shopString.indexOf('miabs:wildish') < 0) {
+        shopText.push(<span key="miabs-wild" className="flag-badge flag-badge-yay">Miabs: Wild</span>);
+    }
+    if (shopString.indexOf('miabs:vanilla') >= 0) {
+        shopText.push(<span key="miabs-vanilla" className="flag-badge flag-badge-yay">Miabs: Vanilla</span>);
+    }
+    if (shopString.indexOf('miabs:vanilla') >= 0) {
+        shopText.push(<span key="miabs-vanilla" className="flag-badge flag-badge-yay">Miabs: Vanilla</span>);
     }
     if (shopString.indexOf('free') >= 0) {
         shopText.push(<span key="free-shops" className="flag-badge flag-badge-yay">Everything is FREE</span>);
@@ -468,6 +489,38 @@ const renderKeyItems = (flags: string) => {
 const renderMisc = (flags: string) => {
     const misc = [];
 
+    const experienceString = getPropertySection(flags, 'X');
+
+    if (experienceString.indexOf('objbonus2') >= 0 && experienceString.indexOf('objbonus20') < 0 && experienceString.indexOf('objbonus25') < 0) {
+        misc.push(<span key="objbonus2" className="flag-badge flag-badge-yay">+2% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus3') >= 0) {
+        misc.push(<span key="objbonus3" className="flag-badge flag-badge-yay">+3% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus5') >= 0) {
+        misc.push(<span key="objbonus5" className="flag-badge flag-badge-yay">+5% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus8') >= 0) {
+        misc.push(<span key="objbonus8" className="flag-badge flag-badge-yay">+8.3% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus10') >= 0) {
+        misc.push(<span key="objbonus10" className="flag-badge flag-badge-yay">+10% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus12') >= 0) {
+        misc.push(<span key="objbonus12" className="flag-badge flag-badge-yay">+12.5% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus14') >= 0) {
+        misc.push(<span key="objbonus14" className="flag-badge flag-badge-yay">+14.3% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus16') >= 0) {
+        misc.push(<span key="objbonus16" className="flag-badge flag-badge-yay">+16.6% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus20') >= 0) {
+        misc.push(<span key="objbonus20" className="flag-badge flag-badge-yay">+20% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus25') >= 0) {
+        misc.push(<span key="objbonus25" className="flag-badge flag-badge-yay">+25% XP per objective</span>)
+    }
     if (flags.indexOf('spoon') >= 0) {
         misc.push(<span key="spoon" className="flag-badge flag-badge-yay">SPOON!</span>)
     }
