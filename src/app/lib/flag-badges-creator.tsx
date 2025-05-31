@@ -25,6 +25,9 @@ const renderCharacters = (flags: string) => {
     if (charString.indexOf('wishes') >= 0) {
         characterText.push(<span key="Crisky" className="flag-badge flag-badge-yay">All @ Tower of Wishes</span>)
     }
+    if (charString.indexOf('nogiant') >= 0) {
+        characterText.push(<span key="Cnogiant" className="flag-badge flag-badge"> No Giant Char</span>)
+    }
 
     // extra settings
     if (charString.indexOf('spells') >= 0) {
@@ -491,34 +494,34 @@ const renderMisc = (flags: string) => {
 
     const experienceString = getPropertySection(flags, 'X');
 
-    if (experienceString.indexOf('objbonus2') >= 0 && experienceString.indexOf('objbonus20') < 0 && experienceString.indexOf('objbonus25') < 0) {
+    if (experienceString.indexOf('objbonus:2') >= 0 && experienceString.indexOf('objbonus:20') < 0 && experienceString.indexOf('objbonus:25') < 0) {
         misc.push(<span key="objbonus2" className="flag-badge flag-badge-yay">+2% XP per objective</span>)
     }
-    if (experienceString.indexOf('objbonus3') >= 0) {
+    if (experienceString.indexOf('objbonus:3') >= 0) {
         misc.push(<span key="objbonus3" className="flag-badge flag-badge-yay">+3% XP per objective</span>)
     }
-    if (experienceString.indexOf('objbonus5') >= 0) {
+    if (experienceString.indexOf('objbonus:5') >= 0) {
         misc.push(<span key="objbonus5" className="flag-badge flag-badge-yay">+5% XP per objective</span>)
     }
-    if (experienceString.indexOf('objbonus8') >= 0) {
+    if (experienceString.indexOf('objbonus:8') >= 0) {
         misc.push(<span key="objbonus8" className="flag-badge flag-badge-yay">+8.3% XP per objective</span>)
     }
-    if (experienceString.indexOf('objbonus10') >= 0) {
+    if (experienceString.indexOf('objbonus:10') >= 0) {
         misc.push(<span key="objbonus10" className="flag-badge flag-badge-yay">+10% XP per objective</span>)
     }
-    if (experienceString.indexOf('objbonus12') >= 0) {
+    if (experienceString.indexOf('objbonus:12') >= 0) {
         misc.push(<span key="objbonus12" className="flag-badge flag-badge-yay">+12.5% XP per objective</span>)
     }
-    if (experienceString.indexOf('objbonus14') >= 0) {
+    if (experienceString.indexOf('objbonus:14') >= 0) {
         misc.push(<span key="objbonus14" className="flag-badge flag-badge-yay">+14.3% XP per objective</span>)
     }
-    if (experienceString.indexOf('objbonus16') >= 0) {
+    if (experienceString.indexOf('objbonus:16') >= 0) {
         misc.push(<span key="objbonus16" className="flag-badge flag-badge-yay">+16.6% XP per objective</span>)
     }
-    if (experienceString.indexOf('objbonus20') >= 0) {
+    if (experienceString.indexOf('objbonus:20') >= 0) {
         misc.push(<span key="objbonus20" className="flag-badge flag-badge-yay">+20% XP per objective</span>)
     }
-    if (experienceString.indexOf('objbonus25') >= 0) {
+    if (experienceString.indexOf('objbonus:25') >= 0) {
         misc.push(<span key="objbonus25" className="flag-badge flag-badge-yay">+25% XP per objective</span>)
     }
     if (flags.indexOf('spoon') >= 0) {
