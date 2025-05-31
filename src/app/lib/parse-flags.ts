@@ -42,10 +42,15 @@ const parseFlags = (flagString: string):FlagObject => {
             // TODO: refactor objective checks so they aren't listed twice here
 
                 // check set objectives (non-custom)
-            if (setString.indexOf('dkmatter') >= 0 ) {
+            if (setString.indexOf('collect_dkmatter') >= 0 ) {
+                const dkMatter = setString.indexOf('collect_dkmatter');
+                const digit1 = setString.charAt(dkMatter + 16);
+                const digit2 = setString.charAt(dkMatter + 17);
+                const isTwoDigit = isNaN(parseInt(digit2));
+                const dkMatterLabel = isTwoDigit ? digit1 : (digit1 + digit2);
                 setObj.push({
                     id: setObj.length,
-                    label: 'Turn in 30 Dark Matters to Kory',
+                    label: `Turn in ${dkMatterLabel} Dark Matters to Kory`,
                     time: 0,
                 });
             }
