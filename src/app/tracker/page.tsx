@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import KIDisplay from "../ui/ki/ki-display";
 import BossDisplay from "@/app/ui/bosses/boss-display";
 import ObjectiveDisplay from "@/app/ui/objectives/obj-display";
+import V5ObjectiveDisplay from "@/app/ui/objectives/obj-display-v5";
 import LocationDisplay from "@/app/ui/locations/location-display";
 import TimerDisplay from "@/app/ui/timer/timer-display";
 import ObjectiveEditor from "@/app/ui/right-panel/objective-editor";
@@ -15,7 +16,7 @@ import initLocations from "../lib/init-locations";
 import { FlagObject, KeyItems, Boss, Location } from "../lib/interfaces";
 import { toggleKI, toggleBoss, isAvailable, clearLocation } from "../lib/controls/toggler";
 import { beginTimer, endTimer, resetTimer } from "../lib/controls/time-controls";
-import { beginObjectiveEdit, editObjective, completeObjective } from "../lib/controls/objective-controle";
+import { beginObjectiveEdit, beginv5ObjectiveEdit ,editObjective, editV5Objective, completeObjective, completeV5Objective } from "../lib/controls/objective-controle";
 import TimeControlsDisplay from "@/app/ui/timer/timer-controls-display";
 import { getPropertySection } from "../lib/parse-flag-section";
 
@@ -38,8 +39,10 @@ export default function Page() {
     const Kflags = getPropertySection(assuredFlags, 'K');
     const isMiab = Kflags.indexOf('miab') >= 0;
 
-    const [objectives, setObjectives] = useState(parsedObjectives.objectives)
-    const [objectiveEdit, setObjEdit] = useState(-1)
+    const [objectives, setObjectives] = useState(parsedObjectives.objectives);
+    const [v5objectives, setv5Objectives] = useState(parsedObjectives.v5Objectives);
+    const [objectiveEdit, setObjEdit] = useState(-1);
+    const [groupEdit, setGroupEdit] = useState(-1);
     const [mode, setMode] = useState<Mode>(Mode.Info);
     const [ki, setKI] = useState<KeyItems>(defaultKI);
     const [bossList, setBossList] = useState<Boss[]>(bosses);
@@ -49,7 +52,11 @@ export default function Page() {
         currentTime: 0,
         pauseTime: 0,
         isActive: false,
-    })
+    });
+
+    let objectiveCount = 0;
+    v5objectives.forEach(objSet => objectiveCount += objSet.length);
+    const isV5:boolean = assuredFlags.indexOf("OA") >= 0;
 
     const currentTimer = useRef<ReturnType<typeof setInterval>>();
     useEffect(() => {
@@ -75,23 +82,34 @@ export default function Page() {
         <div className="flex" style={{ backgroundColor: color }}>
             <div className="w-120 border-2 border-double h-screen flex flex-col font-[family-name:var(--font-geist-sans)] p-1">
                 <div className="flex h-1/4">
-                    <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)}/></div>
+                    <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)} isV5={isV5}/></div>
                     <div className="layout-bosses"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
                 </div>
-                <div className="h-1/4">
-                    <ObjectiveDisplay
-                        objectives={objectives}
-                        req={parsedObjectives.required}
-                        onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)}
-                        onComplete = {(id:number) => completeObjective(id, objectives, setObjectives, timer)}
-                    />
+                <div className="min-h-25-pct">
+                    {
+                        parsedObjectives.isV5 ? 
+                        <V5ObjectiveDisplay
+                            objectives={v5objectives}
+                            req={parsedObjectives.v5Required}
+                            onEdit={(id:number, group:number) => beginv5ObjectiveEdit(id, group, setObjEdit, setMode, setGroupEdit)}
+                            onComplete = {(id:number, group:number) => completeV5Objective(id, group, v5objectives, setv5Objectives, timer)}
+                            highlighted={[groupEdit, objectiveEdit]}
+                        /> : 
+                        <ObjectiveDisplay
+                            objectives={objectives}
+                            req={parsedObjectives.required}
+                            onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)}
+                            onComplete = {(id:number) => completeObjective(id, objectives, setObjectives, timer)}
+                        />
+                    }
                 </div>
                 <div className="h-1/4">
-                    <LocationDisplay 
+                        
+                    {objectiveCount < 10 ? <LocationDisplay 
                         locations={locationList}
                         onSelect={(id: number) => clearLocation(id, locationList, setLocationList)}
                         isMiab={isMiab}
-                    />
+                    /> : null}
                 </div>
                 <div className="h-1/4">
                     <TimerDisplay 
@@ -102,7 +120,19 @@ export default function Page() {
             <div className="flex flex-col justify-between w-1/2">
                 <div className="font-[family-name:var(--font-geist-sans)]">
                     {mode === Mode.Info && <Info flags={assuredFlags} />}
-                    {mode === Mode.ObjectiveEdit && <ObjectiveEditor id={objectiveEdit} objLen={objectives.length} onSelect={(id: number, title:string)  => editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)} isDone={() => setMode(Mode.Info)} />}
+                    {mode === Mode.ObjectiveEdit && <ObjectiveEditor 
+                        id={objectiveEdit}
+                        group={groupEdit}
+                        objLen={objectives.length}
+                        onSelect={(id: number, title:string, group: number) => 
+                        {
+                            if (v5objectives.length && group >= 0) {
+                                editV5Objective(id, group, title, v5objectives, setv5Objectives, setObjEdit, setMode, setGroupEdit)    
+                            }
+                            editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)
+                        }}
+                        isDone={() => setMode(Mode.Info)} 
+                        />}
                 </div>
                 < TimeControlsDisplay 
                     isActive={timer.isActive}

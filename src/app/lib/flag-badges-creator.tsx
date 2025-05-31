@@ -2,6 +2,7 @@ import { kitList } from '@/app/lib/kit-list';
 
 const renderCharacters = (flags: string) => {
     const characterText = [];
+    // const isV5 = flags.indexOf("OA") >= 0;
     // get character section of flag string
     const charString = getPropertySection(flags, 'C')
 
@@ -17,6 +18,15 @@ const renderCharacters = (flags: string) => {
     }
     if (charString.indexOf('hero') >= 0) {
         characterText.push(<span key="hero" className="flag-badge flag-badge-danger">Starting character is the HERO</span>)
+    }
+    if (charString.indexOf('risky') >= 0) {
+        characterText.push(<span key="Crisky" className="flag-badge flag-badge-danger">Risky Placement</span>)
+    }
+    if (charString.indexOf('wishes') >= 0) {
+        characterText.push(<span key="Crisky" className="flag-badge flag-badge-yay">All @ Tower of Wishes</span>)
+    }
+    if (charString.indexOf('nogiant') >= 0) {
+        characterText.push(<span key="Cnogiant" className="flag-badge flag-badge"> No Giant Char</span>)
     }
 
     // extra settings
@@ -114,7 +124,7 @@ const renderBosses = (flags: string) => {
     if (bString.indexOf('nofree') >= 0) {
         BossesText.push(<span key="nofree" className="flag-badge flag-badge-danger"> No Free Bosses</span>);
     }
-    if (bString.indexOf('unsafe') >= 0) {
+    if (bString.indexOf('unsafe') >= 0 || bString.indexOf('risky') >= 0) {
         BossesText.push(<span key="unsafe" className="flag-badge flag-badge-danger"> No Safety Checks</span>);
     }
     if (bString.indexOf('whichburn') >= 0) {
@@ -122,6 +132,12 @@ const renderBosses = (flags: string) => {
     }
     if (bString.indexOf('whyburn') >= 0) {
         BossesText.push(<span key="whyburn" className="flag-badge flag-badge-yay"> Why-burn</span>);
+    }
+    if (bString.indexOf('chaos') >= 0) {
+        BossesText.push(<span key="chaos" className="flag-badge flag-badge-yay"> Chaotic</span>);
+    }
+    if (bString.indexOf('chaosburn') >= 0) {
+        BossesText.push(<span key="chaosburn" className="flag-badge flag-badge-yay"> Unique Wyvern attacks</span>);
     }
     if (bString.indexOf('itburns') >= 0) {
         BossesText.push(<span key="itburns" className="flag-badge flag-badge-danger"> Dangerous Whyburn</span>);
@@ -263,20 +279,41 @@ const renderShops = (flags: string) => {
     // get shop section of flag string
     const shopString = getPropertySection(flags, 'S');
 
-    if (shopString.indexOf('vanilla') >= 0) {
+    if (shopString.indexOf('vanilla') >= 0 && shopString.indexOf('miabs:vanilla') < 0) {
         shopText.push(<span key="vanilla" className="flag-badge">Vanilla</span>);
     }
-    if (shopString.indexOf('standard') >= 0) {
+    if (shopString.indexOf('standard') >= 0 && shopString.indexOf('miabs:standard') < 0) {
         shopText.push(<span key="standard" className="flag-badge">Standard</span>);
     }
-    if (shopString.indexOf('pro') >= 0) {
+    if (shopString.indexOf('pro') >= 0 && shopString.indexOf('miabs:pro') < 0) {
         shopText.push(<span key="pro" className="flag-badge">Pro</span>);
     }
-    if (shopString.indexOf('wildish') >= 0) {
+    if (shopString.indexOf('wildish') >= 0 && shopString.indexOf('miabs:wildish') < 0) {
         shopText.push(<span key="wildish" className="flag-badge flag-badge-yay">Wild-ish</span>);
     }
-    if (shopString.indexOf('wild') >= 0 && shopString.indexOf('wildish') < 0) {
+    if (shopString.indexOf('wild') >= 0 && shopString.indexOf('wildish') < 0 && shopString.indexOf('miabs:wild') < 0) {
         shopText.push(<span key="wild" className="flag-badge flag-badge-yay">Wild</span>);
+    }
+    if (shopString.indexOf('miabs:vanilla') >= 0) {
+        shopText.push(<span key="miabs-vanilla" className="flag-badge flag-badge">Miabs: Vanilla</span>);
+    }
+    if (shopString.indexOf('miabs:pro') >= 0) {
+        shopText.push(<span key="miabs-pro" className="flag-badge flag-badge">Miabs: Pro</span>);
+    }
+    if (shopString.indexOf('miabs:standard') >= 0) {
+        shopText.push(<span key="miabs-standard" className="flag-badge flag-badge">Miabs: Standard</span>);
+    }
+    if (shopString.indexOf('miabs:wildish') >= 0) {
+        shopText.push(<span key="miabs-wildish" className="flag-badge flag-badge-yay">Miabs: Wildish</span>);
+    }
+    if (shopString.indexOf('miabs:wild') >= 0 && shopString.indexOf('miabs:wildish') < 0) {
+        shopText.push(<span key="miabs-wild" className="flag-badge flag-badge-yay">Miabs: Wild</span>);
+    }
+    if (shopString.indexOf('miabs:vanilla') >= 0) {
+        shopText.push(<span key="miabs-vanilla" className="flag-badge flag-badge-yay">Miabs: Vanilla</span>);
+    }
+    if (shopString.indexOf('miabs:vanilla') >= 0) {
+        shopText.push(<span key="miabs-vanilla" className="flag-badge flag-badge-yay">Miabs: Vanilla</span>);
     }
     if (shopString.indexOf('free') >= 0) {
         shopText.push(<span key="free-shops" className="flag-badge flag-badge-yay">Everything is FREE</span>);
@@ -398,6 +435,9 @@ const renderKeyItems = (flags: string) => {
     if (keyItemString.indexOf('moon') >= 0) {
         keyItems.push(<span key="moon" className="flag-badge">Moon</span>);
     }
+    if (keyItemString.indexOf('char') >= 0) {
+        keyItems.push(<span key="char" className="flag-badge">Character checks</span>);
+    }
     if (keyItemString.indexOf('miab') >= 0) {
         keyItems.push(<span key="vanilla" className="flag-badge">Miab</span>);
     }
@@ -409,6 +449,9 @@ const renderKeyItems = (flags: string) => {
     }
     if (keyItemString.indexOf('forge') >= 0) {
         keyItems.push(<span key="forge" className="flag-badge">Forging is a KI check</span>);
+    }
+    if (keyItemString.indexOf('risky') >= 0) {
+        keyItems.push(<span key="unsafe" className="flag-badge flag-badge-danger">Safety checks OFF</span>);
     }
     if (keyItemString.indexOf('unsafe') >= 0 && keyItemString.indexOf('unsafer') < 0) {
         keyItems.push(<span key="unsafe" className="flag-badge flag-badge-danger">Safety checks OFF</span>);
@@ -449,20 +492,55 @@ const renderKeyItems = (flags: string) => {
 const renderMisc = (flags: string) => {
     const misc = [];
 
+    const experienceString = getPropertySection(flags, 'X');
+
+    if (experienceString.indexOf('objbonus:2') >= 0 && experienceString.indexOf('objbonus:20') < 0 && experienceString.indexOf('objbonus:25') < 0) {
+        misc.push(<span key="objbonus2" className="flag-badge flag-badge-yay">+2% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus:3') >= 0) {
+        misc.push(<span key="objbonus3" className="flag-badge flag-badge-yay">+3% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus:5') >= 0) {
+        misc.push(<span key="objbonus5" className="flag-badge flag-badge-yay">+5% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus:8') >= 0) {
+        misc.push(<span key="objbonus8" className="flag-badge flag-badge-yay">+8.3% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus:10') >= 0) {
+        misc.push(<span key="objbonus10" className="flag-badge flag-badge-yay">+10% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus:12') >= 0) {
+        misc.push(<span key="objbonus12" className="flag-badge flag-badge-yay">+12.5% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus:14') >= 0) {
+        misc.push(<span key="objbonus14" className="flag-badge flag-badge-yay">+14.3% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus:16') >= 0) {
+        misc.push(<span key="objbonus16" className="flag-badge flag-badge-yay">+16.6% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus:20') >= 0) {
+        misc.push(<span key="objbonus20" className="flag-badge flag-badge-yay">+20% XP per objective</span>)
+    }
+    if (experienceString.indexOf('objbonus:25') >= 0) {
+        misc.push(<span key="objbonus25" className="flag-badge flag-badge-yay">+25% XP per objective</span>)
+    }
     if (flags.indexOf('spoon') >= 0) {
         misc.push(<span key="spoon" className="flag-badge flag-badge-yay">SPOON!</span>)
     }
+    if (flags.indexOf('fastrom') >= 0) {
+        misc.push(<span key="fastrom" className="flag-badge flag-badge-danger">FastROM enabled</span>)
+    }
     if (flags.indexOf('supersmith') >= 0 || flags.indexOf('smith:super') >= 0) {
-        misc.push(<span key="spoon" className="flag-badge flag-badge-yay">GBA Weapon Forge</span>)
+        misc.push(<span key="weapon-forge" className="flag-badge flag-badge-yay">GBA Weapon Forge</span>)
     }
     if (flags.indexOf('smith:alt') >= 0) {
-        misc.push(<span key="spoon" className="flag-badge flag-badge-yay">Alt Forge</span>)
+        misc.push(<span key="smith-alt" className="flag-badge flag-badge-yay">Alt Forge</span>)
     }
     if (flags.indexOf('smith:playable') >= 0) {
-        misc.push(<span key="spoon" className="flag-badge flag-badge-yay">Guaranteed usable item</span>)
+        misc.push(<span key="smith-playable" className="flag-badge flag-badge-yay">Guaranteed usable item</span>)
     }
     if (flags.indexOf('nocursed') >= 0) {
-        misc.push(<span key="spoon" className="flag-badge flag-badge-yay">No Cursed Rings</span>)
+        misc.push(<span key="nocursed" className="flag-badge flag-badge-yay">No Cursed Rings</span>)
     }
     if (flags.indexOf('noadamants') >= 0) {
         misc.push(<span key="nooadamants" className="flag-badge">No adamant armors</span>)
@@ -681,7 +759,10 @@ const getPropertySubSection = (flags: string, criteria: string) => {
 
 const getPropertySection = (flags: string, criteria: string) => {
     // get shop section of flag string
-    const begin = flags.indexOf(criteria);
+    let begin = flags.indexOf(criteria);
+    if (flags.charAt(begin - 1) === "O") {
+        begin = flags.indexOf(criteria, begin + 1);
+    }
     let end = flags.length;
     for (let i = begin; i < flags.length; i++) {
         const charTest = flags.charAt(i);

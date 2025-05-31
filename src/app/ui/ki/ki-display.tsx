@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import { KeyItems } from "@/app/lib/interfaces";
 
-export default function KIDisplay({ ki, toggleKI }: { ki: KeyItems, toggleKI: (key: string) => void }) {
+export default function KIDisplay({ ki, toggleKI, isV5 }: { ki: KeyItems, toggleKI: (key: string) => void, isV5: boolean }) {
     function KIColor(val:boolean) {
         return val ? "Color" : "Gray";
     }
     const kiObj = Object.values(ki);
-    const passModifier = ki.pass === true ? 1 : 0;
+    const passModifier = (ki.pass === true && !isV5) ? 1 : 0;
     const numOfKI = kiObj.filter(item => item === true).length - passModifier;
     return (
         <div className='flex flex-col items-center'>
@@ -157,7 +157,7 @@ export default function KIDisplay({ ki, toggleKI }: { ki: KeyItems, toggleKI: (k
                 </a>
                 
             </div>
-            <p className='font-bold font-[family-name:var(--font-geist-mono)] text-sm'>{numOfKI} / 17</p>
+            <p className='font-bold font-[family-name:var(--font-geist-mono)] text-sm'>{numOfKI} / {isV5 ? '18' : '17'}</p>
         </div>
     );
 }
