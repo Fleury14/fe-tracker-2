@@ -28,7 +28,7 @@ const parseFlags = (flagString: string):FlagObject => {
         // the objectives part of flag object will be a two-dimensional array that gets looped over by the objective display component
         // also "Defeat Zeromus" will no longer be a displayed objective in 5.0 given the potential for multiple win conditions
 
-        const groupTitle = ["A", "B", "C", "D", "E"]
+        const groupTitle = ["A", "B", "C", "D", "E"]        
 
         groupTitle.forEach(title => {
 
@@ -245,6 +245,36 @@ const parseFlags = (flagString: string):FlagObject => {
             }
             flagObj.v5Required.push(setReq);
         })
+
+        // tack on Omode:quests. This'll be a bit jamky since those don't get assigned into a group. For now, lets add
+        // the 40 dk matter at the very end
+        const questMode = flagString.indexOf("mode_dkmatter:quests");
+        if ( questMode >= 0) {
+            // check the character after the colon in win:, if it's c, we know it's win crystal, if its g, we know its game
+            const condition = flagString.charAt(questMode + 25);
+            if (condition === "g") {
+                flagObj.v5Objectives.push([{
+                    id: 1,
+                    label: "Turn in 40 DkMatter to Kory",
+                    time: 0,
+                    random: false
+                }]);
+                flagObj.v5Required.push({
+                    all: "game",
+                });
+            } else if (condition === "c") {
+                flagObj.v5Objectives.push([{
+                    id: 1,
+                    label: "Turn in 40 DkMatter to Kory",
+                    time: 0,
+                    random: false
+                }]);
+                flagObj.v5Required.push({
+                    all: "crystal",
+                });
+            }
+            
+        }
         
         
     } else {
