@@ -439,7 +439,18 @@ const renderKeyItems = (flags: string) => {
         keyItems.push(<span key="char" className="flag-badge">Character checks</span>);
     }
     if (keyItemString.indexOf('miab') >= 0) {
-        keyItems.push(<span key="vanilla" className="flag-badge">Miab</span>);
+        const above = keyItemString.indexOf("above") >= 0;
+        const below = keyItemString.indexOf("below") >= 0;
+        const lst = keyItemString.indexOf("lst") >= 0;
+        let granularString = "";
+        if (!above && !below && !lst) {
+            granularString = "All"
+        } else {
+            if (above) granularString += "Above ";
+            if (below) granularString += "Below ";
+            if (lst) granularString += "LST ";
+        }
+        keyItems.push(<span key="vanilla" className="flag-badge">Miab:{granularString}</span>);
     }
     if (keyItemString.indexOf('unweighted') >= 0) {
         keyItems.push(<span key="unweighted" className="flag-badge">Unweighted KI distribution</span>);

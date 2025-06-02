@@ -821,6 +821,16 @@ const locations: Location[] = [
         cleared: false,
         miab: 1
     },
+    {
+        id: 38,
+        title: 'Mt. Hobs',
+        type: 'char',
+        zone: 0,
+        dependencies: [],
+        available: true,
+        cleared: false,
+    },
+    
 ];
 
 const characters: Character[] = [
