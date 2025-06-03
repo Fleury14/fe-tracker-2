@@ -38,6 +38,11 @@ export default function Page() {
 
     const Kflags = getPropertySection(assuredFlags, 'K');
     const isMiab = Kflags.indexOf('miab') >= 0;
+    const isChar = Kflags.indexOf('char') >= 0;
+
+    const Cflags = getPropertySection(assuredFlags, 'C');
+    const noGiant = Cflags.indexOf('nogiant') >= 0;
+    const Cnofree = Cflags.indexOf('nofree') >= 0;
 
     const [objectives, setObjectives] = useState(parsedObjectives.objectives);
     const [v5objectives, setv5Objectives] = useState(parsedObjectives.v5Objectives);
@@ -109,6 +114,9 @@ export default function Page() {
                         locations={locationList}
                         onSelect={(id: number) => clearLocation(id, locationList, setLocationList)}
                         isMiab={isMiab}
+                        isChar={isChar}
+                        noGiant={noGiant}
+                        Cnofree={Cnofree}
                     /> : null}
                 </div>
                 <div className="h-1/4">
