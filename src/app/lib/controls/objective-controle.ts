@@ -86,10 +86,11 @@ function editV5Objective(id: number, group: number, title: string, objectives: A
 
 function completeObjective(id: number, objectives: TObjective[], setObjectives: (list: TObjective[]) => void, timer: TimerState) {
     const target = objectives.find(obj => obj.id === id);
+    const goalTime = timer.currentTime > 0 ? timer.currentTime : 1;
     if (!!target) {
         const newObj:TObjective = {
             ...target,
-            time: !!target.time && target.time > 0 ? 0 : timer.currentTime
+            time: !!target.time && target.time > 0 ? 0 : goalTime
         }
         const newList = objectives.filter(obj => obj.id !== id);
         newList.push(newObj);
@@ -99,10 +100,11 @@ function completeObjective(id: number, objectives: TObjective[], setObjectives: 
 
 function completeV5Objective(id: number, group: number, objectives: Array<TObjective[]>, setv5Objectives: (list: Array<TObjective[]>) => void, timer: TimerState) {
     const target = objectives[group].find(obj => obj.id === id);
+    const goalTime = timer.currentTime > 0 ? timer.currentTime : 1;
     if (!!target) {
         const newObj:TObjective = {
             ...target,
-            time: !!target.time && target.time > 0 ? 0 : timer.currentTime
+            time: !!target.time && target.time > 0 ? 0 : goalTime
         }
         const newList = objectives.filter(obj => obj === obj);
         const targetGroup = newList[group]

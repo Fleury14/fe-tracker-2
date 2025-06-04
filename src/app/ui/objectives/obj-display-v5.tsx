@@ -53,7 +53,8 @@ export default function v5ObjectiveDisplay({ objectives, req, onEdit, onComplete
                                         {obj.random && <button onClick={() => onEdit(obj.id, index)}><PencilSquareIcon className="size-6 text-yellow-400" /></button>}
                                         <button onClick={() => onComplete(obj.id, index)}><p className="invisible w-0 h-0">Undo Objective {obj.id}</p><XCircleIcon className="size-6 text-red-400" /></button>
                                     </div>
-                                    <p className="bg-slate-300 text-black w-20 text-center font-bold font-[family-name:var(--font-geist-mono)] text-xs ">{ParseTime(obj.time)}</p>
+                                    {obj.time > 1 ? <p className="bg-slate-300 text-black w-20 text-center font-bold font-[family-name:var(--font-geist-mono)] text-xs ">{ParseTime(obj.time)}</p> : null}
+                                    
                                 </div>
                             );
                         })}

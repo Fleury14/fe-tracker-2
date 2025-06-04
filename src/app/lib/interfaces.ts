@@ -116,5 +116,14 @@ interface TimerState {
     isActive: boolean;
 }
 
+interface Preset {
+    title: string;
+    flags: string;
+}
 
-export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location, Character, KIObjectives, Kit, FlagBadge, TimerState, V5FlagObject, v5Requirement, v5QuestReward };
+interface PresetGroup {
+    groupTitle: string;
+    flags: Preset[];
+}
+
+export type { KeyItems, Boss, TObjective, FlagObject, Quest, Location, Character, KIObjectives, Kit, FlagBadge, TimerState, V5FlagObject, v5Requirement, v5QuestReward, Preset, PresetGroup };

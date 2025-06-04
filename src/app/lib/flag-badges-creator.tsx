@@ -192,29 +192,29 @@ const renderTreasure = (flags: string) => {
         TreasureText.push(<span key="no-j" className="flag-badge"> Junk Included</span>);
     }
     if (trString.indexOf('maxtier:3') >= 0) {
-        TreasureText.push(<span key="max-tier" className="flag-badge flag-badge-danger"> No tier 4-8 untrapped</span>);
+        TreasureText.push(<span key="max-tier3" className="flag-badge flag-badge-danger"> No tier 4-8 untrapped</span>);
     }
     if (trString.indexOf('maxtier:4') >= 0) {
-        TreasureText.push(<span key="max-tier" className="flag-badge flag-badge-danger"> No tier 5-8 untrapped</span>);
+        TreasureText.push(<span key="max-tier4" className="flag-badge flag-badge-danger"> No tier 5-8 untrapped</span>);
     }
     if (trString.indexOf('maxtier:5') >= 0) {
-        TreasureText.push(<span key="max-tier" className="flag-badge"> No tier 6,7,8 untrapped</span>);
+        TreasureText.push(<span key="max-tier5" className="flag-badge"> No tier 6,7,8 untrapped</span>);
     }
     if (trString.indexOf('maxtier:6') >= 0) {
-        TreasureText.push(<span key="max-tier" className="flag-badge"> No tier 7,8 untrapped</span>);
+        TreasureText.push(<span key="max-tier6" className="flag-badge"> No tier 7,8 untrapped</span>);
     }
     if (trString.indexOf('maxtier:7') >= 0) {
-        TreasureText.push(<span key="max-tier" className="flag-badge"> No tier 8 untrapped</span>);
+        TreasureText.push(<span key="max-tier7" className="flag-badge"> No tier 8 untrapped</span>);
     }
     if (trString.indexOf('mintier') >= 0) {
         const tier = trString.charAt(trString.indexOf('mintier') + 8)
-        TreasureText.push(<span key="money" className="flag-badge"> Minimum tier {tier} treasure</span>);
+        TreasureText.push(<span key="mintier" className="flag-badge"> Minimum tier {tier} treasure</span>);
     }
     if (trString.indexOf('money') >= 0) {
         TreasureText.push(<span key="money" className="flag-badge flag-badge-danger"> All untrapped are $MONEY$</span>);
     }
     if (trString.indexOf('playable') >= 0) {
-        TreasureText.push(<span key="money" className="flag-badge flag-badge-yay"> Playable character treasure only</span>);
+        TreasureText.push(<span key="playable" className="flag-badge flag-badge-yay"> Playable character treasure only</span>);
     }
     if (trString.indexOf('unrestrict') >= 0) {
         if (trString.indexOf('treasury') >= 0) {
@@ -725,7 +725,7 @@ const renderEncounters = (flags: string) => {
         encounters.push(<span key="no-exp" className="flag-badge flag-badge-danger">No XP from encounters</span>);
     }
     if (encounterFlagString.indexOf('nogp') >= 0) {
-        encounters.push(<span key="no-exp" className="flag-badge">No GP from encounters</span>);
+        encounters.push(<span key="no-gp" className="flag-badge">No GP from encounters</span>);
     }
     if (encounterFlagString.indexOf('nodmachin') >= 0) {
         encounters.push(<span key="no-dmoney" className="flag-badge">D.Machin disabled</span>);
