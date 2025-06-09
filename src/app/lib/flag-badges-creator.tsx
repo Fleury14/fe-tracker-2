@@ -586,6 +586,22 @@ const renderMisc = (flags: string) => {
             misc.push(<span key="fu-nerfed" className="flag-badge flag-badge-danger">Fu spells: Starting spells only</span>)    
         }
     }
+
+    if (flags.indexOf('Pshop') >= 0) {
+        misc.push(<span key="pass-shop" className="flag-badge flag-badge-yay">Pass in a shop</span>)
+    }
+
+    if (flags.indexOf('Pkey') >= 0) {
+        misc.push(<span key="pass-key" className="flag-badge flag-badge-yay">Pass is a KI check reward</span>)
+    }
+
+    if (flags.indexOf('Pchests') >= 0) {
+        misc.push(<span key="pass-shop" className="flag-badge flag-badge-yay">Pass in a chest</span>)
+    }
+
+    if (flags.indexOf('Pshop') >= 0) {
+        misc.push(<span key="pass-shop" className="flag-badge flag-badge-yay">Pass in a shop</span>)
+    }
     
     if (flags.indexOf('crystalbonus') >= 0) {
         misc.push(<span key="exp-crystal-bonus" className="flag-badge flag-badge-yay">Double XP after getting Crystal</span>)
