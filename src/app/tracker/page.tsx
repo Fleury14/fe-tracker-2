@@ -10,7 +10,7 @@ import LocationDisplay from "@/app/ui/locations/location-display";
 import TimerDisplay from "@/app/ui/timer/timer-display";
 import ObjectiveEditor from "@/app/ui/right-panel/objective-editor";
 import Info from "@/app/ui/right-panel/info";
-import { defaultKI, bosses, locations } from "../lib/default-data";
+import { defaultKI, bosses, locations } from "@/app/lib/default-data";
 import parseFlags from "../lib/parse-flags";
 import initLocations from "../lib/init-locations";
 import { FlagObject, KeyItems, Boss, Location } from "../lib/interfaces";
