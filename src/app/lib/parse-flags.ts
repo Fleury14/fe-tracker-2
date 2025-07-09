@@ -28,7 +28,7 @@ const parseFlags = (flagString: string):FlagObject => {
         // the objectives part of flag object will be a two-dimensional array that gets looped over by the objective display component
         // also "Defeat Zeromus" will no longer be a displayed objective in 5.0 given the potential for multiple win conditions
 
-        const groupTitle = ["A", "B", "C", "D", "E"]        
+        const groupTitle = ["A", "B", "C", "D", "E"];
 
         groupTitle.forEach(title => {
 
@@ -78,7 +78,7 @@ const parseFlags = (flagString: string):FlagObject => {
             for (const char of characters) {
                 if (setString.indexOf(`char_${char.toLowerCase()}`) >= 0 ) {
                     setObj.push({
-                        id: flagObj.objectives.length,
+                        id: setObj.length,
                         label: `Get ${char}`,
                         time: 0,
                     });
@@ -102,7 +102,7 @@ const parseFlags = (flagString: string):FlagObject => {
             for (const quest of quests) {
                 if (setString.indexOf(`quest_${quest.slug}`) >= 0 ) {
                     setObj.push({
-                        id: flagObj.objectives.length,
+                        id: setObj.length,
                         label: quest.title,
                         time: 0,
                     });
