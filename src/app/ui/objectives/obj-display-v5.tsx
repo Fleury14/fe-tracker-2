@@ -16,6 +16,8 @@ export default function v5ObjectiveDisplay({ objectives, req, onEdit, onComplete
         return result;
     }
 
+    console.log('objectives', objectives)
+
     return (
         <div className="flex flex-col z-10 relative">
             <div className="flex justify-between">
