@@ -17,6 +17,7 @@ export default function KIDisplay({ ki, toggleKI, isV5 }: { ki: KeyItems, toggle
                     keyName="crystal"
                     toggleKI={() => toggleKI('crystal')}
                     color={ki.crystal}
+                    imgSrc={`/images/key-item-icons/FFIVFE-Icons-1THECrystal-${KIColor(ki.crystal)}.png`}
                 />
                 <a onClick={() => toggleKI('pass')}>
                     <Image 

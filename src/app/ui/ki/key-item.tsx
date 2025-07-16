@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { CheckIcon } from "@heroicons/react/24/outline";
 
-export default function KeyItem({ toggleKI, color, keyName }: { toggleKI: (key: string) => void, color: boolean, keyName: string}) {
+export default function KeyItem({ toggleKI, color, keyName, imgSrc }: { toggleKI: (key: string) => void, color: boolean, keyName: string, imgSrc: string}) {
 
     const [cleared, setCleared] = useState(false);
 
@@ -25,7 +25,7 @@ export default function KeyItem({ toggleKI, color, keyName }: { toggleKI: (key: 
     return (
         <a onClick={() => handleClick()}>
             <Image 
-                src={`/images/key-item-icons/FFIVFE-Icons-1THECrystal-${KIColor(color)}.png`}
+                src={imgSrc}
                 alt="Crystal Crystal"
                 height={30}
                 width={30}
