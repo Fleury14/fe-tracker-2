@@ -1,24 +1,23 @@
 import Image from 'next/image';
 import { KeyItems } from "@/app/lib/interfaces";
+import KIComponent from './key-item';
 
 export default function KIDisplay({ ki, toggleKI, isV5 }: { ki: KeyItems, toggleKI: (key: string) => void, isV5: boolean }) {
     function KIColor(val:boolean) {
         return val ? "Color" : "Gray";
     }
+
     const kiObj = Object.values(ki);
     const passModifier = (ki.pass === true && !isV5) ? 1 : 0;
     const numOfKI = kiObj.filter(item => item === true).length - passModifier;
     return (
         <div className='flex flex-col items-center'>
             <div className="flex flex-wrap">
-                <a onClick={() => toggleKI('crystal')}>
-                    <Image 
-                        src={`/images/key-item-icons/FFIVFE-Icons-1THECrystal-${KIColor(ki.crystal)}.png`}
-                        alt="Crystal Crystal"
-                        height={30}
-                        width={30}
-                    />
-                </a>
+                <KIComponent
+                    keyName="crystal"
+                    toggleKI={() => toggleKI('crystal')}
+                    color={ki.crystal}
+                />
                 <a onClick={() => toggleKI('pass')}>
                     <Image 
                         src={`/images/key-item-icons/FFIVFE-Icons-2Pass-${KIColor(ki.pass)}.png`}
