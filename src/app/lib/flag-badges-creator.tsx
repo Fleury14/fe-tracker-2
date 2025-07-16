@@ -151,7 +151,7 @@ const renderBosses = (flags: string) => {
     if (bString.indexOf('whichbez') >= 0) {
         BossesText.push(<span key="whichbez" className="flag-badge"> Shadow/Golbez spells randomized</span>);
     }
-    if (bString.indexOf('whichburn') < 0 && bString.indexOf('whyburn') < 0) {
+    if (bString.indexOf('whichburn') < 0 && bString.indexOf('whyburn') < 0 && bString.indexOf('chaosburn') < 0) {
         BossesText.push(<span key="wyvern" className="flag-badge"> Standard Wyvern</span>);
     }
 
