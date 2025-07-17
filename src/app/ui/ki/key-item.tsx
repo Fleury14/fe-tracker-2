@@ -18,10 +18,6 @@ export default function KeyItem({ toggleKI, color, keyName, imgSrc, altText }: {
         }
     }
 
-    function KIColor(val:boolean) {
-        return val ? "Color" : "Gray";
-    }
-
     return (
         <a onClick={() => handleClick()} className="relative">
             <Image 

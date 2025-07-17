@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { KeyItems } from "@/app/lib/interfaces";
 import KIComponent from './key-item';
 
