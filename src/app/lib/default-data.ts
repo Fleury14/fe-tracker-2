@@ -1390,7 +1390,26 @@ const questRewards: v5QuestReward[] = [
         slug: "dkmatter15",
         display: "Recieve 15 Dark Matter"
     },
-
+    {
+        slug: "item_t6_7",
+        display: "Recieve a Tier 6-7 item"
+    },
+    {
+        slug: "item_t6_8",
+        display: "Recieve a Tier 6-8 item"
+    },
+    {
+        slug: "item_t7",
+        display: "Recieve a Tier 7 item"
+    },
+    {
+        slug: "item_t7_8",
+        display: "Recieve a Tier 7-8 item"
+    },
+    {
+        slug: "item_t8",
+        display: "Recieve a Tier 8 item"
+    },
     
 
 ];
