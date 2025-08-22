@@ -85,8 +85,14 @@ const renderCharacters = (flags: string) => {
     if (charString.indexOf('noearned') >= 0) {
         characterText.push(<span key="no-earned" className="flag-badge flag-badge-danger"> No Earned Chars</span>)
     }
-    if (charString.indexOf('nopartner') >= 0) {
-        characterText.push(<span key="no-earned" className="flag-badge flag-badge-danger"> No Starting Partner</span>)
+    if (charString.indexOf('nopartner') >= 0 || charString.indexOf('partner:none') >= 0) {
+        characterText.push(<span key="partner-none" className="flag-badge flag-badge-danger"> No Starting Partner</span>)
+    }
+    if (charString.indexOf('partner:kicheck') >= 0) {
+        characterText.push(<span key="partner-ki" className="flag-badge"> Starting Partner is a KI check</span>)
+    }
+    if (charString.indexOf('partner:relaxed') >= 0) {
+        characterText.push(<span key="partner-relaxed" className="flag-badge flag-badge-yay"> Starting Partner relaxed</span>)
     }
     if (charString.indexOf('treasure') >= 0) {
         if (charString.indexOf('free') >= 0) {
