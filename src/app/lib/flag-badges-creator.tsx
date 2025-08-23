@@ -514,6 +514,20 @@ const renderMisc = (flags: string) => {
     if (experienceString.indexOf('objbonus:2') >= 0 && experienceString.indexOf('objbonus:20') < 0 && experienceString.indexOf('objbonus:25') < 0) {
         misc.push(<span key="objbonus2" className="flag-badge flag-badge-yay">+2% XP per objective</span>)
     }
+    if (experienceString.indexOf('bonuses:add') >= 0) {
+        misc.push(<span key="objbonusadd" className="flag-badge flag-badge-yay">Objective XP bonuses are additive</span>)
+    }
+    if (experienceString.indexOf('bonuses:mult') >= 0) {
+        misc.push(<span key="objbonusmult" className="flag-badge flag-badge-yay">Multiplicative XP bonuses</span>)
+    }
+    if (experienceString.indexOf('kicheckbonus:') >= 0) {
+        if (experienceString.indexOf('kicheckbonus:10') >= 0) {
+            misc.push(<span key="kicheckbonus10" className="flag-badge flag-badge-yay">+10% XP per KI check</span>)
+        } else {
+            const mult = experienceString.charAt(experienceString.indexOf('kicheckbonus:') + 13);
+            misc.push(<span key={`kicheckbonus${mult}`} className="flag-badge flag-badge-yay">+{mult}% XP per KI check</span>)
+        }
+    }
     if (experienceString.indexOf('objbonus:3') >= 0) {
         misc.push(<span key="objbonus3" className="flag-badge flag-badge-yay">+3% XP per objective</span>)
     }
