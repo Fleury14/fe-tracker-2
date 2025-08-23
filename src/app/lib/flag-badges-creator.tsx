@@ -532,7 +532,7 @@ const renderMisc = (flags: string) => {
         if (experienceString.indexOf('zonkbonus:10') >= 0) {
             misc.push(<span key="zonkbonus10" className="flag-badge flag-badge-yay">+10% XP per zonk</span>)
         } else {
-            const mult = experienceString.charAt(experienceString.indexOf('zonkcheckbonus:') + 10);
+            const mult = experienceString.charAt(experienceString.indexOf('zonkbonus:') + 10);
             misc.push(<span key={`zonkcheckbonus${mult}`} className="flag-badge flag-badge-yay">+{mult}% XP per KI zonk</span>)
         }
     }
