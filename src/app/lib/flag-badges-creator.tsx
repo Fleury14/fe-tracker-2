@@ -541,7 +541,7 @@ const renderMisc = (flags: string) => {
     if (experienceString.indexOf('objbonus:25') >= 0) {
         misc.push(<span key="objbonus25" className="flag-badge flag-badge-yay">+25% XP per objective</span>)
     }
-    if (flags.indexOf('spoon') >= 0) {
+    if (flags.indexOf('-spoon') >= 0) {
         misc.push(<span key="spoon" className="flag-badge flag-badge-yay">SPOON!</span>)
     }
     if (flags.indexOf('fastrom') >= 0) {
