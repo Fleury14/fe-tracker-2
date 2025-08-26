@@ -170,18 +170,33 @@ const renderTreasure = (flags: string) => {
     // get character section of flag string
     const trString = getPropertySection(flags, 'T');
     
-    // check initial treasure settings
-    if (trString.indexOf('standard') >= 0) {
+    // check initial treasure settings - to discern regular trasure from miab settings, the general chest quality is always assumed to be first
+    if (trString.indexOf('Tstandard') >= 0) {
         TreasureText.push(<span key="standard" className="flag-badge"> Standard (Unweighted)</span>);
     }
-    if (trString.indexOf('pro') >= 0) {
+    if (trString.indexOf('Tpro') >= 0) {
         TreasureText.push(<span key="pro" className="flag-badge"> Pro (Weighted)</span>);
     }
-    if (trString.indexOf('wildish') >= 0) {
+    if (trString.indexOf('Twildish') >= 0) {
         TreasureText.push(<span key="wildish" className="flag-badge"> Wild-ish (Weighted)</span>)
     }
-    if (trString.indexOf('wild') >= 0 && trString.indexOf('wildish') < 0) {
+    if (trString.indexOf('Twild') >= 0 && trString.indexOf('wildish') < 0) {
         TreasureText.push(<span key="wild" className="flag-badge flag-badge-yay"> Wild (Unweighted)</span>);
+    }
+
+    // for miab adjustment, look for the whole miab string
+    // check initial treasure settings
+    if (trString.indexOf('miabs:standard') >= 0) {
+        TreasureText.push(<span key="miabsstandard" className="flag-badge"> Miabs:Standard (Unweighted)</span>);
+    }
+    if (trString.indexOf('miabs:pro') >= 0) {
+        TreasureText.push(<span key="miabspro" className="flag-badge"> Miabs:Pro (Weighted)</span>);
+    }
+    if (trString.indexOf('miabs:wildish') >= 0) {
+        TreasureText.push(<span key="miabswildish" className="flag-badge"> Miabs:Wild-ish (Weighted)</span>)
+    }
+    if (trString.indexOf('miabs:wild') >= 0 && trString.indexOf('wildish') < 0) {
+        TreasureText.push(<span key="miabswild" className="flag-badge flag-badge-yay"> Miabs:Wild (Unweighted)</span>);
     }
 
     // modifiers
