@@ -19,7 +19,6 @@ function beginv5ObjectiveEdit(id: number, group:number, setObjEdit: (id: number,
 
 function editObjective(id: number, title: string, objectives: TObjective[], setObjectives: (list: TObjective[]) => void, setObjEdit: Dispatch<SetStateAction<number>>, setMode: (mode: Mode) => void) {
     const target = objectives.find(obj => obj.id === id);
-    const targetIndex = objectives.findIndex(obj => obj.id === id);
     if (!!target) {
         const newList = objectives.filter(obj => obj.id !== id);
         const newObj:TObjective = {
