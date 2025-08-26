@@ -30,14 +30,22 @@ function editObjective(id: number, title: string, objectives: TObjective[], setO
         newList.sort((a, b) => a.id - b.id);
         setObjectives(newList);
         
-        if (target.id < objectives.length - 1) {
-            if (objectives[targetIndex + 1].random) {
-                setObjEdit((prevState: number) => prevState + 1);
-            } else {
-                setObjEdit(-1);
-                setMode(Mode.Info);
+        let hasReassignedEdit = false;
+
+        objectives.forEach((obj) => {
+            if (hasReassignedEdit) return;
+            if (obj.id <= target.id) return;
+            if (obj.random) {
+                hasReassignedEdit = true;
+                setObjEdit(obj.id);
             }
+        })
+
+        if (!hasReassignedEdit) {
+            setObjEdit(-1);
+            setMode(Mode.Info);
         }
+
     }
 }
 

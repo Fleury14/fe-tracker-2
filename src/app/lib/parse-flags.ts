@@ -390,15 +390,6 @@ const parseFlags = (flagString: string):FlagObject => {
             }
         }
 
-        // don't forget the z-fight
-        if (flagString.indexOf('win:game') < 0) {
-            flagObj.objectives.push({
-                id: flagObj.objectives.length,
-                label: 'Defeat Zeromus',
-                time: 0,
-            })
-        }
-
         // random objectives
         const randomIndex = flagString.indexOf(`random:`);
         if (randomIndex >= 0) {
@@ -424,6 +415,16 @@ const parseFlags = (flagString: string):FlagObject => {
                 });
             }
         }
+
+                  // don't forget the z-fight
+        if (flagString.indexOf('win:game') < 0) {
+            flagObj.objectives.push({
+                id: flagObj.objectives.length,
+                label: 'Defeat Zeromus',
+                time: 0,
+            })
+        }
+
 
         // required objective number
         if (flagString.indexOf('req:') >= 0 && flagString.indexOf('req:all') < 0) {
