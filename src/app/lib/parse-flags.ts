@@ -2,6 +2,7 @@
 
 import { quests, bosses, questRewards } from '@/app/lib/default-data';
 import { FlagObject, v5Requirement } from '@/app/lib/interfaces';
+import { getIndices } from '@/app/lib/helpers';
 
 const parseFlags = (flagString: string):FlagObject => {
     if (!flagString || typeof flagString !== 'string') {
@@ -42,17 +43,22 @@ const parseFlags = (flagString: string):FlagObject => {
             // TODO: refactor objective checks so they aren't listed twice here
 
                 // check set objectives (non-custom)
-            if (setString.indexOf('collect_dkmatter') >= 0 ) {
-                const dkMatter = setString.indexOf('collect_dkmatter');
-                const digit1 = setString.charAt(dkMatter + 16);
-                const digit2 = setString.charAt(dkMatter + 17);
-                const isTwoDigit = isNaN(parseInt(digit2));
-                const dkMatterLabel = isTwoDigit ? digit1 : (digit1 + digit2);
-                setObj.push({
-                    id: setObj.length,
-                    label: `Turn in ${dkMatterLabel} Dark Matters to Kory`,
-                    time: 0,
-                });
+            const dkIndices = getIndices('collect_dkmatter', setString);
+            console.log('dk indices', dkIndices, setString)
+               
+            if (dkIndices.length ) {
+                dkIndices.forEach(dkMatter => {
+                    const digit1 = setString.charAt(dkMatter + 16);
+                    const digit2 = setString.charAt(dkMatter + 17);
+                    const isTwoDigit = isNaN(parseInt(digit2));
+                    const dkMatterLabel = isTwoDigit ? digit1 : (digit1 + digit2);
+                    setObj.push({
+                        id: setObj.length,
+                        label: `Turn in ${dkMatterLabel} Dark Matters to Kory`,
+                        time: 0,
+                    });
+                })
+                
             }
 
             if (setString.indexOf('classicforge') >= 0 ) {
