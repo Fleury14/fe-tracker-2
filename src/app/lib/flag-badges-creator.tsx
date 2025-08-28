@@ -85,8 +85,14 @@ const renderCharacters = (flags: string) => {
     if (charString.indexOf('noearned') >= 0) {
         characterText.push(<span key="no-earned" className="flag-badge flag-badge-danger"> No Earned Chars</span>)
     }
-    if (charString.indexOf('nopartner') >= 0) {
-        characterText.push(<span key="no-earned" className="flag-badge flag-badge-danger"> No Starting Partner</span>)
+    if (charString.indexOf('nopartner') >= 0 || charString.indexOf('partner:none') >= 0) {
+        characterText.push(<span key="partner-none" className="flag-badge flag-badge-danger"> No Starting Partner</span>)
+    }
+    if (charString.indexOf('partner:kicheck') >= 0) {
+        characterText.push(<span key="partner-ki" className="flag-badge"> Starting Partner is a KI check</span>)
+    }
+    if (charString.indexOf('partner:relaxed') >= 0) {
+        characterText.push(<span key="partner-relaxed" className="flag-badge flag-badge-yay"> Starting Partner relaxed</span>)
     }
     if (charString.indexOf('treasure') >= 0) {
         if (charString.indexOf('free') >= 0) {
@@ -164,18 +170,33 @@ const renderTreasure = (flags: string) => {
     // get character section of flag string
     const trString = getPropertySection(flags, 'T');
     
-    // check initial treasure settings
-    if (trString.indexOf('standard') >= 0) {
+    // check initial treasure settings - to discern regular trasure from miab settings, the general chest quality is always assumed to be first
+    if (trString.indexOf('Tstandard') >= 0) {
         TreasureText.push(<span key="standard" className="flag-badge"> Standard (Unweighted)</span>);
     }
-    if (trString.indexOf('pro') >= 0) {
+    if (trString.indexOf('Tpro') >= 0) {
         TreasureText.push(<span key="pro" className="flag-badge"> Pro (Weighted)</span>);
     }
-    if (trString.indexOf('wildish') >= 0) {
+    if (trString.indexOf('Twildish') >= 0) {
         TreasureText.push(<span key="wildish" className="flag-badge"> Wild-ish (Weighted)</span>)
     }
-    if (trString.indexOf('wild') >= 0 && trString.indexOf('wildish') < 0) {
+    if (trString.indexOf('Twild') >= 0 && trString.indexOf('wildish') < 0) {
         TreasureText.push(<span key="wild" className="flag-badge flag-badge-yay"> Wild (Unweighted)</span>);
+    }
+
+    // for miab adjustment, look for the whole miab string
+    // check initial treasure settings
+    if (trString.indexOf('miabs:standard') >= 0) {
+        TreasureText.push(<span key="miabsstandard" className="flag-badge"> Miabs:Standard (Unweighted)</span>);
+    }
+    if (trString.indexOf('miabs:pro') >= 0) {
+        TreasureText.push(<span key="miabspro" className="flag-badge"> Miabs:Pro (Weighted)</span>);
+    }
+    if (trString.indexOf('miabs:wildish') >= 0) {
+        TreasureText.push(<span key="miabswildish" className="flag-badge"> Miabs:Wild-ish (Weighted)</span>)
+    }
+    if (trString.indexOf('miabs:wild') >= 0 && trString.indexOf('wildish') < 0) {
+        TreasureText.push(<span key="miabswild" className="flag-badge flag-badge-yay"> Miabs:Wild (Unweighted)</span>);
     }
 
     // modifiers
@@ -508,6 +529,28 @@ const renderMisc = (flags: string) => {
     if (experienceString.indexOf('objbonus:2') >= 0 && experienceString.indexOf('objbonus:20') < 0 && experienceString.indexOf('objbonus:25') < 0) {
         misc.push(<span key="objbonus2" className="flag-badge flag-badge-yay">+2% XP per objective</span>)
     }
+    if (experienceString.indexOf('bonuses:add') >= 0) {
+        misc.push(<span key="objbonusadd" className="flag-badge flag-badge-yay">Objective XP bonuses are additive</span>)
+    }
+    if (experienceString.indexOf('bonuses:mult') >= 0) {
+        misc.push(<span key="objbonusmult" className="flag-badge flag-badge-yay">Multiplicative XP bonuses</span>)
+    }
+    if (experienceString.indexOf('kicheckbonus:') >= 0) {
+        if (experienceString.indexOf('kicheckbonus:10') >= 0) {
+            misc.push(<span key="kicheckbonus10" className="flag-badge flag-badge-yay">+10% XP per KI check</span>)
+        } else {
+            const mult = experienceString.charAt(experienceString.indexOf('kicheckbonus:') + 13);
+            misc.push(<span key={`kicheckbonus${mult}`} className="flag-badge flag-badge-yay">+{mult}% XP per KI check</span>)
+        }
+    }
+    if (experienceString.indexOf('zonkbonus:') >= 0) {
+        if (experienceString.indexOf('zonkbonus:10') >= 0) {
+            misc.push(<span key="zonkbonus10" className="flag-badge flag-badge-yay">+10% XP per zonk</span>)
+        } else {
+            const mult = experienceString.charAt(experienceString.indexOf('zonkbonus:') + 10);
+            misc.push(<span key={`zonkcheckbonus${mult}`} className="flag-badge flag-badge-yay">+{mult}% XP per KI zonk</span>)
+        }
+    }
     if (experienceString.indexOf('objbonus:3') >= 0) {
         misc.push(<span key="objbonus3" className="flag-badge flag-badge-yay">+3% XP per objective</span>)
     }
@@ -535,7 +578,7 @@ const renderMisc = (flags: string) => {
     if (experienceString.indexOf('objbonus:25') >= 0) {
         misc.push(<span key="objbonus25" className="flag-badge flag-badge-yay">+25% XP per objective</span>)
     }
-    if (flags.indexOf('spoon') >= 0) {
+    if (flags.indexOf('-spoon') >= 0) {
         misc.push(<span key="spoon" className="flag-badge flag-badge-yay">SPOON!</span>)
     }
     if (flags.indexOf('fastrom') >= 0) {

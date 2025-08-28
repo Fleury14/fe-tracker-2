@@ -421,6 +421,10 @@ const quests: Quest[] = [{
     title: 'Burn the village Mist with the Package',
     buttonText: 'Burn Mist',
 }, {
+    slug: 'kaipoinn',
+    title: 'Bring the Mist Village survivor to Kaipo',
+    buttonText: 'Kaipo Inn',
+}, {
     slug: 'curefever',
     title: 'Cure the fever with the SandRuby',
     buttonText: 'Turn in Sandruby',
@@ -1015,7 +1019,7 @@ const questsByKI: KIObjectives[] = [
     },
     {
         ki: 'package',
-        objectives: ['burnmist'],
+        objectives: ['burnmist', 'kaipoinn'],
         images: ['/images/key-item-icons/FFIVFE-Icons-7Package-Color.png']
     },
     {
@@ -1386,7 +1390,26 @@ const questRewards: v5QuestReward[] = [
         slug: "dkmatter15",
         display: "Recieve 15 Dark Matter"
     },
-
+    {
+        slug: "item_t6_7",
+        display: "Recieve a Tier 6-7 item"
+    },
+    {
+        slug: "item_t6_8",
+        display: "Recieve a Tier 6-8 item"
+    },
+    {
+        slug: "item_t7",
+        display: "Recieve a Tier 7 item"
+    },
+    {
+        slug: "item_t7_8",
+        display: "Recieve a Tier 7-8 item"
+    },
+    {
+        slug: "item_t8",
+        display: "Recieve a Tier 8 item"
+    },
     
 
 ];
