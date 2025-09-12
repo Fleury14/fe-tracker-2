@@ -85,41 +85,43 @@ export default function Page() {
     
     return (
         <div className="flex" style={{ backgroundColor: color }}>
-            <div className="w-120 border-2 border-double h-screen flex flex-col font-[family-name:var(--font-geist-sans)] p-1">
-                <div className="flex h-1/4">
-                    <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)} isV5={isV5}/></div>
-                    <div className="layout-bosses"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
+            <div className="w-120 border-2 border-double h-screen flex flex-col justify-between font-[family-name:var(--font-geist-sans)] p-1">
+                <div>
+                    <div className="flex">
+                        <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)} isV5={isV5}/></div>
+                        <div className="layout-bosses"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
+                    </div>
+                    <div className="mb-3">
+                        {
+                            parsedObjectives.isV5 ? 
+                            <V5ObjectiveDisplay
+                                objectives={v5objectives}
+                                req={parsedObjectives.v5Required}
+                                onEdit={(id:number, group:number) => beginv5ObjectiveEdit(id, group, setObjEdit, setMode, setGroupEdit)}
+                                onComplete = {(id:number, group:number) => completeV5Objective(id, group, v5objectives, setv5Objectives, timer)}
+                                highlighted={[groupEdit, objectiveEdit]}
+                            /> : 
+                            <ObjectiveDisplay
+                                objectives={objectives}
+                                req={parsedObjectives.required}
+                                onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)}
+                                onComplete = {(id:number) => completeObjective(id, objectives, setObjectives, timer)}
+                            />
+                        }
+                    </div>
+                    <div>
+                            
+                        {objectiveCount < 10 ? <LocationDisplay 
+                            locations={locationList}
+                            onSelect={(id: number) => clearLocation(id, locationList, setLocationList)}
+                            isMiab={isMiab}
+                            isChar={isChar}
+                            noGiant={noGiant}
+                            Cnofree={Cnofree}
+                        /> : null}
+                    </div>
                 </div>
-                <div className="min-h-25-pct">
-                    {
-                        parsedObjectives.isV5 ? 
-                        <V5ObjectiveDisplay
-                            objectives={v5objectives}
-                            req={parsedObjectives.v5Required}
-                            onEdit={(id:number, group:number) => beginv5ObjectiveEdit(id, group, setObjEdit, setMode, setGroupEdit)}
-                            onComplete = {(id:number, group:number) => completeV5Objective(id, group, v5objectives, setv5Objectives, timer)}
-                            highlighted={[groupEdit, objectiveEdit]}
-                        /> : 
-                        <ObjectiveDisplay
-                            objectives={objectives}
-                            req={parsedObjectives.required}
-                            onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)}
-                            onComplete = {(id:number) => completeObjective(id, objectives, setObjectives, timer)}
-                        />
-                    }
-                </div>
-                <div className="h-1/4">
-                        
-                    {objectiveCount < 10 ? <LocationDisplay 
-                        locations={locationList}
-                        onSelect={(id: number) => clearLocation(id, locationList, setLocationList)}
-                        isMiab={isMiab}
-                        isChar={isChar}
-                        noGiant={noGiant}
-                        Cnofree={Cnofree}
-                    /> : null}
-                </div>
-                <div className="h-1/4">
+                <div>
                     <TimerDisplay 
                         currentTime={timer.currentTime}
                     />
