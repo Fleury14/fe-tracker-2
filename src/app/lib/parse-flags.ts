@@ -151,7 +151,7 @@ const parseFlags = (flagString: string):FlagObject => {
             if (setString.indexOf('collect_chest') >= 0) {
                 setObj.push({
                     id: setObj.length,
-                    label: `Open ${getAmount(setString, "collect_chest")}`,
+                    label: `Open ${getAmount(setString, "collect_chest")} Treasure Chests`,
                     time: 0
                 })
             }
