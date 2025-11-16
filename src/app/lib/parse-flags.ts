@@ -167,7 +167,7 @@ const parseFlags = (flagString: string):FlagObject => {
             } else if (setString.indexOf('collect_gp') >= 0) {
                 setObj.push({
                     id: setObj.length,
-                    label: `Bring ${getAmount(setString, 'collect_gp')},000 GP to Tort in Agary`,
+                    label: `Bring ${getAmount(setString, 'collect_gp')},000 GP to Tory in Agart`,
                     time: 0
                 })
             }
