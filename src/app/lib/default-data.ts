@@ -908,7 +908,7 @@ const locations: Location[] = [
     },
     {
         id: 47,
-        title: 'Mt. Ordeals',
+        title: 'Mt. Ordeals (char)',
         type: 'char',
         zone: 0,
         dependencies: [],
