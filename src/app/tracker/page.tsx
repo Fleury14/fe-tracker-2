@@ -43,6 +43,7 @@ export default function Page() {
     const Cflags = getPropertySection(assuredFlags, 'C');
     const noGiant = Cflags.indexOf('nogiant') >= 0;
     const Cnofree = Cflags.indexOf('nofree') >= 0;
+    const Cwishes = Cflags.indexOf('wishes') >= 0;
 
     const [objectives, setObjectives] = useState(parsedObjectives.objectives);
     const [v5objectives, setv5Objectives] = useState(parsedObjectives.v5Objectives);
@@ -118,6 +119,7 @@ export default function Page() {
                             isChar={isChar}
                             noGiant={noGiant}
                             Cnofree={Cnofree}
+                            Cwishes={Cwishes}
                         /> : null}
                     </div>
                 </div>

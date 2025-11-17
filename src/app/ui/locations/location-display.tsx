@@ -1,7 +1,7 @@
 import { Location } from "@/app/lib/interfaces";
 
 
-export default function LocationDisplay({ locations, onSelect, isMiab, isChar, noGiant, Cnofree }: { locations: Location[], onSelect: (id: number) => void, isMiab: boolean, isChar: boolean, noGiant: boolean, Cnofree: boolean }) {
+export default function LocationDisplay({ locations, onSelect, isMiab, isChar, noGiant, Cnofree, Cwishes }: { locations: Location[], onSelect: (id: number) => void, isMiab: boolean, isChar: boolean, noGiant: boolean, Cnofree: boolean, Cwishes: boolean }) {
 
     function drawMiab(location: Location) {
         if (location.type === 'miab') {
@@ -16,7 +16,7 @@ export default function LocationDisplay({ locations, onSelect, isMiab, isChar, n
             return;
         } else if (location.type === 'char' && location.id === 42 && noGiant) {
             return;
-        } else if (location.type === 'char' && freeChars.indexOf(location.id) >= 0 && Cnofree) {
+        } else if (location.type === 'char' && freeChars.indexOf(location.id) >= 0 && (Cnofree || Cwishes)) {
             return;
         }
         if (location.available && !location.cleared) {
