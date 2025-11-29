@@ -98,6 +98,10 @@ const kitList: Kit[] = [
         flag: 'random',
         title: 'Random'
     },
+    {
+        flag: 'exit',
+        title: 'Exit'
+    },
 ];
 
 export { kitList };

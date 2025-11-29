@@ -360,6 +360,36 @@ const renderShops = (flags: string) => {
     if (shopString.indexOf('life') >= 0) {
         shopText.push(<span key="no-life" className="flag-badge flag-badge-danger">No Life Potions</span>);
     }
+    if (shopString.indexOf('maxitemtier:1') >= 0) {
+        shopText.push(<span key="maxitemtier" className="flag-badge flag-badge-danger">Item: Max Tier 1</span>);
+    }
+    if (shopString.indexOf('maxitemtier:2') >= 0) {
+        shopText.push(<span key="maxitemtier" className="flag-badge flag-badge-danger">Item: Max Tier 2</span>);
+    }
+    if (shopString.indexOf('maxitemtier:3') >= 0) {
+        shopText.push(<span key="maxitemtier" className="flag-badge flag-badge-danger">Item: Max Tier 3</span>);
+    }
+    if (shopString.indexOf('maxitemtier:4') >= 0) {
+        shopText.push(<span key="maxitemtier" className="flag-badge flag-badge-danger">Item: Max Tier 4</span>);
+    }
+    if (shopString.indexOf('maxitemtier:5') >= 0) {
+        shopText.push(<span key="maxitemtier" className="flag-badge flag-badge-danger">Item: Max Tier 5</span>);
+    }
+    if (shopString.indexOf('maxequiptier:1') >= 0) {
+        shopText.push(<span key="maxequiptier" className="flag-badge flag-badge-danger">Equipment: Max Tier 1</span>);
+    }
+    if (shopString.indexOf('maxequiptier:2') >= 0) {
+        shopText.push(<span key="maxequiptier" className="flag-badge flag-badge-danger">Equipment: Max Tier 2</span>);
+    }
+    if (shopString.indexOf('maxequiptier:3') >= 0) {
+        shopText.push(<span key="maxequiptier" className="flag-badge flag-badge-danger">Equipment: Max Tier 3</span>);
+    }
+    if (shopString.indexOf('maxequiptier:4') >= 0) {
+        shopText.push(<span key="maxequiptier" className="flag-badge flag-badge-danger">Equipment: Max Tier 4</span>);
+    }
+    if (shopString.indexOf('maxequiptier:5') >= 0) {
+        shopText.push(<span key="maxequiptier" className="flag-badge flag-badge-danger">Equipment: Max Tier 5</span>);
+    }
     if (shopString.indexOf('price:') >= 0) {
         const priceSub = getPropertySubSection(shopString, 'price:');
         const percent = priceSub.slice(priceSub.indexOf(':') + 1);
