@@ -124,52 +124,96 @@ const parseFlags = (flagString: string):FlagObject => {
                 const digit1 = parseInt(str.charAt(compIndex + comp.length));
                 const digit2 = parseInt(str.charAt(compIndex + comp.length + 1));
                 const digit3 = parseInt(str.charAt(compIndex + comp.length + 2));
+                const digit4 = parseInt(str.charAt(compIndex + comp.length + 3));
                 if (isNaN(digit2)) {
                     return digit1.toString();
                 } else if (isNaN(digit3)) {
                     return digit1.toString() + digit2.toString();
-                }
+                } else if (isNaN(digit4)) {
                     return digit1.toString() + digit2.toString() + digit3.toString();
+                } else {
+                    return digit1.toString() + "," + digit2.toString() + digit3.toString() + digit4.toString(); 
+                }
             }
 
             if (setString.indexOf('collect_ki') >= 0) {
-                setObj.push({
-                    id: setObj.length,
-                    label: `Obtain ${getAmount(setString, "collect_ki")} key items`,
-                    time: 0
-                })
+                let flagIndex = 0;
+                while (flagIndex < setString.length) {
+                    const result = setString.indexOf('collect_ki', flagIndex);
+                    if (result > flagIndex) {
+                        flagIndex = result + 1;
+                        const slice = setString.slice(result, result + 12);
+                        setObj.push({
+                            id: setObj.length,
+                            label: `Obtain ${getAmount(slice, "collect_ki")} key items`,
+                            time: 0
+                        })
+                    } else {
+                        flagIndex++;
+                    }
+                    
+                }
+                
             }
 
             if (setString.indexOf('collect_boss') >= 0) {
-                setObj.push({
-                    id: setObj.length,
-                    label: `Defeat ${getAmount(setString, "collect_boss")} bosses`,
-                    time: 0
-                })
+                let flagIndex = 0;
+                while (flagIndex < setString.length) {
+                    const result = setString.indexOf('collect_boss', flagIndex);
+                    if (result > flagIndex) {
+                        flagIndex = result + 1;
+                        const slice = setString.slice(result, result + 14);
+                        setObj.push({
+                            id: setObj.length,
+                            label: `Defeat ${getAmount(slice, "collect_boss")} bosses`,
+                            time: 0
+                        })
+                    } else {
+                        flagIndex++;
+                    }
+                    
+                }
+                
             }
             
             if (setString.indexOf('collect_chest') >= 0) {
-                setObj.push({
-                    id: setObj.length,
-                    label: `Open ${getAmount(setString, "collect_chest")} Treasure Chests`,
-                    time: 0
-                })
+                let flagIndex = 0;
+                while (flagIndex < setString.length) {
+                    const result = setString.indexOf('collect_chest', flagIndex);
+                    if (result > flagIndex) {
+                        flagIndex = result + 1;
+                        const slice = setString.slice(result, result + 16);
+                        setObj.push({
+                            id: setObj.length,
+                            label: `Open ${getAmount(slice, "collect_chest")} Treasure Chests`,
+                            time: 0
+                        })
+                    } else {
+                        flagIndex++;
+                    }
+                    
+                }
+                
             }
 
-            // make an exception for gp1000 since we're not likely to have 4 digits in a flag again
-
-            if (setString.indexOf('collect_gp1000') >= 0) {
-                setObj.push({
-                    id: setObj.length,
-                    label: `Bring 1,000,000 GP to Tort in Agary`,
-                    time: 0
-                })
-            } else if (setString.indexOf('collect_gp') >= 0) {
-                setObj.push({
-                    id: setObj.length,
-                    label: `Bring ${getAmount(setString, 'collect_gp')},000 GP to Tory in Agart`,
-                    time: 0
-                })
+            if (setString.indexOf('collect_gp') >= 0) {
+                let flagIndex = 0;
+                while (flagIndex < setString.length) {
+                    const result = setString.indexOf('collect_gp', flagIndex);
+                    if (result > flagIndex) {
+                        flagIndex = result + 1;
+                        const slice = setString.slice(result, result + 14);
+                        setObj.push({
+                            id: setObj.length,
+                            label: `Bring ${getAmount(slice, 'collect_gp')},000 GP to Tory in Agart`,
+                            time: 0
+                        })
+                    } else {
+                        flagIndex++;
+                    }
+                    
+                }
+                
             }
             
 
