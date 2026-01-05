@@ -141,11 +141,23 @@ const parseFlags = (flagString: string):FlagObject => {
             }
 
             if (setString.indexOf('collect_boss') >= 0) {
-                setObj.push({
-                    id: setObj.length,
-                    label: `Defeat ${getAmount(setString, "collect_boss")} bosses`,
-                    time: 0
-                })
+                let flagIndex = 0;
+                while (flagIndex < setString.length) {
+                    const result = setString.indexOf('collect_boss', flagIndex);
+                    if (result > flagIndex) {
+                        flagIndex = result + 1;
+                        const slice = setString.slice(result, result + 14);
+                        setObj.push({
+                            id: setObj.length,
+                            label: `Defeat ${getAmount(slice, "collect_boss")} bosses`,
+                            time: 0
+                        })
+                    } else {
+                        flagIndex++;
+                    }
+                    
+                }
+                
             }
             
             if (setString.indexOf('collect_chest') >= 0) {
