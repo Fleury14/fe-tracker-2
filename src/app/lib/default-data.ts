@@ -628,7 +628,7 @@ const locations: Location[] = [
     },
     {
         id: 17,
-        title: 'Shiela Two (2)',
+        title: 'Sheila Two (2)',
         type: 'main',
         zone: 1,
         dependencies: ['pan'],
