@@ -133,11 +133,23 @@ const parseFlags = (flagString: string):FlagObject => {
             }
 
             if (setString.indexOf('collect_ki') >= 0) {
-                setObj.push({
-                    id: setObj.length,
-                    label: `Obtain ${getAmount(setString, "collect_ki")} key items`,
-                    time: 0
-                })
+                let flagIndex = 0;
+                while (flagIndex < setString.length) {
+                    const result = setString.indexOf('collect_ki', flagIndex);
+                    if (result > flagIndex) {
+                        flagIndex = result + 1;
+                        const slice = setString.slice(result, result + 12);
+                        setObj.push({
+                            id: setObj.length,
+                            label: `Obtain ${getAmount(slice, "collect_ki")} key items`,
+                            time: 0
+                        })
+                    } else {
+                        flagIndex++;
+                    }
+                    
+                }
+                
             }
 
             if (setString.indexOf('collect_boss') >= 0) {
