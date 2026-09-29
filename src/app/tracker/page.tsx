@@ -16,9 +16,14 @@ import initLocations from "../lib/init-locations";
 import { FlagObject, KeyItems, Boss, Location } from "../lib/interfaces";
 import { toggleKI, toggleBoss, isAvailable, clearLocation } from "../lib/controls/toggler";
 import { beginTimer, endTimer, resetTimer } from "../lib/controls/time-controls";
-import { beginObjectiveEdit, beginv5ObjectiveEdit ,editObjective, editV5Objective, completeObjective, completeV5Objective } from "../lib/controls/objective-controle";
+import { beginObjectiveEdit, beginv5ObjectiveEdit, editObjective, editV5Objective, completeObjective, completeV5Objective } from "../lib/controls/objective-controle";
 import TimeControlsDisplay from "@/app/ui/timer/timer-controls-display";
 import { getPropertySection } from "../lib/parse-flag-section";
+import "../lib/sni/sni-generated/sni.client";
+import { connectSni } from "../lib/sni/connect-sni";
+import { readMetadata } from "../lib/sni/read-metadata";
+import { DevicesResponse_Device } from "../lib/sni/sni-generated/sni";
+import { fetchFields } from "../lib/sni/fetch-fields";
 
 export default function Page() {
 
@@ -27,9 +32,13 @@ export default function Page() {
 
     const flags = params.get("flags");
     const bgColor = params.get("bgColor");
-    const color:string = bgColor !== null ? bgColor : "black";
-    const assuredFlags:string = flags ? flags : "";
-    const parsedObjectives:FlagObject = parseFlags(assuredFlags);
+
+    const sniPort = Number.parseInt(params.get("port") || "");
+    const sniHost = params.get("host") ?? 'localhost'
+
+    const color: string = bgColor !== null ? bgColor : "black";
+    const assuredFlags: string = flags ? flags : "";
+    const parsedObjectives: FlagObject = parseFlags(assuredFlags);
 
     enum Mode {
         Info,
@@ -61,9 +70,43 @@ export default function Page() {
         isActive: false,
     });
 
+    const [connectedDevice, setConnectedDevice] = useState<DevicesResponse_Device>();
+
+    useEffect(() => {
+        async function getConnectedDevice() {
+            if (!isNaN(sniPort)) {
+                const device = await connectSni(sniHost, sniPort)
+                setConnectedDevice(device);
+            }
+        }
+        getConnectedDevice();
+    }, [sniPort, sniHost]);
+
+    const [fileName, setFileName] = useState("");
+    useEffect(() => {
+        async function getFileName() {
+            const fileName = await fetchFields(connectedDevice, sniHost, sniPort);
+            setFileName(fileName)
+        }
+        getFileName();
+    }, [connectedDevice, sniPort, sniHost])
+
+    const [metadata, setMetadata] = useState("");
+    useEffect(() => {
+        async function getMetadata() {
+            const metaData = await readMetadata(connectedDevice, sniHost, sniPort);
+            setMetadata(metaData ?? "")
+        }
+        getMetadata();
+    }, [connectedDevice, sniPort, sniHost]);
+
+    //Leaving this in since I'm not displaying the info anywhere else in this PoC
+    console.log(fileName);
+    console.log(metadata);
+
     let objectiveCount = 0;
     v5objectives.forEach(objSet => objectiveCount += objSet.length);
-    const isV5:boolean = assuredFlags.indexOf("OA") >= 0;
+    const isV5: boolean = assuredFlags.indexOf("OA") >= 0;
 
     const currentTimer = useRef<ReturnType<typeof setInterval>>();
     useEffect(() => {
@@ -73,9 +116,9 @@ export default function Page() {
 
     // adjust locations for every KI change
     useEffect(() => {
-        const newLocList:Location[] = [];
+        const newLocList: Location[] = [];
         locationList.forEach(loc => {
-            const newLoc:Location = {
+            const newLoc: Location = {
                 ...loc,
                 available: isAvailable(loc, ki, assuredFlags)
             };
@@ -84,36 +127,36 @@ export default function Page() {
         setLocationList(newLocList)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ki, assuredFlags])
-    
+
     return (
         <div className="flex" style={{ backgroundColor: color }}>
             <div className="w-120 border-2 border-double h-screen flex flex-col justify-between font-[family-name:var(--font-geist-sans)] p-1">
                 <div>
                     <div className="flex">
-                        <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)} isV5={isV5}/></div>
+                        <div className="layout-ki"><KIDisplay ki={ki} toggleKI={(target: string) => toggleKI(target, setKI)} isV5={isV5} /></div>
                         <div className="layout-bosses"><BossDisplay bosses={bossList} toggleBoss={(id: number, val: boolean) => toggleBoss(id, val, setBossList, bossList)} /></div>
                     </div>
                     <div className="mb-3">
                         {
-                            parsedObjectives.isV5 ? 
-                            <V5ObjectiveDisplay
-                                objectives={v5objectives}
-                                req={parsedObjectives.v5Required}
-                                onEdit={(id:number, group:number) => beginv5ObjectiveEdit(id, group, setObjEdit, setMode, setGroupEdit)}
-                                onComplete = {(id:number, group:number) => completeV5Objective(id, group, v5objectives, setv5Objectives, timer)}
-                                highlighted={[groupEdit, objectiveEdit]}
-                            /> : 
-                            <ObjectiveDisplay
-                                objectives={objectives}
-                                req={parsedObjectives.required}
-                                onEdit={(id:number) => beginObjectiveEdit(id, setObjEdit, setMode)}
-                                onComplete = {(id:number) => completeObjective(id, objectives, setObjectives, timer)}
-                            />
+                            parsedObjectives.isV5 ?
+                                <V5ObjectiveDisplay
+                                    objectives={v5objectives}
+                                    req={parsedObjectives.v5Required}
+                                    onEdit={(id: number, group: number) => beginv5ObjectiveEdit(id, group, setObjEdit, setMode, setGroupEdit)}
+                                    onComplete={(id: number, group: number) => completeV5Objective(id, group, v5objectives, setv5Objectives, timer)}
+                                    highlighted={[groupEdit, objectiveEdit]}
+                                /> :
+                                <ObjectiveDisplay
+                                    objectives={objectives}
+                                    req={parsedObjectives.required}
+                                    onEdit={(id: number) => beginObjectiveEdit(id, setObjEdit, setMode)}
+                                    onComplete={(id: number) => completeObjective(id, objectives, setObjectives, timer)}
+                                />
                         }
                     </div>
                     <div>
-                            
-                        {objectiveCount < 10 ? <LocationDisplay 
+
+                        {objectiveCount < 10 ? <LocationDisplay
                             locations={locationList}
                             onSelect={(id: number) => clearLocation(id, locationList, setLocationList)}
                             isMiab={isMiab}
@@ -126,7 +169,7 @@ export default function Page() {
                     </div>
                 </div>
                 <div>
-                    <TimerDisplay 
+                    <TimerDisplay
                         currentTime={timer.currentTime}
                     />
                 </div>
@@ -134,28 +177,27 @@ export default function Page() {
             <div className="flex flex-col justify-between w-1/2">
                 <div className="font-[family-name:var(--font-geist-sans)]">
                     {mode === Mode.Info && <Info flags={assuredFlags} />}
-                    {mode === Mode.ObjectiveEdit && <ObjectiveEditor 
+                    {mode === Mode.ObjectiveEdit && <ObjectiveEditor
                         id={objectiveEdit}
                         group={groupEdit}
                         objLen={objectives.length}
-                        onSelect={(id: number, title:string, group: number) => 
-                        {
+                        onSelect={(id: number, title: string, group: number) => {
                             if (v5objectives.length && group >= 0) {
-                                editV5Objective(id, group, title, v5objectives, setv5Objectives, setObjEdit, setMode, setGroupEdit)    
+                                editV5Objective(id, group, title, v5objectives, setv5Objectives, setObjEdit, setMode, setGroupEdit)
                             }
                             editObjective(id, title, objectives, setObjectives, setObjEdit, setMode)
                         }}
-                        isDone={() => setMode(Mode.Info)} 
-                        />}
+                        isDone={() => setMode(Mode.Info)}
+                    />}
                 </div>
-                < TimeControlsDisplay 
+                < TimeControlsDisplay
                     isActive={timer.isActive}
                     startTimer={() => beginTimer(timer, setTimer, currentTimer)}
                     stopTimer={() => endTimer(timer, setTimer, currentTimer)}
                     resetTimer={() => resetTimer(setTimer)}
                 />
             </div>
-            
+
         </div>
     )
 }

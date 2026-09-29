@@ -52,7 +52,7 @@ interface FlagObject {
     required: number;
     isV5: boolean;
     v5Objectives: Array<TObjective[]>;
-    v5Required: v5Requirement[]; 
+    v5Required: v5Requirement[];
 }
 
 interface v5Requirement {
